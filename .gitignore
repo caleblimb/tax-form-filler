@@ -21,3 +21,11 @@
 /frontend/npm-debug.log*
 /frontend/yarn-debug.log*
 /frontend/yarn-error.log*
+
+
+/backend/bin
+/backend/obj
+
+
+
+/.vscode
