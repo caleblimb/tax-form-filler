@@ -1,11 +1,12 @@
 /* global Excel console */
 
-const insertText = async (text: string) => {
+export const insertText = async (text: string) => {
   // Write text to the top left cell.
   try {
     Excel.run(async (context) => {
-      const sheet = context.workbook.worksheets.getActiveWorksheet();
-      const range = sheet.getRange("A1");
+      // const sheet = context.workbook.worksheets.getActiveWorksheet();
+      // const range = sheet.getRange("A1");
+      const range = context.workbook.getSelectedRange();
       range.values = [[text]];
       range.format.autofitColumns();
       return context.sync();
@@ -15,4 +16,12 @@ const insertText = async (text: string) => {
   }
 };
 
-export default insertText;
+// export const onSelectionChange = async () => {
+//   try {
+//     Excel.run(async (context) => {
+//       context.workbook.onSelectionChanged
+//     });
+//   } catch (error) {
+//     console.log("Error: ", error);
+//   }
+// };

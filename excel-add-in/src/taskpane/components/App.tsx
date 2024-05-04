@@ -1,13 +1,7 @@
-import * as React from "react";
-import Header from "./Header";
-import HeroList, { HeroListItem } from "./HeroList";
-import TextInsertion from "./TextInsertion";
+/* global Excel */
+/* global console */
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@fluentui/react-components";
-import { Ribbon24Regular, LockOpen24Regular, DesignIdeas24Regular } from "@fluentui/react-icons";
-
-interface AppProps {
-  title: string;
-}
 
 const useStyles = makeStyles({
   root: {
@@ -15,30 +9,81 @@ const useStyles = makeStyles({
   },
 });
 
-const App = (props: AppProps) => {
+const App = () => {
   const styles = useStyles();
-  // The list items are static and won't change at runtime,
-  // so this should be an ordinary const, not a part of state.
-  const listItems: HeroListItem[] = [
-    {
-      icon: <Ribbon24Regular />,
-      primaryText: "Achieve more with Office integration",
-    },
-    {
-      icon: <LockOpen24Regular />,
-      primaryText: "Unlock features and functionality",
-    },
-    {
-      icon: <DesignIdeas24Regular />,
-      primaryText: "Create and visualize like a pro",
-    },
-  ];
+  const [selectedRange, setSelectedRange] = useState<string>("");
+
+  useEffect(() => {
+    // Setup event listener for selection change
+    Excel.run(function (context) {
+      context.workbook.onSelectionChanged.add(handleSelectionChanged);
+      return context.sync();
+    });
+
+    // Cleanup event listener on component unmount
+    return () => {
+      // eslint-disable-next-line no-undef
+      Excel.run(function (context) {
+        context.workbook.onSelectionChanged.remove(handleSelectionChanged);
+        return context.sync();
+      });
+    };
+  }, []);
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const handleSelectionChanged = (_: Excel.SelectionChangedEventArgs): Promise<void> => {
+    return Excel.run(function (context) {
+      // Get the newly selected range
+      var newSelectedRange = context.workbook.getSelectedRange();
+      newSelectedRange.load("address");
+
+      // Execute the batch operation
+      return context.sync().then(function () {
+        // Update component state with the new selection
+        setSelectedRange(newSelectedRange.address);
+      });
+    }).catch(function (error) {
+      // eslint-disable-next-line no-undef
+      console.log("Error: " + error);
+    });
+  };
+
+  const insertText = async () => {
+    // Write text to the top left cell.
+    try {
+      Excel.run(async (context) => {
+        // const sheet = context.workbook.worksheets.getActiveWorksheet();
+        // const range = sheet.getRange("A1");
+        const sheet = context.workbook.worksheets.getActiveWorksheet();
+        const range = context.workbook.getSelectedRange();
+        range.load("address");
+        // range.format.autofitColumns();
+        return context
+          .sync()
+          .then(function () {
+            sheet.comments.add(range.address, "new comment");
+          })
+          .then(context.sync)
+          .then(function () {
+            console.log("success");
+          });
+      });
+    } catch (error) {
+      console.log("Error: " + error);
+    }
+  };
 
   return (
     <div className={styles.root}>
-      <Header logo="assets/logo-filled.png" title={props.title} message="Welcome" />
-      <HeroList message="Discover what this add-in can do for you today!" items={listItems} />
-      <TextInsertion />
+      <h1>Header</h1>
+      <p>{selectedRange}</p>
+      <button
+        onClick={() => {
+          insertText();
+        }}
+      >
+        Set Text
+      </button>
     </div>
   );
 };
