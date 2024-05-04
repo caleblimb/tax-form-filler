@@ -1,66 +1,24 @@
 
 
-using DocumentFormat.OpenXml.Office.PowerPoint.Y2021.M06.Main;
+using Newtonsoft.Json;
 
-class Program
+namespace Backend
 {
-    // Spreadsheet doc;
-    static void Main(string[] args)
+    class Program
     {
-
-        var builder = WebApplication.CreateBuilder(args);
-
-        // Add services to the container.
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-        builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
-
-        builder.Services.AddCors(options =>
-       {
-           options.AddPolicy("AllowSpecificOrigins",
-               builder =>
-               {
-                   builder.WithOrigins("http://localhost:3000/", "https://localhost:3000/")
-                          .AllowAnyMethod()
-                          .AllowAnyHeader();
-               });
-       });
-
-        var app = builder.Build();
-
-        // Configure the HTTP request pipeline.
-        if (app.Environment.IsDevelopment())
+        static void Main(string[] args)
         {
-            app.UseSwagger();
-            app.UseSwaggerUI();
+            CreateHostBuilder(args).Build().Run();
+
         }
-
-        app.UseCors(options =>
-        {
-            options.AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader();
-        });
-
-        // Enable CORS
-        app.UseCors("AllowSpecificOrigins");
-
-        app.UseHttpsRedirection();
-
-        addApis(app);
-
-        app.Run();
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
+            });
 
     }
 
-    private static void addApis(WebApplication app)
-    {
 
-        Spreadsheet doc = new Spreadsheet("res/2023 Tax Workbook - 1040 Template.xlsx");
-        app.MapGet("/get-document", () =>
-        {
-            return doc.getWorkbook();
-        }).WithName("GetDocument").WithOpenApi();
-    }
 }
-

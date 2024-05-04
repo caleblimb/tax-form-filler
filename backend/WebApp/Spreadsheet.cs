@@ -1,58 +1,88 @@
 using ClosedXML.Excel;
-using DocumentFormat.OpenXml.Bibliography;
-using DocumentFormat.OpenXml.Drawing.Charts;
 
 public class Spreadsheet
 {
-    // IXLWorksheet worksheet;
-
-    readonly string[] worksheetNames;
+    // readonly string[] worksheetNames;
     readonly Sheet[] sheets;
 
     public Spreadsheet(string filePath)
     {
         using XLWorkbook workbook = new XLWorkbook(filePath);
 
+        Console.Write("Creating document");
+
         var worksheetCount = workbook.Worksheets.Count;
-        worksheetNames = new string[worksheetCount];
+        // worksheetNames = new string[worksheetCount];
 
         sheets = new Sheet[worksheetCount];
 
         for (int i = 0; i < worksheetCount; i++)
         {
             var worksheet = workbook.Worksheets.ElementAt(i);
-
-            worksheetNames[i] = worksheet.Name;
-
-            var columnsUsed = worksheet.ColumnsUsed();
-            var rowsUsed = worksheet.RowsUsed();
-
-            var sheet = new Sheet
-            {
-                name = worksheet.Name,
-                width = columnsUsed.Count(),
-                height = rowsUsed.Count()
-            };
-
-            sheets[i] = sheet;
-
-
-            // sheets[i].name = worksheet.Name;
-            // sheets[i].width = columnsUsed.Count();
-            // sheets[i].height = rowsUsed.Count();
-
+            // worksheetNames[i] = worksheet.Name;
+            sheets[i] = ParseSheet(worksheet);
         }
 
     }
 
-    public string[] getWorksheet()
+
+    private static Sheet ParseSheet(IXLWorksheet worksheet)
     {
-        return this.worksheetNames;
+        var rows = worksheet.Rows();
+        var columns = worksheet.Columns();
+
+        var width = columns.Count();
+        var height = rows.Count();
+
+        var cells = new Cell[height, width];
+
+        for (int j = 0; j < height; j++)
+        {
+            var row = rows.ElementAt(j).Cells();
+
+            for (int k = 0; k < width; k++)
+            {
+                var cell = row.ElementAtOrDefault(k);
+                if (cell != null)
+                {
+                    cells[j, k] = new Cell
+                    {
+                        Sheet = worksheet.Name,
+                        Col = j,
+                        Row = k,
+                        Formula = cell.FormulaR1C1,
+                        Value = cell.GetValue<string>(),
+                        Format = cell.Style.NumberFormat.Format == "General" ? "" : cell.Style.NumberFormat.Format,
+                    };
+                }
+                else
+                {
+                    cells[j, k] = new Cell
+                    {
+                        Sheet = worksheet.Name,
+                        Col = j,
+                        Row = k,
+                        Formula = "",
+                        Value = "",
+                        Format = "",
+                    };
+                }
+            }
+        }
+
+        var sheet = new Sheet
+        {
+            Name = worksheet.Name,
+            Width = width,
+            Height = height,
+            Cells = cells
+        };
+
+        return sheet;
     }
 
     public Sheet[] getWorkbook()
     {
-        Console.Write(this.sheets);
         return this.sheets;
     }
 }
