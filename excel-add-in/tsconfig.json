@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
     "allowUnusedLabels": false,
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
