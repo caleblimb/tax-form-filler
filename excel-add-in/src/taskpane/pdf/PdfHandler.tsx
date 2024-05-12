@@ -7,22 +7,25 @@ import { pdfjs } from "react-pdf";
 import { convertToBase64 } from "../utilities/Png";
 import { PDFDocument, PDFField, PDFForm, PDFPage, PDFWidgetAnnotation } from "pdf-lib";
 
-// export interface FormField {
-//   pdfField: PDFField;
-//   pageNumber: number;
-// }
-
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 interface PdfHandlerProps {
   title: string;
 }
 
+const colors: string[] = ["f94144", "90be6d", "f9844a", "4d908e", "f3722c", "577590", "f9c74f", "277da1"];
+const colorsLight: string[] = ["ff8184", "d0fead", "ffc48a", "8dd0ce", "ffb26c", "97b5d0", "ffe78f", "67bde1"];
+const imageTag: string = "pdf-image-";
+
 const PdfHandler: FC<PdfHandlerProps> = ({ title }: PdfHandlerProps) => {
   const onLoadFile = async (file: File) => {
+    await createDocument(file);
+
     const bytes: ArrayBuffer = await file.arrayBuffer();
     const pdfDocument: PDFDocument = await PDFDocument.load(bytes);
     const pdfPages: PDFPage[] = pdfDocument.getPages();
+
+    pdfPages.length;
 
     let offset = 0;
     const pageHeights = pdfPages.map((page, index) => {
@@ -40,6 +43,28 @@ const PdfHandler: FC<PdfHandlerProps> = ({ title }: PdfHandlerProps) => {
     setBColumnWidth(maxWidth);
 
     addConnections(pdfDocument, pdfPages, pageHeights);
+
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    Excel.run(async (context) => {
+      let shapes = context.workbook.worksheets.getActiveWorksheet().shapes;
+      pdfPages.map((_page, index) => {
+        const pageNumber = index + 1;
+        const pageImage = shapes.getItem(imageTag + pageNumber);
+        pageImage.setZOrder(Excel.ShapeZOrder.sendToBack);
+      });
+      await context.sync();
+    });
+  };
+
+  const createDocument = async (file: File) => {
+    await Excel.run(async (context) => {
+      const worksheets = context.workbook.worksheets;
+
+      const newWorksheet = worksheets.add("{" + file.name + "}");
+      newWorksheet.activate();
+      await context.sync();
+    });
   };
 
   const setBColumnWidth = async (width: number) => {
@@ -50,7 +75,7 @@ const PdfHandler: FC<PdfHandlerProps> = ({ title }: PdfHandlerProps) => {
         await context.sync();
       });
     } catch (error) {
-      console.error("whyyyy:", error);
+      console.error("Error setting column width:", error);
     }
   };
 
@@ -75,17 +100,25 @@ const PdfHandler: FC<PdfHandlerProps> = ({ title }: PdfHandlerProps) => {
 
       if (rect) {
         const cell = index + 1;
-        addLine(cell, {
-          x: rect.x + rect.width / 2,
-          y: pageOffset + pageHeights[pageNumber - 1] - rect.y - rect.height / 2,
-        });
+        addLine(
+          cell,
+          {
+            x: rect.x + rect.width / 2,
+            y: pageOffset + pageHeights[pageNumber - 1] - rect.y - rect.height / 2,
+          },
+          colors[index % colors.length]
+        );
 
-        addRect(cell, { ...rect, y: pageOffset + pageHeights[pageNumber - 1] - rect.y });
+        addRect(
+          cell,
+          { ...rect, y: pageOffset + pageHeights[pageNumber - 1] - rect.y },
+          colorsLight[index % colors.length]
+        );
       }
     });
   };
 
-  const addLine = async (cell: number, position: { x: number; y: number }, attempt: number = 0) => {
+  const addLine = async (cell: number, position: { x: number; y: number }, color: string, attempt: number = 0) => {
     try {
       await Excel.run(async (context) => {
         let shapes = context.workbook.worksheets.getActiveWorksheet().shapes;
@@ -102,6 +135,9 @@ const PdfHandler: FC<PdfHandlerProps> = ({ title }: PdfHandlerProps) => {
           Excel.ConnectorType.straight
         );
         line.name = "ConnectionLine:" + cell;
+        line.lineFormat.color = color;
+        // line.lineFormat.weight = 0.25;
+        line.lineFormat.style = "ThickThin";
         line.setZOrder(Excel.ShapeZOrder.bringToFront);
 
         await context.sync();
@@ -110,7 +146,7 @@ const PdfHandler: FC<PdfHandlerProps> = ({ title }: PdfHandlerProps) => {
       const maxAttempts: number = 10;
       if (attempt < maxAttempts) {
         await new Promise((resolve) => setTimeout(resolve, (position.y / 10) * attempt));
-        addLine(cell, position, attempt + 1);
+        addLine(cell, position, color, attempt + 1);
       } else {
         console.error(error);
       }
@@ -120,6 +156,7 @@ const PdfHandler: FC<PdfHandlerProps> = ({ title }: PdfHandlerProps) => {
   const addRect = async (
     cell: number,
     rect: { x: number; y: number; width: number; height: number },
+    color: string,
     attempt: number = 0
   ) => {
     try {
@@ -136,7 +173,10 @@ const PdfHandler: FC<PdfHandlerProps> = ({ title }: PdfHandlerProps) => {
         shape.width = rect.width;
         shape.height = rect.height;
         shape.name = "ConnectionRect" + cell;
-        //TODO set fill to transparent
+        shape.fill.foregroundColor = color;
+        shape.setZOrder(Excel.ShapeZOrder.sendToBack);
+        await context.sync();
+        shape.setZOrder(Excel.ShapeZOrder.bringForward);
 
         await context.sync();
       });
@@ -144,7 +184,7 @@ const PdfHandler: FC<PdfHandlerProps> = ({ title }: PdfHandlerProps) => {
       const maxAttempts: number = 10;
       if (attempt < maxAttempts) {
         await new Promise((resolve) => setTimeout(resolve, (rect.y / 10) * attempt));
-        addRect(cell, rect, attempt + 1);
+        addRect(cell, rect, color, attempt + 1);
       } else {
         console.error(error);
       }
@@ -165,7 +205,7 @@ const PdfHandler: FC<PdfHandlerProps> = ({ title }: PdfHandlerProps) => {
           const sheet = context.workbook.worksheets.getActiveWorksheet();
           const startIndex = png64.indexOf("base64,");
           const image = sheet.shapes.addImage(png64.substr(startIndex + 7));
-          image.name = "Image";
+          image.name = imageTag + page.num;
 
           image.top = cellRange.top + page.yOffset;
           image.left = cellRange.left + 1;
