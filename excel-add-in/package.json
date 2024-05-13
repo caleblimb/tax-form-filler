@@ -32,7 +32,9 @@
     "es6-promise": "^4.2.8",
     "pdf-lib": "^1.17.1",
     "react": "^18.2.0",
+    "react-datepicker": "^6.9.0",
     "react-dom": "^18.2.0",
+    "react-number-format": "^5.3.4",
     "react-pdf": "^8.0.2",
     "react-tabs": "^6.0.2",
     "regenerator-runtime": "^0.13.7"
@@ -43,6 +45,7 @@
     "@types/office-js": "^1.0.256",
     "@types/office-runtime": "^1.0.23",
     "@types/react": "^18.2.21",
+    "@types/react-datepicker": "^6.2.0",
     "@types/react-dom": "^18.2.7",
     "@types/webpack": "^4.4.34",
     "acorn": "^8.5.0",

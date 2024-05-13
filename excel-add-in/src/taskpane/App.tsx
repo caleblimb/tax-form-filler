@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@fluentui/react-components";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import InputHandler from "./input/InputHandler";
+import CellHandler from "./magic-cell/CellHandler";
 import MessageHandler from "./messages/MessageHandler";
 import PdfHandler from "./pdf/PdfHandler";
 
@@ -12,10 +12,15 @@ const useStyles = makeStyles({
     minHeight: "100vh",
   },
 });
+export interface CellRange {
+  address: string;
+  text: string;
+  cellCount: number;
+}
 
 const App = () => {
   const styles = useStyles();
-  const [selectedRange, setSelectedRange] = useState<Excel.Range>();
+  const [selectedRange, setSelectedRange] = useState<CellRange>();
 
   useEffect(() => {
     // Setup event listener for selection change
@@ -36,15 +41,18 @@ const App = () => {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleSelectionChanged = (_: Excel.SelectionChangedEventArgs): Promise<void> => {
-    return Excel.run(function (context) {
+    return Excel.run(async (context) => {
       // Get the newly selected range
       var newSelectedRange = context.workbook.getSelectedRange();
-      newSelectedRange.load("address");
+      newSelectedRange.load("address,addressLocal,text,cellCount");
 
       // Execute the batch operation
-      return context.sync().then(function () {
-        // Update component state with the new selection
-        setSelectedRange(newSelectedRange);
+      await context.sync();
+      // Update component state with the new selection
+      setSelectedRange({
+        address: newSelectedRange.address,
+        text: newSelectedRange.text[0][0],
+        cellCount: newSelectedRange.cellCount,
       });
     }).catch(function (error) {
       // eslint-disable-next-line no-undef
@@ -62,7 +70,7 @@ const App = () => {
           <Tab>Map PDF</Tab>
         </TabList>
         <TabPanel>
-          <InputHandler title="Manage Input" range={selectedRange} />
+          <CellHandler title="Manage Input" range={selectedRange} />
         </TabPanel>
         <TabPanel>
           <MessageHandler title="Error Messages" />

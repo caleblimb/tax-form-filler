@@ -2,6 +2,7 @@ import * as React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
 import { FluentProvider, webLightTheme } from "@fluentui/react-components";
+import "./stylesheets/datepicker.scss";
 import "./index.scss";
 
 /* global document, Office, module, require */
