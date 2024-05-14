@@ -1,8 +1,9 @@
 //* global console */
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import { MagicCell } from "../CellHandler";
-import { NumericFormat } from "react-number-format";
-import DatePicker from "react-datepicker";
+import { DatePicker, InputNumber, Switch } from "antd";
+// import type { RadioChangeEvent } from "antd";
+import { Radio, Input, Button, Space, Select } from "antd";
 
 interface InputHandlerProps {
   cell: MagicCell;
@@ -10,115 +11,58 @@ interface InputHandlerProps {
 }
 
 export interface InputCell {
-  type?: "text" | "number" | "currency" | "date" | "dropdown" | "radio";
+  type?: "text" | "number" | "date" | "dropdown" | "radio";
   min?: number;
   max?: number;
-  decimalScale?: number;
+  formatAsCurrency?: boolean;
   options?: string[];
 }
 
-const InputHandler: FC<InputHandlerProps> = ({ cell, setCellContent }: InputHandlerProps) => {
-  const [startDate, setStartDate] = useState(new Date());
+const inputOptions = [
+  { label: "Text", value: "text" },
+  { label: "Number", value: "number" },
+  { label: "Date", value: "date" },
+  { label: "Dropdown", value: "dropdown" },
+  { label: "Radio", value: "radio" },
+];
 
+const InputHandler: FC<InputHandlerProps> = ({ cell, setCellContent }: InputHandlerProps) => {
   return (
     <div>
       <div>
-        <label>
-          <input
-            type="radio"
-            value="input"
-            checked={cell?.content?.type === "text"}
-            onChange={() => {
-              setCellContent({ ...cell.content, type: "text" });
-            }}
-          />
-          Text
-        </label>
-
-        <br />
-
-        <label>
-          <input
-            type="radio"
-            value="input"
-            checked={cell?.content?.type === "number"}
-            onChange={() => {
-              setCellContent({ ...cell.content, type: "number" });
-            }}
-          />
-          Number
-        </label>
-
-        <br />
-
-        <label>
-          <input
-            type="radio"
-            value="input"
-            checked={cell?.content?.type === "currency"}
-            onChange={() => {
-              setCellContent({ ...cell.content, type: "currency" });
-            }}
-          />
-          Currency
-        </label>
-
-        <br />
-
-        <label>
-          <input
-            type="radio"
-            value="input"
-            checked={cell?.content?.type === "date"}
-            onChange={() => {
-              setCellContent({ ...cell.content, type: "date" });
-            }}
-          />
-          Date
-        </label>
-
-        <br />
-
-        <label>
-          <input
-            type="radio"
-            value="input"
-            checked={cell?.content?.type === "dropdown"}
-            onChange={() => {
-              setCellContent({ ...cell.content, type: "dropdown" });
-            }}
-          />
-          Dropdown
-        </label>
-
-        <br />
-
-        <label>
-          <input
-            type="radio"
-            value="input"
-            checked={cell?.content?.type === "radio"}
-            onChange={() => {
-              setCellContent({ ...cell.content, type: "radio" });
-            }}
-          />
-          Radio Button
-        </label>
+        <Radio.Group
+          options={inputOptions}
+          onChange={({ target: { value } }) => {
+            setCellContent({ ...cell.content, type: value });
+          }}
+          value={cell.content?.type}
+          optionType="button"
+          buttonStyle="solid"
+        />
       </div>
 
       <div>
         {cell?.content?.type === "text" && (
           <div>
             <label>
-              <input type="number" onChange={(e) => setCellContent({ ...cell.content, min: +e.target.value })} />
               Min Length
+              <InputNumber
+                min={0}
+                onChange={(value) => {
+                  if (value) setCellContent({ ...cell.content, min: value as number });
+                }}
+              />
             </label>
 
             <br />
 
             <label>
-              <input type="number" onChange={(e) => setCellContent({ ...cell.content, max: +e.target.value })} />
               Max Length
+              <InputNumber
+                onChange={(value) => {
+                  if (value) setCellContent({ ...cell.content, max: value as number });
+                }}
+              />
             </label>
           </div>
         )}
@@ -127,38 +71,27 @@ const InputHandler: FC<InputHandlerProps> = ({ cell, setCellContent }: InputHand
           <div>
             <label>
               Min Value
-              <input type="number" onChange={(e) => setCellContent({ ...cell.content, min: +e.target.value })} />
+              <InputNumber
+                onChange={(value) => {
+                  if (value) setCellContent({ ...cell.content, min: value as number });
+                }}
+              />
             </label>
+
+            <br />
 
             <label>
               Max Value
-              <input type="number" onChange={(e) => setCellContent({ ...cell.content, max: +e.target.value })} />
-            </label>
-          </div>
-        )}
-
-        {cell?.content?.type === "currency" && (
-          <div>
-            Round to nearest <br />
-            <label>
-              Dollar
-              <input
-                type="radio"
-                checked={cell?.content?.decimalScale === 0}
-                onChange={() => {
-                  setCellContent({ ...cell.content, decimalScale: 0 });
+              <InputNumber
+                onChange={(value) => {
+                  if (value) setCellContent({ ...cell.content, max: value as number });
                 }}
               />
             </label>
+            <br />
             <label>
-              Cent
-              <input
-                type="radio"
-                checked={cell?.content?.decimalScale === 2}
-                onChange={() => {
-                  setCellContent({ ...cell.content, decimalScale: 2 });
-                }}
-              />
+              Format as currency
+              <Switch onChange={(checked: boolean) => setCellContent({ ...cell.content, formatAsCurrency: checked })} />
             </label>
           </div>
         )}
@@ -167,49 +100,44 @@ const InputHandler: FC<InputHandlerProps> = ({ cell, setCellContent }: InputHand
           <div>
             {cell.content.options?.map((option, index) => (
               <div key={"option-input-" + index}>
-                <label>
-                  {index}:
-                  <input
+                <Space.Compact>
+                  <Input
                     type="text"
                     value={option}
-                    onChange={(e) => {
+                    onChange={({ target: { value } }) => {
+                      setCellContent({
+                        ...cell.content,
+                        options: [
+                          ...(cell.content?.options?.slice(0, index) ?? []),
+                          value,
+                          ...(cell.content?.options?.slice(index + 1, cell.content?.options.length) ?? []),
+                        ],
+                      });
+                    }}
+                  />
+                  <Button
+                    type="primary"
+                    onClick={() => {
                       setCellContent({
                         ...cell.content,
 
                         options: [
                           ...(cell.content?.options?.slice(0, index) ?? []),
 
-                          e.target.value,
-
                           ...(cell.content?.options?.slice(index + 1, cell.content?.options.length) ?? []),
                         ],
                       });
                     }}
-                  />
-                </label>
-
-                <button
-                  type="button"
-                  onClick={() => {
-                    setCellContent({
-                      ...cell.content,
-
-                      options: [
-                        ...(cell.content?.options?.slice(0, index) ?? []),
-
-                        ...(cell.content?.options?.slice(index + 1, cell.content?.options.length) ?? []),
-                      ],
-                    });
-                  }}
-                >
-                  X
-                </button>
+                  >
+                    X
+                  </Button>
+                </Space.Compact>
               </div>
             ))}
 
             <div>
-              <button
-                type="button"
+              <Button
+                type="primary"
                 onClick={() => {
                   const updatedOptions = {
                     ...cell.content,
@@ -221,7 +149,7 @@ const InputHandler: FC<InputHandlerProps> = ({ cell, setCellContent }: InputHand
                 }}
               >
                 Add +
-              </button>
+              </Button>
             </div>
           </div>
         )}
@@ -233,51 +161,43 @@ const InputHandler: FC<InputHandlerProps> = ({ cell, setCellContent }: InputHand
         <div>
           {cell?.content?.type === "text" && (
             <label>
-              <input type="text" />
               Example
+              <Input type="text" />
             </label>
           )}
 
           {cell?.content?.type === "number" && (
             <label>
-              <input type="number" min={cell.content.min} max={cell.content.max} />
               Example
+              {cell?.content.formatAsCurrency ? (
+                <InputNumber<number>
+                  defaultValue={1000}
+                  formatter={(value) => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  parser={(value) => value?.replace(/\$\s?|(,*)/g, "") as unknown as number}
+                />
+              ) : (
+                <Input type="number" min={cell.content.min} max={cell.content.max} />
+              )}
             </label>
           )}
 
-          {cell?.content?.type === "currency" && (
-            <NumericFormat prefix="$" thousandSeparator decimalScale={cell.content.decimalScale} />
-          )}
-
-          {cell?.content?.type === "date" && (
-            <DatePicker showIcon selected={startDate} onChange={(date: Date) => setStartDate(date)} />
-          )}
+          {cell?.content?.type === "date" && <DatePicker />}
 
           {cell?.content?.type === "dropdown" && (
-            <label>
-              Options
-              <select>
-                {cell.content.options?.map((option, index) => (
-                  <option key={"option-select-" + index} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-            </label>
+            <Select
+              allowClear
+              options={cell.content.options?.map((option) => {
+                return { value: option, label: option };
+              })}
+            />
           )}
 
           {cell?.content?.type === "radio" && (
-            <div>
-              {cell.content.options?.map((option, index) => (
-                <span key={"radio-select-" + index}>
-                  <label>
-                    <input type="radio" value="input" name="radio-example" />
-
-                    {option}
-                  </label>
-                </span>
-              ))}
-            </div>
+            <Radio.Group
+              options={cell.content.options?.map((option) => {
+                return { value: option, label: option };
+              })}
+            />
           )}
         </div>
       </div>
