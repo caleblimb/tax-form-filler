@@ -3,6 +3,7 @@
 import React, { FC, useEffect, useState } from "react";
 import { CellRange } from "../App";
 import InputHandler, { InputCell } from "./input-handler/InputHandler";
+import { Radio } from "antd";
 
 interface InputHandlerProps {
   title: string;
@@ -59,40 +60,28 @@ const CellHandler: FC<InputHandlerProps> = ({ title, range }: InputHandlerProps)
     <div>
       <h1>{title}</h1>
       <p>{range?.address}</p>
-      {range && range.cellCount === 1 ? (
+      {range ? (
         <div>
           <div>
-            <button
-              type="button"
-              onClick={() => {
-                clearCell();
+            <Radio.Group
+              options={[
+                { label: "None", value: "" },
+                { label: "Input", value: "input" },
+                { label: "Message", value: "message" },
+              ]}
+              onChange={({ target: { value } }) => {
+                if (value) {
+                  setCell({ type: value });
+                } else {
+                  clearCell();
+                }
               }}
-            >
-              Delete
-            </button>
-            <label>
-              <input
-                type="radio"
-                value="input"
-                checked={cell?.type === "input"}
-                onChange={() => {
-                  setCell({ ...cell, type: "input" });
-                }}
-              />
-              Input
-            </label>
-            <label>
-              <input
-                type="radio"
-                value="input"
-                checked={cell?.type === "message"}
-                onChange={() => {
-                  setCell({ ...cell, type: "message" });
-                }}
-              />
-              Message
-            </label>
+              value={cell?.type}
+              optionType="button"
+              buttonStyle="solid"
+            />
           </div>
+          <hr />
           <div>
             {cell?.type === "input" && (
               <InputHandler cell={cell} setCellContent={(cellContent) => setCell({ ...cell, content: cellContent })} />
@@ -100,7 +89,7 @@ const CellHandler: FC<InputHandlerProps> = ({ title, range }: InputHandlerProps)
           </div>
         </div>
       ) : (
-        <div>Select a single cell to manage it&apos;s properties.</div>
+        <div>Select a cell to manage it&apos;s properties.</div>
       )}
     </div>
   );

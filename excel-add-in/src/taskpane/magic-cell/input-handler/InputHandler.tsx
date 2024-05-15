@@ -41,98 +41,104 @@ const InputHandler: FC<InputHandlerProps> = ({ cell, setCellContent }: InputHand
         />
       </div>
 
-      <div>
+      <hr />
+
+      <Space direction="vertical">
         {cell?.content?.type === "text" && (
-          <div>
-            <label>
-              Min Length
-              <InputNumber
-                min={0}
-                onChange={(value) => {
-                  if (value) setCellContent({ ...cell.content, min: value as number });
-                }}
-              />
-            </label>
+          <>
+            <Space.Compact>
+              <label>
+                Min Length
+                <InputNumber
+                  min={0}
+                  onChange={(value) => {
+                    if (value) setCellContent({ ...cell.content, min: value as number });
+                  }}
+                />
+              </label>
+            </Space.Compact>
 
-            <br />
-
-            <label>
-              Max Length
-              <InputNumber
-                onChange={(value) => {
-                  if (value) setCellContent({ ...cell.content, max: value as number });
-                }}
-              />
-            </label>
-          </div>
+            <Space.Compact>
+              <label>
+                Max Length
+                <InputNumber
+                  onChange={(value) => {
+                    if (value) setCellContent({ ...cell.content, max: value as number });
+                  }}
+                />
+              </label>
+            </Space.Compact>
+          </>
         )}
 
         {cell?.content?.type === "number" && (
-          <div>
-            <label>
-              Min Value
-              <InputNumber
-                onChange={(value) => {
-                  if (value) setCellContent({ ...cell.content, min: value as number });
-                }}
-              />
-            </label>
-
-            <br />
-
-            <label>
-              Max Value
-              <InputNumber
-                onChange={(value) => {
-                  if (value) setCellContent({ ...cell.content, max: value as number });
-                }}
-              />
-            </label>
-            <br />
-            <label>
-              Format as currency
-              <Switch onChange={(checked: boolean) => setCellContent({ ...cell.content, formatAsCurrency: checked })} />
-            </label>
-          </div>
+          <>
+            <Space.Compact>
+              <label>
+                Min Value
+                <InputNumber
+                  onChange={(value) => {
+                    if (value) setCellContent({ ...cell.content, min: value as number });
+                  }}
+                />
+              </label>
+            </Space.Compact>
+            <Space.Compact>
+              <label>
+                Max Value
+                <InputNumber
+                  onChange={(value) => {
+                    if (value) setCellContent({ ...cell.content, max: value as number });
+                  }}
+                />
+              </label>
+            </Space.Compact>
+            <Space.Compact>
+              <label>
+                Format as currency
+                <Switch
+                  onChange={(checked: boolean) => setCellContent({ ...cell.content, formatAsCurrency: checked })}
+                />
+              </label>
+            </Space.Compact>
+          </>
         )}
 
         {(cell?.content?.type === "dropdown" || cell?.content?.type === "radio") && (
-          <div>
+          <>
             {cell.content.options?.map((option, index) => (
-              <div key={"option-input-" + index}>
-                <Space.Compact>
-                  <Input
-                    type="text"
-                    value={option}
-                    onChange={({ target: { value } }) => {
-                      setCellContent({
-                        ...cell.content,
-                        options: [
-                          ...(cell.content?.options?.slice(0, index) ?? []),
-                          value,
-                          ...(cell.content?.options?.slice(index + 1, cell.content?.options.length) ?? []),
-                        ],
-                      });
-                    }}
-                  />
-                  <Button
-                    type="primary"
-                    onClick={() => {
-                      setCellContent({
-                        ...cell.content,
+              <Space.Compact key={"option-input-" + index}>
+                <Input
+                  type="text"
+                  value={option}
+                  onChange={({ target: { value } }) => {
+                    setCellContent({
+                      ...cell.content,
+                      options: [
+                        ...(cell.content?.options?.slice(0, index) ?? []),
+                        value,
+                        ...(cell.content?.options?.slice(index + 1, cell.content?.options.length) ?? []),
+                      ],
+                    });
+                  }}
+                />
+                <Button
+                  type="primary"
+                  onClick={() => {
+                    setCellContent({
+                      ...cell.content,
 
-                        options: [
-                          ...(cell.content?.options?.slice(0, index) ?? []),
+                      options: [
+                        ...(cell.content?.options?.slice(0, index) ?? []),
 
-                          ...(cell.content?.options?.slice(index + 1, cell.content?.options.length) ?? []),
-                        ],
-                      });
-                    }}
-                  >
-                    X
-                  </Button>
-                </Space.Compact>
-              </div>
+                        ...(cell.content?.options?.slice(index + 1, cell.content?.options.length) ?? []),
+                      ],
+                    });
+                  }}
+                >
+                  X
+                </Button>
+              </Space.Compact>
             ))}
 
             <div>
@@ -141,20 +147,19 @@ const InputHandler: FC<InputHandlerProps> = ({ cell, setCellContent }: InputHand
                 onClick={() => {
                   const updatedOptions = {
                     ...cell.content,
-
                     options: [...(cell.content?.options ?? []), ""],
                   };
-
                   setCellContent(updatedOptions);
                 }}
               >
-                Add +
+                Add Option +
               </Button>
             </div>
-          </div>
+          </>
         )}
-      </div>
+      </Space>
 
+      <hr />
       <div>
         <h2>Preview:</h2>
 
@@ -185,6 +190,7 @@ const InputHandler: FC<InputHandlerProps> = ({ cell, setCellContent }: InputHand
 
           {cell?.content?.type === "dropdown" && (
             <Select
+              style={{ minWidth: "10rem" }}
               allowClear
               options={cell.content.options?.map((option) => {
                 return { value: option, label: option };

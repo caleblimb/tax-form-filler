@@ -2,16 +2,18 @@
 /* global console */
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@fluentui/react-components";
-import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import CellHandler from "./magic-cell/CellHandler";
 import MessageHandler from "./messages/MessageHandler";
 import PdfHandler from "./pdf/PdfHandler";
+import Layout, { Content, Header } from "antd/es/layout/layout";
+import { Menu } from "antd";
 
 const useStyles = makeStyles({
   root: {
     minHeight: "100vh",
   },
 });
+
 export interface CellRange {
   address: string;
   text: string;
@@ -21,6 +23,8 @@ export interface CellRange {
 const App = () => {
   const styles = useStyles();
   const [selectedRange, setSelectedRange] = useState<CellRange>();
+  const defaultNavIndex = "cell";
+  const [navIndex, setNavIndex] = useState<string>(defaultNavIndex);
 
   useEffect(() => {
     // Setup event listener for selection change
@@ -45,7 +49,6 @@ const App = () => {
       // Get the newly selected range
       var newSelectedRange = context.workbook.getSelectedRange();
       newSelectedRange.load("address,addressLocal,text,cellCount");
-
       // Execute the batch operation
       await context.sync();
       // Update component state with the new selection
@@ -62,23 +65,42 @@ const App = () => {
 
   return (
     <div className={styles.root}>
-      <h1>Header</h1>
-      <Tabs>
-        <TabList>
-          <Tab>Manage Input</Tab>
-          <Tab>Error Messages</Tab>
-          <Tab>Map PDF</Tab>
-        </TabList>
-        <TabPanel>
-          <CellHandler title="Manage Input" range={selectedRange} />
-        </TabPanel>
-        <TabPanel>
-          <MessageHandler title="Error Messages" />
-        </TabPanel>
-        <TabPanel>
-          <PdfHandler title="Map PDF" />
-        </TabPanel>
-      </Tabs>
+      <Layout>
+        <Header
+          style={{
+            position: "sticky",
+            top: 0,
+            zIndex: 1,
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            padding: "0",
+          }}
+        >
+          <Menu
+            theme="dark"
+            mode="horizontal"
+            defaultSelectedKeys={[defaultNavIndex]}
+            items={[
+              { key: "cell", label: "Custom Cell" },
+              { key: "page", label: "Page Controls" },
+              { key: "pdf", label: "Map PDF" },
+            ]}
+            style={{ flex: 1, minWidth: 0, width: "100%" }}
+            onClick={(e) => {
+              setNavIndex(e.key);
+            }}
+          />
+        </Header>
+
+        <Content style={{ padding: "1rem" }}>
+          <div>
+            {navIndex === "cell" && <CellHandler title="Manage Input" range={selectedRange} />}
+            {navIndex === "page" && <MessageHandler title="Error Messages" />}
+            {navIndex === "pdf" && <PdfHandler title="Map PDF" />}
+          </div>
+        </Content>
+      </Layout>
     </div>
   );
 };
