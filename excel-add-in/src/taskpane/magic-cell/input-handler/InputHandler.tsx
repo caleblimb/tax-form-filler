@@ -51,6 +51,7 @@ const InputHandler: FC<InputHandlerProps> = ({ cell, setCellContent }: InputHand
                 Min Length
                 <InputNumber
                   min={0}
+                  value={cell.content.min}
                   onChange={(value) => {
                     if (value) setCellContent({ ...cell.content, min: value as number });
                   }}
@@ -62,6 +63,8 @@ const InputHandler: FC<InputHandlerProps> = ({ cell, setCellContent }: InputHand
               <label>
                 Max Length
                 <InputNumber
+                  min={0}
+                  value={cell.content.max}
                   onChange={(value) => {
                     if (value) setCellContent({ ...cell.content, max: value as number });
                   }}
@@ -77,6 +80,7 @@ const InputHandler: FC<InputHandlerProps> = ({ cell, setCellContent }: InputHand
               <label>
                 Min Value
                 <InputNumber
+                  value={cell.content.min}
                   onChange={(value) => {
                     if (value) setCellContent({ ...cell.content, min: value as number });
                   }}
@@ -87,6 +91,7 @@ const InputHandler: FC<InputHandlerProps> = ({ cell, setCellContent }: InputHand
               <label>
                 Max Value
                 <InputNumber
+                  value={cell.content.max}
                   onChange={(value) => {
                     if (value) setCellContent({ ...cell.content, max: value as number });
                   }}
@@ -97,6 +102,7 @@ const InputHandler: FC<InputHandlerProps> = ({ cell, setCellContent }: InputHand
               <label>
                 Format as currency
                 <Switch
+                  value={cell.content.formatAsCurrency}
                   onChange={(checked: boolean) => setCellContent({ ...cell.content, formatAsCurrency: checked })}
                 />
               </label>
