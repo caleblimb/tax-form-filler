@@ -33,7 +33,7 @@ const InputHandler: FC<InputHandlerProps> = ({ cell, setCellContent }: InputHand
         <Radio.Group
           options={inputOptions}
           onChange={({ target: { value } }) => {
-            setCellContent({ ...cell.content, type: value });
+            setCellContent({ type: value });
           }}
           value={cell.content?.type}
           optionType="button"
