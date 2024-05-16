@@ -18,6 +18,7 @@ export interface CellRange {
   address: string;
   text: string;
   cellCount: number;
+  commentData?: string;
 }
 
 const App = () => {
@@ -27,15 +28,14 @@ const App = () => {
   const [navIndex, setNavIndex] = useState<string>(defaultNavIndex);
 
   useEffect(() => {
-    // Setup event listener for selection change
+    handleSelectionChanged(null);
+
     Excel.run(function (context) {
       context.workbook.onSelectionChanged.add(handleSelectionChanged);
       return context.sync();
     });
 
-    // Cleanup event listener on component unmount
     return () => {
-      // eslint-disable-next-line no-undef
       Excel.run(function (context) {
         context.workbook.onSelectionChanged.remove(handleSelectionChanged);
         return context.sync();
@@ -44,21 +44,30 @@ const App = () => {
   }, []);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const handleSelectionChanged = (_: Excel.SelectionChangedEventArgs): Promise<void> => {
+  const handleSelectionChanged = async (_: Excel.SelectionChangedEventArgs | null): Promise<void> => {
     return Excel.run(async (context) => {
-      // Get the newly selected range
-      var newSelectedRange = context.workbook.getSelectedRange();
+      const newSelectedRange = context.workbook.getSelectedRange();
       newSelectedRange.load("address,addressLocal,text,cellCount");
-      // Execute the batch operation
+
       await context.sync();
-      // Update component state with the new selection
+
+      let commentContent;
+      try {
+        const comment = context.workbook.comments.getItemByCell(newSelectedRange.address);
+        comment.load("content");
+        await context.sync();
+        commentContent = comment?.content;
+      } catch {
+        //
+      }
+
       setSelectedRange({
         address: newSelectedRange.address,
         text: newSelectedRange.text[0][0],
         cellCount: newSelectedRange.cellCount,
+        commentData: commentContent,
       });
     }).catch(function (error) {
-      // eslint-disable-next-line no-undef
       console.log("Error: " + error);
     });
   };

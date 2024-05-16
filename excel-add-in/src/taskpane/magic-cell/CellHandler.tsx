@@ -1,4 +1,5 @@
 /* global Excel */
+//* global setTimeout */
 /* global console */
 import React, { FC, useEffect, useState } from "react";
 import { CellRange } from "../App";
@@ -20,7 +21,7 @@ const CellHandler: FC<InputHandlerProps> = ({ title, range }: InputHandlerProps)
   useEffect(() => {
     if (range && range.cellCount === 1) {
       try {
-        setCell(JSON.parse(range.text));
+        setCell(JSON.parse(range.commentData!));
       } catch (error) {
         setCell(undefined);
       }
@@ -31,10 +32,21 @@ const CellHandler: FC<InputHandlerProps> = ({ title, range }: InputHandlerProps)
     if (cell) {
       try {
         Excel.run(async (context) => {
-          const range = context.workbook.getSelectedRange();
-          range.values = [[JSON.stringify(cell)]];
-          range.format.set({ horizontalAlignment: Excel.HorizontalAlignment.fill });
-          return context.sync();
+          if (range?.address && range.cellCount === 1) {
+            try {
+              const comment = context.workbook.comments.getItemByCell(range.address);
+              comment.resolved = false;
+              comment.content = JSON.stringify(cell);
+              comment.resolved = true;
+              await context.sync();
+            } catch (error) {
+              if (range.address) {
+                const comment = context.workbook.comments.add(range.address, JSON.stringify(cell));
+                comment.resolved = true;
+                await context.sync();
+              }
+            }
+          }
         });
       } catch (error) {
         console.log("Error: " + error);
@@ -46,10 +58,13 @@ const CellHandler: FC<InputHandlerProps> = ({ title, range }: InputHandlerProps)
     setCell(undefined);
     try {
       Excel.run(async (context) => {
-        const range = context.workbook.getSelectedRange();
-        range.values = [[""]];
-        range.format.set({ horizontalAlignment: Excel.HorizontalAlignment.general });
-        return context.sync();
+        if (range) {
+          const rang = context.workbook.getSelectedRange();
+          const comment = context.workbook.comments.getItemByCell(range.address);
+          comment.delete();
+          rang.format.set({ horizontalAlignment: Excel.HorizontalAlignment.general });
+          await context.sync();
+        }
       });
     } catch (error) {
       console.log("Error: " + error);
@@ -59,7 +74,7 @@ const CellHandler: FC<InputHandlerProps> = ({ title, range }: InputHandlerProps)
   return (
     <div>
       <h1>{title}</h1>
-      <p>{range?.address}</p>
+      <p>{range?.address && range.cellCount === 1}</p>
       {range ? (
         <div>
           <div>

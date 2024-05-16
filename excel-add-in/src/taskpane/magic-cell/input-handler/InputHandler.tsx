@@ -133,10 +133,8 @@ const InputHandler: FC<InputHandlerProps> = ({ cell, setCellContent }: InputHand
                   onClick={() => {
                     setCellContent({
                       ...cell.content,
-
                       options: [
                         ...(cell.content?.options?.slice(0, index) ?? []),
-
                         ...(cell.content?.options?.slice(index + 1, cell.content?.options.length) ?? []),
                       ],
                     });
@@ -198,16 +196,16 @@ const InputHandler: FC<InputHandlerProps> = ({ cell, setCellContent }: InputHand
             <Select
               style={{ minWidth: "10rem" }}
               allowClear
-              options={cell.content.options?.map((option) => {
-                return { value: option, label: option };
+              options={cell.content.options?.map((option, index) => {
+                return { value: option + index, label: option };
               })}
             />
           )}
 
           {cell?.content?.type === "radio" && (
             <Radio.Group
-              options={cell.content.options?.map((option) => {
-                return { value: option, label: option };
+              options={cell.content.options?.map((option, index) => {
+                return { value: option + index, label: option };
               })}
             />
           )}
