@@ -7,6 +7,7 @@ import MessageHandler from "./messages/MessageHandler";
 import PdfHandler from "./pdf/PdfHandler";
 import Layout, { Content, Header } from "antd/es/layout/layout";
 import { Menu } from "antd";
+import ExportHandler from "./export/ExportHandler";
 
 const useStyles = makeStyles({
   root: {
@@ -94,6 +95,7 @@ const App = () => {
               { key: "cell", label: "Custom Cell" },
               { key: "page", label: "Page Controls" },
               { key: "pdf", label: "Map PDF" },
+              { key: "export", label: "Export" },
             ]}
             style={{ flex: 1, minWidth: 0, width: "100%" }}
             onClick={(e) => {
@@ -104,9 +106,10 @@ const App = () => {
 
         <Content style={{ padding: "1rem" }}>
           <div>
-            {navIndex === "cell" && <CellHandler title="Manage Input" range={selectedRange} />}
+            {navIndex === "cell" && <CellHandler range={selectedRange} />}
             {navIndex === "page" && <MessageHandler title="Error Messages" />}
-            {navIndex === "pdf" && <PdfHandler title="Map PDF" />}
+            {navIndex === "pdf" && <PdfHandler />}
+            {navIndex === "export" && <ExportHandler />}
           </div>
         </Content>
       </Layout>

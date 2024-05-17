@@ -7,7 +7,6 @@ import InputHandler, { InputCell } from "./input-handler/InputHandler";
 import { Radio } from "antd";
 
 interface InputHandlerProps {
-  title: string;
   range: CellRange | undefined;
 }
 
@@ -16,7 +15,7 @@ export interface MagicCell {
   content?: InputCell;
 }
 
-const CellHandler: FC<InputHandlerProps> = ({ title, range }: InputHandlerProps) => {
+const CellHandler: FC<InputHandlerProps> = ({ range }: InputHandlerProps) => {
   const [cell, setCell] = useState<MagicCell>();
   useEffect(() => {
     if (range && range.cellCount === 1) {
@@ -73,7 +72,7 @@ const CellHandler: FC<InputHandlerProps> = ({ title, range }: InputHandlerProps)
 
   return (
     <div>
-      <h1>{title}</h1>
+      <h1>Manage Cell</h1>
       <p>{range?.address && range.cellCount === 1}</p>
       {range ? (
         <div>
