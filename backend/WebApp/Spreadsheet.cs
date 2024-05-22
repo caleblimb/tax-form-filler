@@ -45,6 +45,12 @@ public class Spreadsheet
                 var cell = row.ElementAtOrDefault(k);
                 if (cell != null)
                 {
+                    if (cell.HasComment)
+                    {
+                        var c = cell.GetComment();
+                        Console.WriteLine(c);
+                    }
+
                     cells[j, k] = new Cell
                     {
                         Sheet = worksheet.Name,
@@ -53,6 +59,7 @@ public class Spreadsheet
                         Formula = cell.FormulaR1C1,
                         Value = cell.GetValue<string>(),
                         Format = cell.Style.NumberFormat.Format == "General" ? "" : cell.Style.NumberFormat.Format,
+                        Attributes = "",
                     };
                 }
                 else
@@ -65,6 +72,7 @@ public class Spreadsheet
                         Formula = "",
                         Value = "",
                         Format = "",
+                        Attributes = "",
                     };
                 }
             }

@@ -6,5 +6,6 @@ public class Cell
     public required string Formula { get; set; }
     public required string Value { get; set; }
     public required string Format { get; set; }
+    public required string Attributes { get; set; }
     // public required string Text { get; set; }
 }
