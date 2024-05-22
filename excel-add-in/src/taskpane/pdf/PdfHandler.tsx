@@ -9,15 +9,11 @@ import { PDFDocument, PDFField, PDFForm, PDFPage, PDFWidgetAnnotation } from "pd
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-interface PdfHandlerProps {
-  title: string;
-}
-
 const colors: string[] = ["f94144", "90be6d", "f9844a", "4d908e", "f3722c", "577590", "f9c74f", "277da1"];
 const colorsLight: string[] = ["ff8184", "d0fead", "ffc48a", "8dd0ce", "ffb26c", "97b5d0", "ffe78f", "67bde1"];
 const imageTag: string = "pdf-image-";
 
-const PdfHandler: FC<PdfHandlerProps> = ({ title }: PdfHandlerProps) => {
+const PdfHandler: FC = () => {
   const onLoadFile = async (file: File) => {
     await createDocument(file);
 
@@ -227,7 +223,7 @@ const PdfHandler: FC<PdfHandlerProps> = ({ title }: PdfHandlerProps) => {
 
   return (
     <div>
-      <h1>{title}</h1>
+      <h1>Manage PDF</h1>
       <FileLoader contentTypes={["application/pdf"]} label=".pdf" onLoadFile={onLoadFile} />
     </div>
   );
