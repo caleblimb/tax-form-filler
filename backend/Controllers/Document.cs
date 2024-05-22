@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
-using Newtonsoft.Json;
-using System.Collections.Generic;
 
 namespace Backend.Controllers
 {
@@ -11,33 +9,39 @@ namespace Backend.Controllers
     {
 
         private readonly IMemoryCache _cache;
+        private readonly IWebHostEnvironment _env;
 
-        public DocumentController(IMemoryCache cache)
+        public DocumentController(IWebHostEnvironment env, IMemoryCache cache)
         {
+            _env = env;
             _cache = cache;
+
         }
 
         // GET: api/document
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            string cacheKey = "WorkbookCache";
+            string cacheKey = "document";
 
-            Spreadsheet? spreadsheet;
 
-            if (!_cache.TryGetValue(cacheKey, out spreadsheet))
+            if (!_cache.TryGetValue(cacheKey, out string? document))
             {
-                spreadsheet = new Spreadsheet("res/testsheet.xlsx");
 
-                _cache.Set(cacheKey, spreadsheet, TimeSpan.FromDays(1));
+                var filePath = Path.Combine(_env.ContentRootPath, "Data", "data.json");
+                if (!System.IO.File.Exists(filePath))
+                {
+                    return NotFound();
+                }
+
+                document = await System.IO.File.ReadAllTextAsync(filePath);
+
+                _cache.Set(cacheKey, document, TimeSpan.FromDays(1));
             }
-
-            Sheet[] sheets = spreadsheet!.getWorkbook();
-            var jsonObject = JsonConvert.SerializeObject(sheets);
 
             return new ContentResult
             {
-                Content = jsonObject,
+                Content = document!,
                 ContentType = "application/json",
             };
         }
