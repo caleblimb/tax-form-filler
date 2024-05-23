@@ -1,29 +1,23 @@
 //* global console */
 import React, { FC } from "react";
-import { MagicCell } from "../CellHandler";
 import { DatePicker, InputNumber, Switch } from "antd";
 // import type { RadioChangeEvent } from "antd";
 import { Radio, Input, Button, Space, Select } from "antd";
+import { MagicCell } from "../../../../../shared/MagicCell";
+import { InputCell } from "../../../../../shared/InputCell";
+import { InputType } from "../../../../../shared/InputType";
 
 interface InputHandlerProps {
   cell: MagicCell;
   setCellContent: (cell: InputCell) => void;
 }
 
-export interface InputCell {
-  type?: "text" | "number" | "date" | "dropdown" | "radio";
-  min?: number;
-  max?: number;
-  formatAsCurrency?: boolean;
-  options?: string[];
-}
-
 const inputOptions = [
-  { label: "Text", value: "text" },
-  { label: "Number", value: "number" },
-  { label: "Date", value: "date" },
-  { label: "Dropdown", value: "dropdown" },
-  { label: "Radio", value: "radio" },
+  { label: "Text", value: InputType.Text },
+  { label: "Number", value: InputType.Number },
+  { label: "Date", value: InputType.Date },
+  { label: "Dropdown", value: InputType.Dropdown },
+  { label: "Radio", value: InputType.Radio },
 ];
 
 const InputHandler: FC<InputHandlerProps> = ({ cell, setCellContent }: InputHandlerProps) => {
@@ -44,7 +38,7 @@ const InputHandler: FC<InputHandlerProps> = ({ cell, setCellContent }: InputHand
       <hr />
 
       <Space direction="vertical">
-        {cell?.content?.type === "text" && (
+        {cell?.content?.type === InputType.Text && (
           <>
             <Space.Compact>
               <label>
@@ -74,7 +68,7 @@ const InputHandler: FC<InputHandlerProps> = ({ cell, setCellContent }: InputHand
           </>
         )}
 
-        {cell?.content?.type === "number" && (
+        {cell?.content?.type === InputType.Number && (
           <>
             <Space.Compact>
               <label>
@@ -110,7 +104,7 @@ const InputHandler: FC<InputHandlerProps> = ({ cell, setCellContent }: InputHand
           </>
         )}
 
-        {(cell?.content?.type === "dropdown" || cell?.content?.type === "radio") && (
+        {(cell?.content?.type === InputType.Dropdown || cell?.content?.type === InputType.Radio) && (
           <>
             {cell.content.options?.map((option, index) => (
               <Space.Compact key={"option-input-" + index}>
@@ -168,14 +162,14 @@ const InputHandler: FC<InputHandlerProps> = ({ cell, setCellContent }: InputHand
         <h2>Preview:</h2>
 
         <div>
-          {cell?.content?.type === "text" && (
+          {cell?.content?.type === InputType.Text && (
             <label>
               Example
               <Input type="text" />
             </label>
           )}
 
-          {cell?.content?.type === "number" && (
+          {cell?.content?.type === InputType.Number && (
             <label>
               Example
               {cell?.content.formatAsCurrency ? (
@@ -190,9 +184,9 @@ const InputHandler: FC<InputHandlerProps> = ({ cell, setCellContent }: InputHand
             </label>
           )}
 
-          {cell?.content?.type === "date" && <DatePicker />}
+          {cell?.content?.type === InputType.Date && <DatePicker />}
 
-          {cell?.content?.type === "dropdown" && (
+          {cell?.content?.type === InputType.Dropdown && (
             <Select
               style={{ minWidth: "10rem" }}
               allowClear
@@ -202,7 +196,7 @@ const InputHandler: FC<InputHandlerProps> = ({ cell, setCellContent }: InputHand
             />
           )}
 
-          {cell?.content?.type === "radio" && (
+          {cell?.content?.type === InputType.Radio && (
             <Radio.Group
               options={cell.content.options?.map((option, index) => {
                 return { value: option + index, label: option };

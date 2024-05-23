@@ -3,16 +3,12 @@
 /* global console */
 import React, { FC, useEffect, useState } from "react";
 import { CellRange } from "../App";
-import InputHandler, { InputCell } from "./input-handler/InputHandler";
+import InputHandler from "./input-handler/InputHandler";
 import { Radio } from "antd";
+import { MagicCell } from "../../../../shared/MagicCell";
 
 interface InputHandlerProps {
   range: CellRange | undefined;
-}
-
-export interface MagicCell {
-  type: "input" | "message";
-  content?: InputCell;
 }
 
 const CellHandler: FC<InputHandlerProps> = ({ range }: InputHandlerProps) => {

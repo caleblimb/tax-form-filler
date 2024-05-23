@@ -29,3 +29,7 @@ This application aims to simplify the process of completing basic tax form for t
 - Change directory to `/tax-form-filler/backend`
 - Run `dotnet run`
 - Default Swagger URL: `http://localhost:5291/swagger/index.html`
+
+## Shared
+
+- Contains interfaces and enums that are used in both the excell-add-in and frontend
