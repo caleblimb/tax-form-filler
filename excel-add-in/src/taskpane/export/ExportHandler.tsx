@@ -62,10 +62,18 @@ const ExportHandler: FC = () => {
                 const yPosition = yOffset + y;
                 const positionKey = xPosition + ":" + yPosition;
 
+                const attributes = mappedComments.get(positionKey);
+                let mappedAttributes;
+                try {
+                  mappedAttributes = JSON.parse(attributes!);
+                } catch {
+                  mappedAttributes = undefined;
+                }
+
                 return {
                   key: sheet.name + ":" + positionKey,
                   value: value,
-                  attributes: mappedComments.get(positionKey) ?? "",
+                  attributes: mappedAttributes,
                 };
               });
             });
