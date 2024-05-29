@@ -5,14 +5,14 @@ import React, { FC, useEffect, useState } from "react";
 import { CellRange } from "../App";
 import InputHandler from "./input-handler/InputHandler";
 import { Radio } from "antd";
-import { MagicCell } from "../../../../shared/MagicCell";
+import { CustomAttributes } from "../../../../shared/CustomAttributes";
 
 interface InputHandlerProps {
   range: CellRange | undefined;
 }
 
 const CellHandler: FC<InputHandlerProps> = ({ range }: InputHandlerProps) => {
-  const [cell, setCell] = useState<MagicCell>();
+  const [cell, setCell] = useState<CustomAttributes>();
   useEffect(() => {
     if (range && range.cellCount === 1) {
       try {

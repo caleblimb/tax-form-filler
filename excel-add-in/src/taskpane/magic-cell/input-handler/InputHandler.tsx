@@ -3,13 +3,13 @@ import React, { FC } from "react";
 import { DatePicker, InputNumber, Switch } from "antd";
 // import type { RadioChangeEvent } from "antd";
 import { Radio, Input, Button, Space, Select } from "antd";
-import { MagicCell } from "../../../../../shared/MagicCell";
-import { InputCell } from "../../../../../shared/InputCell";
+import { CustomAttributes } from "../../../../../shared/CustomAttributes";
+import { InputAttributes } from "../../../../../shared/InputAttributes";
 import { InputType } from "../../../../../shared/InputType";
 
 interface InputHandlerProps {
-  cell: MagicCell;
-  setCellContent: (cell: InputCell) => void;
+  cell: CustomAttributes;
+  setCellContent: (cell: InputAttributes) => void;
 }
 
 const inputOptions = [

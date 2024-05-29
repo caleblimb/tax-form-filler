@@ -1,6 +1,6 @@
 import { InputType } from "./InputType";
 
-export interface InputCell {
+export interface InputAttributes {
     type?: InputType;
     min?: number;
     max?: number;

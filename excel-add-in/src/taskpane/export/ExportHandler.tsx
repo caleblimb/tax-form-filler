@@ -3,6 +3,9 @@
 /* global console */
 import { Button } from "antd";
 import React, { FC } from "react";
+import { SheetPage } from "../../../../shared/SheetPage";
+import { Cell } from "../../../../shared/Cell";
+import { PdfMap } from "../../../../shared/PdfMap";
 
 const ExportHandler: FC = () => {
   const exportDocument = async () => {
@@ -14,8 +17,8 @@ const ExportHandler: FC = () => {
         await context.sync();
 
         const items = worksheets.items;
-        let mappedSheets = [];
-        let pdfSheets = [];
+        let mappedSheets: SheetPage[] = [];
+        let pdfSheets: PdfMap[] = [];
 
         for (let i = 0; i < items.length; i++) {
           const sheet = items[i];
@@ -56,8 +59,8 @@ const ExportHandler: FC = () => {
               mappedComments.set(key, comments[c].content);
             }
 
-            const mappedCells = range.formulasR1C1.map((row, y: number) => {
-              return row.map((value, x: number) => {
+            const mappedCells: Cell[][] = range.formulasR1C1.map((row, y: number): Cell[] => {
+              return row.map((value, x: number): Cell => {
                 const xPosition = xOffset + x;
                 const yPosition = yOffset + y;
                 const positionKey = xPosition + ":" + yPosition;
@@ -78,7 +81,7 @@ const ExportHandler: FC = () => {
               });
             });
 
-            const mappedSheet = {
+            const mappedSheet: SheetPage = {
               name: sheet.name,
               cells: mappedCells,
             };
