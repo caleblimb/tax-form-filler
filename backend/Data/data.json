@@ -1,2760 +1,1076 @@
-{
-    "sheets": [
+[
+  {
+    "name": "Cover Sheet",
+    "cells": [
+      [
+        { "key": "Cover Sheet:0:0", "value": "TAX RETURN COVER SHEET" },
+        { "key": "Cover Sheet:1:0", "value": "" },
+        { "key": "Cover Sheet:2:0", "value": "" },
+        { "key": "Cover Sheet:3:0", "value": "" },
+        { "key": "Cover Sheet:4:0", "value": "" },
+        { "key": "Cover Sheet:5:0", "value": "" },
+        { "key": "Cover Sheet:6:0", "value": "" }
+      ],
+      [
+        { "key": "Cover Sheet:0:1", "value": "" },
+        { "key": "Cover Sheet:1:1", "value": "" },
+        { "key": "Cover Sheet:2:1", "value": "" },
+        { "key": "Cover Sheet:3:1", "value": "" },
+        { "key": "Cover Sheet:4:1", "value": "" },
+        { "key": "Cover Sheet:5:1", "value": "" },
+        { "key": "Cover Sheet:6:1", "value": "" }
+      ],
+      [
+        { "key": "Cover Sheet:0:2", "value": "" },
+        { "key": "Cover Sheet:1:2", "value": "" },
+        { "key": "Cover Sheet:2:2", "value": "" },
+        { "key": "Cover Sheet:3:2", "value": "" },
+        { "key": "Cover Sheet:4:2", "value": "" },
+        { "key": "Cover Sheet:5:2", "value": "" },
+        { "key": "Cover Sheet:6:2", "value": "" }
+      ],
+      [
+        { "key": "Cover Sheet:0:3", "value": "" },
+        { "key": "Cover Sheet:1:3", "value": "" },
+        { "key": "Cover Sheet:2:3", "value": "" },
+        { "key": "Cover Sheet:3:3", "value": "" },
+        { "key": "Cover Sheet:4:3", "value": "" },
+        { "key": "Cover Sheet:5:3", "value": "" },
+        { "key": "Cover Sheet:6:3", "value": "" }
+      ],
+      [
+        { "key": "Cover Sheet:0:4", "value": "Client Name:" },
+        { "key": "Cover Sheet:1:4", "value": "" },
         {
-            "name": "Cover Sheet",
-            "cells": [
-                [
-                    {
-                        "key": "Cover Sheet:0:0",
-                        "value": "TAX RETURN COVER SHEET",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:1:0",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:2:0",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:3:0",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:4:0",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:5:0",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:6:0",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Cover Sheet:0:1",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:1:1",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:2:1",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:3:1",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:4:1",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:5:1",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:6:1",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Cover Sheet:0:2",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:1:2",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:2:2",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:3:2",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:4:2",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:5:2",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:6:2",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Cover Sheet:0:3",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:1:3",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:2:3",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:3:3",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:4:3",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:5:3",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:6:3",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Cover Sheet:0:4",
-                        "value": "Client Name:",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:1:4",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:2:4",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"text\",\"min\":1}}"
-                    },
-                    {
-                        "key": "Cover Sheet:3:4",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:4:4",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:5:4",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:6:4",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Cover Sheet:0:5",
-                        "value": "Tax Year:",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:1:5",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:2:5",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"dropdown\",\"options\":[\"2024\",\"2025\",\"2026\"]}}"
-                    },
-                    {
-                        "key": "Cover Sheet:3:5",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:4:5",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:5:5",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:6:5",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Cover Sheet:0:6",
-                        "value": "Federal Tax Return:",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:1:6",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:2:6",
-                        "value": 1040,
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:3:6",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:4:6",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:5:6",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:6:6",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Cover Sheet:0:7",
-                        "value": "SSN",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:1:7",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:2:7",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":false}}"
-                    },
-                    {
-                        "key": "Cover Sheet:3:7",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:4:7",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:5:7",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:6:7",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Cover Sheet:0:8",
-                        "value": "Profession",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:1:8",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:2:8",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"text\"}}"
-                    },
-                    {
-                        "key": "Cover Sheet:3:8",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:4:8",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:5:8",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:6:8",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Cover Sheet:0:9",
-                        "value": "EIN",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:1:9",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:2:9",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"text\"}}"
-                    },
-                    {
-                        "key": "Cover Sheet:3:9",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:4:9",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:5:9",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:6:9",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Cover Sheet:0:10",
-                        "value": "Business Name",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:1:10",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:2:10",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"text\"}}"
-                    },
-                    {
-                        "key": "Cover Sheet:3:10",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:4:10",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:5:10",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:6:10",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Cover Sheet:0:11",
-                        "value": "Business Address",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:1:11",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:2:11",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"text\"}}"
-                    },
-                    {
-                        "key": "Cover Sheet:3:11",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:4:11",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:5:11",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:6:11",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Cover Sheet:0:12",
-                        "value": "Address #2",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:1:12",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:2:12",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"text\"}}"
-                    },
-                    {
-                        "key": "Cover Sheet:3:12",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:4:12",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:5:12",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:6:12",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Cover Sheet:0:13",
-                        "value": "Cash, Accrual, Other",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:1:13",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:2:13",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"radio\",\"options\":[\"Cash\",\"Accrual\",\"Other\"]}}"
-                    },
-                    {
-                        "key": "Cover Sheet:3:13",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:4:13",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:5:13",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:6:13",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Cover Sheet:0:14",
-                        "value": "Specify",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:1:14",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:2:14",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"text\"}}"
-                    },
-                    {
-                        "key": "Cover Sheet:3:14",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:4:14",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:5:14",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:6:14",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Cover Sheet:0:15",
-                        "value": "Materially Participate",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:1:15",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:2:15",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"radio\",\"options\":[\"Yes\",\"No\"]}}"
-                    },
-                    {
-                        "key": "Cover Sheet:3:15",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:4:15",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:5:15",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:6:15",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Cover Sheet:0:16",
-                        "value": "Started Business",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:1:16",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:2:16",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"radio\",\"options\":[\"Yes\",\"No\"]}}"
-                    },
-                    {
-                        "key": "Cover Sheet:3:16",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:4:16",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:5:16",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:6:16",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Cover Sheet:0:17",
-                        "value": "Payments Made",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:1:17",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:2:17",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"radio\",\"options\":[\"Yes\",\"No\"]}}"
-                    },
-                    {
-                        "key": "Cover Sheet:3:17",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:4:17",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:5:17",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:6:17",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Cover Sheet:0:18",
-                        "value": "Filed Forms",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:1:18",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:2:18",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"radio\",\"options\":[\"Yes\",\"No\"]}}"
-                    },
-                    {
-                        "key": "Cover Sheet:3:18",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:4:18",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:5:18",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Cover Sheet:6:18",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ]
-            ]
+          "key": "Cover Sheet:2:4",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "text", "min": 1 }
+          }
         },
+        { "key": "Cover Sheet:3:4", "value": "" },
+        { "key": "Cover Sheet:4:4", "value": "" },
+        { "key": "Cover Sheet:5:4", "value": "" },
+        { "key": "Cover Sheet:6:4", "value": "" }
+      ],
+      [
+        { "key": "Cover Sheet:0:5", "value": "Tax Year:" },
+        { "key": "Cover Sheet:1:5", "value": "" },
         {
-            "name": "Schedule C",
-            "cells": [
-                [
-                    {
-                        "key": "Schedule C:0:0",
-                        "value": "SCHEDULE C: BUSINESS INCOME",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:0",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:0",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:0",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:0",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:0",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:1",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:1",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:1",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:1",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:1",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:1",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:2",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:2",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:2",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:2",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:2",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:2",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:3",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:3",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:3",
-                        "value": "Business Name",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:3",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:3",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:3",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:4",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:4",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:4",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:4",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:4",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:4",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:5",
-                        "value": "INCOME",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:5",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:5",
-                        "value": "wp",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:5",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:5",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:5",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:6",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:6",
-                        "value": "Gross receipts or sales",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:6",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:6",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:6",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:5:6",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:7",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:7",
-                        "value": "Returns and allowances",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:7",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:7",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:7",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:5:7",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:8",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:8",
-                        "value": "Cost of goods sold",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:8",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:8",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:8",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:5:8",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:9",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:9",
-                        "value": "  Purchase",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:9",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:9",
-                        "value": "?",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:9",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:5:9",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:10",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:10",
-                        "value": "  Commissions & Selling Cost",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:10",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:10",
-                        "value": "?",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:10",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:5:10",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:11",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:11",
-                        "value": "Other Income",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:11",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:11",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:11",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:5:11",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:12",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:12",
-                        "value": "Gross Income",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:12",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:12",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:12",
-                        "value": "=R[-6]C-R[-5]C-R[-4]C+R[-1]C-R[-3]C-R[-2]C",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:12",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:13",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:13",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:13",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:13",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:13",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:13",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:14",
-                        "value": "EXPENSES",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:14",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:14",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:14",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:14",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:14",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:15",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:15",
-                        "value": "Advertising",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:15",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:15",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:15",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:5:15",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:16",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:16",
-                        "value": "Car and Truck Expense",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:16",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:16",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:16",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:5:16",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:17",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:17",
-                        "value": "Commissions & fees",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:17",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:17",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:17",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:5:17",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:18",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:18",
-                        "value": "Contract labor",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:18",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:18",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:18",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:5:18",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:19",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:19",
-                        "value": "Depletion",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:19",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:19",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:19",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:5:19",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:20",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:20",
-                        "value": "Depreciation",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:20",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:20",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:20",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:5:20",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:21",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:21",
-                        "value": "Employee Benefit Programs",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:21",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:21",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:21",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:5:21",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:22",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:22",
-                        "value": "Insurance",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:22",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:22",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:22",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:5:22",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:23",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:23",
-                        "value": "Interest",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:23",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:23",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:23",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:5:23",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:24",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:24",
-                        "value": "Legal & professional fees",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:24",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:24",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:24",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:5:24",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:25",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:25",
-                        "value": "Office expense",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:25",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:25",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:25",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:5:25",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:26",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:26",
-                        "value": "Pension & profit sharing",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:26",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:26",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:26",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:5:26",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:27",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:27",
-                        "value": "Rent or lease",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:27",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:27",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:27",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:5:27",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:28",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:28",
-                        "value": "Repairs & maintenance",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:28",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:28",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:28",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:5:28",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:29",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:29",
-                        "value": "Supplies",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:29",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:29",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:29",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:5:29",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:30",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:30",
-                        "value": "Taxes & licenses",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:30",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:30",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:30",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:5:30",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:31",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:31",
-                        "value": "Travel",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:31",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:31",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:31",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:5:31",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:32",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:32",
-                        "value": "Meals & entertainment",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:32",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:32",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:4:32",
-                        "value": "=RC[-1]*0.5",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:32",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:33",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:33",
-                        "value": "Utilities",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:33",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:33",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:33",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:5:33",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:34",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:34",
-                        "value": "Wages",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:34",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:34",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:34",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:5:34",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:35",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:35",
-                        "value": "Other",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:35",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:35",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:35",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:5:35",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:36",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:36",
-                        "value": "Business Development",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:36",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:36",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:4:36",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:36",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:37",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:37",
-                        "value": "Bank Fees",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:37",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:37",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:4:37",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:37",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:38",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:38",
-                        "value": "Reimbursable Exp",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:38",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:38",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:4:38",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:38",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:39",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:39",
-                        "value": "Dues and subscriptions",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:39",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:39",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:4:39",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:39",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:40",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:40",
-                        "value": "Telephone",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:40",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:40",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:4:40",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:40",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:41",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:41",
-                        "value": "Shipping/Postage",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:41",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:41",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:4:41",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:41",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:42",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:42",
-                        "value": "Client Gifts",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:42",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:42",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:4:42",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:42",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:43",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:43",
-                        "value": "Client Meetings",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:43",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:43",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:4:43",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:43",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:44",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:44",
-                        "value": "Client Refunds",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:44",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:44",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:4:44",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:44",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:45",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:45",
-                        "value": "Software",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:45",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:45",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:4:45",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:45",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:46",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:46",
-                        "value": "Website ",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:46",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:46",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:4:46",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:46",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:47",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:47",
-                        "value": "Minor Equipemnt",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:47",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:47",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:4:47",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:47",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:48",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:48",
-                        "value": "Nutritional services",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:48",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:48",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:4:48",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:48",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:49",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:49",
-                        "value": "Merchant fees",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:49",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:49",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:4:49",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:49",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:50",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:50",
-                        "value": "Late charge",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:50",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:50",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:4:50",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:50",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:51",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:51",
-                        "value": "Total Other Deductions",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:51",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:51",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:51",
-                        "value": "=SUM(R[-15]C[-1]:R[-1]C[-1])",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:51",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:52",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:52",
-                        "value": "Total Expenses",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:52",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:52",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:52",
-                        "value": "=SUM(R[-37]C:R[-1]C)",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:52",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:53",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:53",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:53",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:53",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:53",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:53",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:54",
-                        "value": "NET INCOME/LOSS",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:54",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:54",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:54",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:54",
-                        "value": "=+R[-42]C-R[-2]C",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:54",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:55",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:55",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:55",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:55",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:55",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:55",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:56",
-                        "value": "AUTO EXPENSE-MILEAGE",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:56",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:56",
-                        "value": " ",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:56",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:56",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:5:56",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:57",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:57",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:57",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:57",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:57",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:57",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:58",
-                        "value": "BUSINESS USE OF HOME",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:58",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:58",
-                        "value": " ",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:58",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:58",
-                        "value": "",
-                        "attributes": "{\"type\":\"input\",\"content\":{\"type\":\"number\",\"formatAsCurrency\":true}}"
-                    },
-                    {
-                        "key": "Schedule C:5:58",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:59",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:59",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:59",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:59",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:59",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:59",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:60",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:60",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:60",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:60",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:60",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:60",
-                        "value": "",
-                        "attributes": ""
-                    }
-                ],
-                [
-                    {
-                        "key": "Schedule C:0:61",
-                        "value": "NET PROFIT  ",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:1:61",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:2:61",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:3:61",
-                        "value": "",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:4:61",
-                        "value": "=+R[-7]C-R[-5]C-R[-3]C-R[-2]C",
-                        "attributes": ""
-                    },
-                    {
-                        "key": "Schedule C:5:61",
-                        "value": "Must tie to tax return",
-                        "attributes": ""
-                    }
-                ]
-            ]
-        }
-    ],
-    "documents": [
+          "key": "Cover Sheet:2:5",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": {
+              "type": "dropdown",
+              "options": ["2024", "2025", "2026"]
+            }
+          }
+        },
+        { "key": "Cover Sheet:3:5", "value": "" },
+        { "key": "Cover Sheet:4:5", "value": "" },
+        { "key": "Cover Sheet:5:5", "value": "" },
+        { "key": "Cover Sheet:6:5", "value": "" }
+      ],
+      [
+        { "key": "Cover Sheet:0:6", "value": "Federal Tax Return:" },
+        { "key": "Cover Sheet:1:6", "value": "" },
+        { "key": "Cover Sheet:2:6", "value": 1040 },
+        { "key": "Cover Sheet:3:6", "value": "" },
+        { "key": "Cover Sheet:4:6", "value": "" },
+        { "key": "Cover Sheet:5:6", "value": "" },
+        { "key": "Cover Sheet:6:6", "value": "" }
+      ],
+      [
+        { "key": "Cover Sheet:0:7", "value": "SSN" },
+        { "key": "Cover Sheet:1:7", "value": "" },
         {
-            "fileName": "f1040sc.pdf",
-            "connections": [
-                "='Cover Sheet'!R[4]C[2]:R[4]C[6]",
-                "='Cover Sheet'!R[6]C[2]",
-                "='Cover Sheet'!R[6]C[2]",
-                "",
-                "='Cover Sheet'!R[6]C[2]",
-                "='Cover Sheet'!R[4]C[2]",
-                "='Cover Sheet'!R[5]C[2]",
-                "='Cover Sheet'!R[5]C[2]",
-                "=('Cover Sheet'!R[5]C[2]=\"Cash\")",
-                "=('Cover Sheet'!R[4]C[2]=\"Accrual\")",
-                "=('Cover Sheet'!R[3]C[2]=\"Other\")",
-                "='Cover Sheet'!R[3]C[2]",
-                "=('Cover Sheet'!R[3]C[2]=\"Yes\")",
-                "=('Cover Sheet'!R[2]C[2]=\"No\")",
-                "=('Cover Sheet'!R[2]C[2]=\"Yes\")",
-                "=('Cover Sheet'!R[2]C[2]=\"Yes\")",
-                "=('Cover Sheet'!R[1]C[2]=\"No\")",
-                "=('Cover Sheet'!R[1]C[2]=\"Yes\")",
-                "=('Cover Sheet'!RC[2]=\"No\")",
-                "",
-                "='Schedule C'!R[-14]C[4]",
-                "='Schedule C'!R[-14]C[4]",
-                "=(R[-1]C-R[-2]C)",
-                "='Schedule C'!R[-15]C[4]",
-                "=(R[-2]C-R[-1]C)",
-                "='Schedule C'!R[-14]C[4]",
-                "='Schedule C'!R[-14]C[4]",
-                "='Schedule C'!R[-12]C[4]",
-                "='Schedule C'!R[-12]C[4]",
-                "='Schedule C'!R[-12]C[4]",
-                "='Schedule C'!R[-12]C[4]",
-                "='Schedule C'!R[-12]C[4]",
-                "='Schedule C'!R[-12]C[4]",
-                "='Schedule C'!R[-12]C[4]",
-                "='Schedule C'!R[-12]C[4]",
-                "",
-                "",
-                "='Schedule C'!R[-13]C[4]",
-                "='Schedule C'!R[-13]C[4]",
-                "='Schedule C'!R[-13]C[4]",
-                "='Schedule C'!R[-13]C[4]",
-                "",
-                "='Schedule C'!R[-14]C[4]",
-                "='Schedule C'!R[-14]C[4]",
-                "='Schedule C'!R[-14]C[4]",
-                "='Schedule C'!R[-14]C[4]",
-                "='Schedule C'!R[-14]C[4]",
-                "='Schedule C'!R[-14]C[4]",
-                "='Schedule C'!R[-14]C[4]",
-                "='Schedule C'!R[-14]C[4]",
-                "",
-                "='Schedule C'!R[1]C[4]"
-            ]
-        }
+          "key": "Cover Sheet:2:7",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": false }
+          }
+        },
+        { "key": "Cover Sheet:3:7", "value": "" },
+        { "key": "Cover Sheet:4:7", "value": "" },
+        { "key": "Cover Sheet:5:7", "value": "" },
+        { "key": "Cover Sheet:6:7", "value": "" }
+      ],
+      [
+        { "key": "Cover Sheet:0:8", "value": "Profession" },
+        { "key": "Cover Sheet:1:8", "value": "" },
+        {
+          "key": "Cover Sheet:2:8",
+          "value": "",
+          "attributes": { "type": "input", "content": { "type": "text" } }
+        },
+        { "key": "Cover Sheet:3:8", "value": "" },
+        { "key": "Cover Sheet:4:8", "value": "" },
+        { "key": "Cover Sheet:5:8", "value": "" },
+        { "key": "Cover Sheet:6:8", "value": "" }
+      ],
+      [
+        { "key": "Cover Sheet:0:9", "value": "EIN" },
+        { "key": "Cover Sheet:1:9", "value": "" },
+        {
+          "key": "Cover Sheet:2:9",
+          "value": "",
+          "attributes": { "type": "input", "content": { "type": "text" } }
+        },
+        { "key": "Cover Sheet:3:9", "value": "" },
+        { "key": "Cover Sheet:4:9", "value": "" },
+        { "key": "Cover Sheet:5:9", "value": "" },
+        { "key": "Cover Sheet:6:9", "value": "" }
+      ],
+      [
+        { "key": "Cover Sheet:0:10", "value": "Business Name" },
+        { "key": "Cover Sheet:1:10", "value": "" },
+        {
+          "key": "Cover Sheet:2:10",
+          "value": "",
+          "attributes": { "type": "input", "content": { "type": "text" } }
+        },
+        { "key": "Cover Sheet:3:10", "value": "" },
+        { "key": "Cover Sheet:4:10", "value": "" },
+        { "key": "Cover Sheet:5:10", "value": "" },
+        { "key": "Cover Sheet:6:10", "value": "" }
+      ],
+      [
+        { "key": "Cover Sheet:0:11", "value": "Business Address" },
+        { "key": "Cover Sheet:1:11", "value": "" },
+        {
+          "key": "Cover Sheet:2:11",
+          "value": "",
+          "attributes": { "type": "input", "content": { "type": "text" } }
+        },
+        { "key": "Cover Sheet:3:11", "value": "" },
+        { "key": "Cover Sheet:4:11", "value": "" },
+        { "key": "Cover Sheet:5:11", "value": "" },
+        { "key": "Cover Sheet:6:11", "value": "" }
+      ],
+      [
+        { "key": "Cover Sheet:0:12", "value": "Address #2" },
+        { "key": "Cover Sheet:1:12", "value": "" },
+        {
+          "key": "Cover Sheet:2:12",
+          "value": "",
+          "attributes": { "type": "input", "content": { "type": "text" } }
+        },
+        { "key": "Cover Sheet:3:12", "value": "" },
+        { "key": "Cover Sheet:4:12", "value": "" },
+        { "key": "Cover Sheet:5:12", "value": "" },
+        { "key": "Cover Sheet:6:12", "value": "" }
+      ],
+      [
+        { "key": "Cover Sheet:0:13", "value": "Cash, Accrual, Other" },
+        { "key": "Cover Sheet:1:13", "value": "" },
+        {
+          "key": "Cover Sheet:2:13",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": {
+              "type": "radio",
+              "options": ["Cash", "Accrual", "Other"]
+            }
+          }
+        },
+        { "key": "Cover Sheet:3:13", "value": "" },
+        { "key": "Cover Sheet:4:13", "value": "" },
+        { "key": "Cover Sheet:5:13", "value": "" },
+        { "key": "Cover Sheet:6:13", "value": "" }
+      ],
+      [
+        { "key": "Cover Sheet:0:14", "value": "Specify" },
+        { "key": "Cover Sheet:1:14", "value": "" },
+        {
+          "key": "Cover Sheet:2:14",
+          "value": "",
+          "attributes": { "type": "input", "content": { "type": "text" } }
+        },
+        { "key": "Cover Sheet:3:14", "value": "" },
+        { "key": "Cover Sheet:4:14", "value": "" },
+        { "key": "Cover Sheet:5:14", "value": "" },
+        { "key": "Cover Sheet:6:14", "value": "" }
+      ],
+      [
+        { "key": "Cover Sheet:0:15", "value": "Materially Participate" },
+        { "key": "Cover Sheet:1:15", "value": "" },
+        {
+          "key": "Cover Sheet:2:15",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "radio", "options": ["Yes", "No"] }
+          }
+        },
+        { "key": "Cover Sheet:3:15", "value": "" },
+        { "key": "Cover Sheet:4:15", "value": "" },
+        { "key": "Cover Sheet:5:15", "value": "" },
+        { "key": "Cover Sheet:6:15", "value": "" }
+      ],
+      [
+        { "key": "Cover Sheet:0:16", "value": "Started Business" },
+        { "key": "Cover Sheet:1:16", "value": "" },
+        {
+          "key": "Cover Sheet:2:16",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "radio", "options": ["Yes", "No"] }
+          }
+        },
+        { "key": "Cover Sheet:3:16", "value": "" },
+        { "key": "Cover Sheet:4:16", "value": "" },
+        { "key": "Cover Sheet:5:16", "value": "" },
+        { "key": "Cover Sheet:6:16", "value": "" }
+      ],
+      [
+        { "key": "Cover Sheet:0:17", "value": "Payments Made" },
+        { "key": "Cover Sheet:1:17", "value": "" },
+        {
+          "key": "Cover Sheet:2:17",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "radio", "options": ["Yes", "No"] }
+          }
+        },
+        { "key": "Cover Sheet:3:17", "value": "" },
+        { "key": "Cover Sheet:4:17", "value": "" },
+        { "key": "Cover Sheet:5:17", "value": "" },
+        { "key": "Cover Sheet:6:17", "value": "" }
+      ],
+      [
+        { "key": "Cover Sheet:0:18", "value": "Filed Forms" },
+        { "key": "Cover Sheet:1:18", "value": "" },
+        {
+          "key": "Cover Sheet:2:18",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "radio", "options": ["Yes", "No"] }
+          }
+        },
+        { "key": "Cover Sheet:3:18", "value": "" },
+        { "key": "Cover Sheet:4:18", "value": "" },
+        { "key": "Cover Sheet:5:18", "value": "" },
+        { "key": "Cover Sheet:6:18", "value": "" }
+      ]
     ]
-}
+  },
+  {
+    "name": "Schedule C",
+    "cells": [
+      [
+        { "key": "Schedule C:0:0", "value": "SCHEDULE C: BUSINESS INCOME" },
+        { "key": "Schedule C:1:0", "value": "" },
+        { "key": "Schedule C:2:0", "value": "" },
+        { "key": "Schedule C:3:0", "value": "" },
+        { "key": "Schedule C:4:0", "value": "" },
+        { "key": "Schedule C:5:0", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:1", "value": "" },
+        { "key": "Schedule C:1:1", "value": "" },
+        { "key": "Schedule C:2:1", "value": "" },
+        { "key": "Schedule C:3:1", "value": "" },
+        { "key": "Schedule C:4:1", "value": "" },
+        { "key": "Schedule C:5:1", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:2", "value": "" },
+        { "key": "Schedule C:1:2", "value": "" },
+        { "key": "Schedule C:2:2", "value": "" },
+        { "key": "Schedule C:3:2", "value": "" },
+        { "key": "Schedule C:4:2", "value": "" },
+        { "key": "Schedule C:5:2", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:3", "value": "" },
+        { "key": "Schedule C:1:3", "value": "" },
+        { "key": "Schedule C:2:3", "value": "Business Name" },
+        { "key": "Schedule C:3:3", "value": "" },
+        { "key": "Schedule C:4:3", "value": "" },
+        { "key": "Schedule C:5:3", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:4", "value": "" },
+        { "key": "Schedule C:1:4", "value": "" },
+        { "key": "Schedule C:2:4", "value": "" },
+        { "key": "Schedule C:3:4", "value": "" },
+        { "key": "Schedule C:4:4", "value": "" },
+        { "key": "Schedule C:5:4", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:5", "value": "INCOME" },
+        { "key": "Schedule C:1:5", "value": "" },
+        { "key": "Schedule C:2:5", "value": "wp" },
+        { "key": "Schedule C:3:5", "value": "" },
+        { "key": "Schedule C:4:5", "value": "" },
+        { "key": "Schedule C:5:5", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:6", "value": "" },
+        { "key": "Schedule C:1:6", "value": "Gross receipts or sales" },
+        { "key": "Schedule C:2:6", "value": "" },
+        { "key": "Schedule C:3:6", "value": "" },
+        {
+          "key": "Schedule C:4:6",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:5:6", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:7", "value": "" },
+        { "key": "Schedule C:1:7", "value": "Returns and allowances" },
+        { "key": "Schedule C:2:7", "value": "" },
+        { "key": "Schedule C:3:7", "value": "" },
+        {
+          "key": "Schedule C:4:7",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:5:7", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:8", "value": "" },
+        { "key": "Schedule C:1:8", "value": "Cost of goods sold" },
+        { "key": "Schedule C:2:8", "value": "" },
+        { "key": "Schedule C:3:8", "value": "" },
+        {
+          "key": "Schedule C:4:8",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:5:8", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:9", "value": "" },
+        { "key": "Schedule C:1:9", "value": "  Purchase" },
+        { "key": "Schedule C:2:9", "value": "" },
+        { "key": "Schedule C:3:9", "value": "?" },
+        {
+          "key": "Schedule C:4:9",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:5:9", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:10", "value": "" },
+        { "key": "Schedule C:1:10", "value": "  Commissions & Selling Cost" },
+        { "key": "Schedule C:2:10", "value": "" },
+        { "key": "Schedule C:3:10", "value": "?" },
+        {
+          "key": "Schedule C:4:10",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:5:10", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:11", "value": "" },
+        { "key": "Schedule C:1:11", "value": "Other Income" },
+        { "key": "Schedule C:2:11", "value": "" },
+        { "key": "Schedule C:3:11", "value": "" },
+        {
+          "key": "Schedule C:4:11",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:5:11", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:12", "value": "" },
+        { "key": "Schedule C:1:12", "value": "Gross Income" },
+        { "key": "Schedule C:2:12", "value": "" },
+        { "key": "Schedule C:3:12", "value": "" },
+        {
+          "key": "Schedule C:4:12",
+          "value": "=R[-6]C-R[-5]C-R[-4]C+R[-1]C-R[-3]C-R[-2]C"
+        },
+        { "key": "Schedule C:5:12", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:13", "value": "" },
+        { "key": "Schedule C:1:13", "value": "" },
+        { "key": "Schedule C:2:13", "value": "" },
+        { "key": "Schedule C:3:13", "value": "" },
+        { "key": "Schedule C:4:13", "value": "" },
+        { "key": "Schedule C:5:13", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:14", "value": "EXPENSES" },
+        { "key": "Schedule C:1:14", "value": "" },
+        { "key": "Schedule C:2:14", "value": "" },
+        { "key": "Schedule C:3:14", "value": "" },
+        { "key": "Schedule C:4:14", "value": "" },
+        { "key": "Schedule C:5:14", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:15", "value": "" },
+        { "key": "Schedule C:1:15", "value": "Advertising" },
+        { "key": "Schedule C:2:15", "value": "" },
+        { "key": "Schedule C:3:15", "value": "" },
+        {
+          "key": "Schedule C:4:15",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:5:15", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:16", "value": "" },
+        { "key": "Schedule C:1:16", "value": "Car and Truck Expense" },
+        { "key": "Schedule C:2:16", "value": "" },
+        { "key": "Schedule C:3:16", "value": "" },
+        {
+          "key": "Schedule C:4:16",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:5:16", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:17", "value": "" },
+        { "key": "Schedule C:1:17", "value": "Commissions & fees" },
+        { "key": "Schedule C:2:17", "value": "" },
+        { "key": "Schedule C:3:17", "value": "" },
+        {
+          "key": "Schedule C:4:17",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:5:17", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:18", "value": "" },
+        { "key": "Schedule C:1:18", "value": "Contract labor" },
+        { "key": "Schedule C:2:18", "value": "" },
+        { "key": "Schedule C:3:18", "value": "" },
+        {
+          "key": "Schedule C:4:18",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:5:18", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:19", "value": "" },
+        { "key": "Schedule C:1:19", "value": "Depletion" },
+        { "key": "Schedule C:2:19", "value": "" },
+        { "key": "Schedule C:3:19", "value": "" },
+        {
+          "key": "Schedule C:4:19",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:5:19", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:20", "value": "" },
+        { "key": "Schedule C:1:20", "value": "Depreciation" },
+        { "key": "Schedule C:2:20", "value": "" },
+        { "key": "Schedule C:3:20", "value": "" },
+        {
+          "key": "Schedule C:4:20",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:5:20", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:21", "value": "" },
+        { "key": "Schedule C:1:21", "value": "Employee Benefit Programs" },
+        { "key": "Schedule C:2:21", "value": "" },
+        { "key": "Schedule C:3:21", "value": "" },
+        {
+          "key": "Schedule C:4:21",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:5:21", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:22", "value": "" },
+        { "key": "Schedule C:1:22", "value": "Insurance" },
+        { "key": "Schedule C:2:22", "value": "" },
+        { "key": "Schedule C:3:22", "value": "" },
+        {
+          "key": "Schedule C:4:22",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:5:22", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:23", "value": "" },
+        { "key": "Schedule C:1:23", "value": "Interest" },
+        { "key": "Schedule C:2:23", "value": "" },
+        { "key": "Schedule C:3:23", "value": "" },
+        {
+          "key": "Schedule C:4:23",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:5:23", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:24", "value": "" },
+        { "key": "Schedule C:1:24", "value": "Legal & professional fees" },
+        { "key": "Schedule C:2:24", "value": "" },
+        { "key": "Schedule C:3:24", "value": "" },
+        {
+          "key": "Schedule C:4:24",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:5:24", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:25", "value": "" },
+        { "key": "Schedule C:1:25", "value": "Office expense" },
+        { "key": "Schedule C:2:25", "value": "" },
+        { "key": "Schedule C:3:25", "value": "" },
+        {
+          "key": "Schedule C:4:25",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:5:25", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:26", "value": "" },
+        { "key": "Schedule C:1:26", "value": "Pension & profit sharing" },
+        { "key": "Schedule C:2:26", "value": "" },
+        { "key": "Schedule C:3:26", "value": "" },
+        {
+          "key": "Schedule C:4:26",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:5:26", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:27", "value": "" },
+        { "key": "Schedule C:1:27", "value": "Rent or lease" },
+        { "key": "Schedule C:2:27", "value": "" },
+        { "key": "Schedule C:3:27", "value": "" },
+        {
+          "key": "Schedule C:4:27",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:5:27", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:28", "value": "" },
+        { "key": "Schedule C:1:28", "value": "Repairs & maintenance" },
+        { "key": "Schedule C:2:28", "value": "" },
+        { "key": "Schedule C:3:28", "value": "" },
+        {
+          "key": "Schedule C:4:28",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:5:28", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:29", "value": "" },
+        { "key": "Schedule C:1:29", "value": "Supplies" },
+        { "key": "Schedule C:2:29", "value": "" },
+        { "key": "Schedule C:3:29", "value": "" },
+        {
+          "key": "Schedule C:4:29",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:5:29", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:30", "value": "" },
+        { "key": "Schedule C:1:30", "value": "Taxes & licenses" },
+        { "key": "Schedule C:2:30", "value": "" },
+        { "key": "Schedule C:3:30", "value": "" },
+        {
+          "key": "Schedule C:4:30",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:5:30", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:31", "value": "" },
+        { "key": "Schedule C:1:31", "value": "Travel" },
+        { "key": "Schedule C:2:31", "value": "" },
+        { "key": "Schedule C:3:31", "value": "" },
+        {
+          "key": "Schedule C:4:31",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:5:31", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:32", "value": "" },
+        { "key": "Schedule C:1:32", "value": "Meals & entertainment" },
+        { "key": "Schedule C:2:32", "value": "" },
+        {
+          "key": "Schedule C:3:32",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:4:32", "value": "=RC[-1]*0.5" },
+        { "key": "Schedule C:5:32", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:33", "value": "" },
+        { "key": "Schedule C:1:33", "value": "Utilities" },
+        { "key": "Schedule C:2:33", "value": "" },
+        { "key": "Schedule C:3:33", "value": "" },
+        {
+          "key": "Schedule C:4:33",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:5:33", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:34", "value": "" },
+        { "key": "Schedule C:1:34", "value": "Wages" },
+        { "key": "Schedule C:2:34", "value": "" },
+        { "key": "Schedule C:3:34", "value": "" },
+        {
+          "key": "Schedule C:4:34",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:5:34", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:35", "value": "" },
+        { "key": "Schedule C:1:35", "value": "Other" },
+        { "key": "Schedule C:2:35", "value": "" },
+        { "key": "Schedule C:3:35", "value": "" },
+        {
+          "key": "Schedule C:4:35",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:5:35", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:36", "value": "" },
+        { "key": "Schedule C:1:36", "value": "Business Development" },
+        { "key": "Schedule C:2:36", "value": "" },
+        {
+          "key": "Schedule C:3:36",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:4:36", "value": "" },
+        { "key": "Schedule C:5:36", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:37", "value": "" },
+        { "key": "Schedule C:1:37", "value": "Bank Fees" },
+        { "key": "Schedule C:2:37", "value": "" },
+        {
+          "key": "Schedule C:3:37",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:4:37", "value": "" },
+        { "key": "Schedule C:5:37", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:38", "value": "" },
+        { "key": "Schedule C:1:38", "value": "Reimbursable Exp" },
+        { "key": "Schedule C:2:38", "value": "" },
+        {
+          "key": "Schedule C:3:38",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:4:38", "value": "" },
+        { "key": "Schedule C:5:38", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:39", "value": "" },
+        { "key": "Schedule C:1:39", "value": "Dues and subscriptions" },
+        { "key": "Schedule C:2:39", "value": "" },
+        {
+          "key": "Schedule C:3:39",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:4:39", "value": "" },
+        { "key": "Schedule C:5:39", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:40", "value": "" },
+        { "key": "Schedule C:1:40", "value": "Telephone" },
+        { "key": "Schedule C:2:40", "value": "" },
+        {
+          "key": "Schedule C:3:40",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:4:40", "value": "" },
+        { "key": "Schedule C:5:40", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:41", "value": "" },
+        { "key": "Schedule C:1:41", "value": "Shipping/Postage" },
+        { "key": "Schedule C:2:41", "value": "" },
+        {
+          "key": "Schedule C:3:41",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:4:41", "value": "" },
+        { "key": "Schedule C:5:41", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:42", "value": "" },
+        { "key": "Schedule C:1:42", "value": "Client Gifts" },
+        { "key": "Schedule C:2:42", "value": "" },
+        {
+          "key": "Schedule C:3:42",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:4:42", "value": "" },
+        { "key": "Schedule C:5:42", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:43", "value": "" },
+        { "key": "Schedule C:1:43", "value": "Client Meetings" },
+        { "key": "Schedule C:2:43", "value": "" },
+        {
+          "key": "Schedule C:3:43",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:4:43", "value": "" },
+        { "key": "Schedule C:5:43", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:44", "value": "" },
+        { "key": "Schedule C:1:44", "value": "Client Refunds" },
+        { "key": "Schedule C:2:44", "value": "" },
+        {
+          "key": "Schedule C:3:44",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:4:44", "value": "" },
+        { "key": "Schedule C:5:44", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:45", "value": "" },
+        { "key": "Schedule C:1:45", "value": "Software" },
+        { "key": "Schedule C:2:45", "value": "" },
+        {
+          "key": "Schedule C:3:45",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:4:45", "value": "" },
+        { "key": "Schedule C:5:45", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:46", "value": "" },
+        { "key": "Schedule C:1:46", "value": "Website " },
+        { "key": "Schedule C:2:46", "value": "" },
+        {
+          "key": "Schedule C:3:46",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:4:46", "value": "" },
+        { "key": "Schedule C:5:46", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:47", "value": "" },
+        { "key": "Schedule C:1:47", "value": "Minor Equipemnt" },
+        { "key": "Schedule C:2:47", "value": "" },
+        {
+          "key": "Schedule C:3:47",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:4:47", "value": "" },
+        { "key": "Schedule C:5:47", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:48", "value": "" },
+        { "key": "Schedule C:1:48", "value": "Nutritional services" },
+        { "key": "Schedule C:2:48", "value": "" },
+        {
+          "key": "Schedule C:3:48",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:4:48", "value": "" },
+        { "key": "Schedule C:5:48", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:49", "value": "" },
+        { "key": "Schedule C:1:49", "value": "Merchant fees" },
+        { "key": "Schedule C:2:49", "value": "" },
+        {
+          "key": "Schedule C:3:49",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:4:49", "value": "" },
+        { "key": "Schedule C:5:49", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:50", "value": "" },
+        { "key": "Schedule C:1:50", "value": "Late charge" },
+        { "key": "Schedule C:2:50", "value": "" },
+        {
+          "key": "Schedule C:3:50",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:4:50", "value": "" },
+        { "key": "Schedule C:5:50", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:51", "value": "" },
+        { "key": "Schedule C:1:51", "value": "Total Other Deductions" },
+        { "key": "Schedule C:2:51", "value": "" },
+        { "key": "Schedule C:3:51", "value": "" },
+        { "key": "Schedule C:4:51", "value": "=SUM(R[-15]C[-1]:R[-1]C[-1])" },
+        { "key": "Schedule C:5:51", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:52", "value": "" },
+        { "key": "Schedule C:1:52", "value": "Total Expenses" },
+        { "key": "Schedule C:2:52", "value": "" },
+        { "key": "Schedule C:3:52", "value": "" },
+        { "key": "Schedule C:4:52", "value": "=SUM(R[-37]C:R[-1]C)" },
+        { "key": "Schedule C:5:52", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:53", "value": "" },
+        { "key": "Schedule C:1:53", "value": "" },
+        { "key": "Schedule C:2:53", "value": "" },
+        { "key": "Schedule C:3:53", "value": "" },
+        { "key": "Schedule C:4:53", "value": "" },
+        { "key": "Schedule C:5:53", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:54", "value": "NET INCOME/LOSS" },
+        { "key": "Schedule C:1:54", "value": "" },
+        { "key": "Schedule C:2:54", "value": "" },
+        { "key": "Schedule C:3:54", "value": "" },
+        { "key": "Schedule C:4:54", "value": "=+R[-42]C-R[-2]C" },
+        { "key": "Schedule C:5:54", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:55", "value": "" },
+        { "key": "Schedule C:1:55", "value": "" },
+        { "key": "Schedule C:2:55", "value": "" },
+        { "key": "Schedule C:3:55", "value": "" },
+        { "key": "Schedule C:4:55", "value": "" },
+        { "key": "Schedule C:5:55", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:56", "value": "AUTO EXPENSE-MILEAGE" },
+        { "key": "Schedule C:1:56", "value": "" },
+        { "key": "Schedule C:2:56", "value": " " },
+        { "key": "Schedule C:3:56", "value": "" },
+        {
+          "key": "Schedule C:4:56",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:5:56", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:57", "value": "" },
+        { "key": "Schedule C:1:57", "value": "" },
+        { "key": "Schedule C:2:57", "value": "" },
+        { "key": "Schedule C:3:57", "value": "" },
+        { "key": "Schedule C:4:57", "value": "" },
+        { "key": "Schedule C:5:57", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:58", "value": "BUSINESS USE OF HOME" },
+        { "key": "Schedule C:1:58", "value": "" },
+        { "key": "Schedule C:2:58", "value": " " },
+        { "key": "Schedule C:3:58", "value": "" },
+        {
+          "key": "Schedule C:4:58",
+          "value": "",
+          "attributes": {
+            "type": "input",
+            "content": { "type": "number", "formatAsCurrency": true }
+          }
+        },
+        { "key": "Schedule C:5:58", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:59", "value": "" },
+        { "key": "Schedule C:1:59", "value": "" },
+        { "key": "Schedule C:2:59", "value": "" },
+        { "key": "Schedule C:3:59", "value": "" },
+        { "key": "Schedule C:4:59", "value": "" },
+        { "key": "Schedule C:5:59", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:60", "value": "" },
+        { "key": "Schedule C:1:60", "value": "" },
+        { "key": "Schedule C:2:60", "value": "" },
+        { "key": "Schedule C:3:60", "value": "" },
+        { "key": "Schedule C:4:60", "value": "" },
+        { "key": "Schedule C:5:60", "value": "" }
+      ],
+      [
+        { "key": "Schedule C:0:61", "value": "NET PROFIT  " },
+        { "key": "Schedule C:1:61", "value": "" },
+        { "key": "Schedule C:2:61", "value": "" },
+        { "key": "Schedule C:3:61", "value": "" },
+        { "key": "Schedule C:4:61", "value": "=+R[-7]C-R[-5]C-R[-3]C-R[-2]C" },
+        { "key": "Schedule C:5:61", "value": "Must tie to tax return" }
+      ]
+    ]
+  }
+]

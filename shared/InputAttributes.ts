@@ -1,9 +1,7 @@
-import { InputType } from "./InputType";
-
 export interface InputAttributes {
-    type?: InputType;
-    min?: number;
-    max?: number;
-    formatAsCurrency?: boolean;
-    options?: string[];
+  type?: "text" | "number" | "date" | "dropdown" | "radio";
+  min?: number;
+  max?: number;
+  formatAsCurrency?: boolean;
+  options?: string[];
 }

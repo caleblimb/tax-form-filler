@@ -1,11 +1,43 @@
-import React, { useEffect, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import logo from "./logo.svg";
 import "./App.scss";
 import { getDoc } from "./api/ServerData";
-import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import { SheetPage } from "../../shared/SheetPage";
+import {
+  DatePicker,
+  Input,
+  InputNumber,
+  Radio,
+  Select,
+  Tabs,
+  TabsProps,
+} from "antd";
+import { Cell } from "../../shared/Cell";
 
 function App() {
-  const [doc, setDoc] = useState<any[]>();
+  const [doc, setDoc] = useState<SheetPage[]>();
+  const [tabs, setTabs] = useState<TabsProps["items"]>();
+
+  const watchedValues = new Map<
+    string,
+    { value: number | string; dependencies: string[] }
+  >();
+
+  const generateValues = async (doc: SheetPage[]) => {
+    watchedValues.clear();
+    doc.forEach((sheet) =>
+      sheet.cells.forEach((row) =>
+        row.forEach((cell) => {
+          if (cell.value[0] === "=") {
+            // TODO: find the keys of the cells that the formula needs so they can be added as depencencies
+            // Perhaps investigate source code on simple js excel page to see how formulas are evaluated
+            // Don't re-invent the wheel. There has to be code for evaluating excel equations that you can find
+          }
+          watchedValues.set(cell.key, { value: cell.value, dependencies: [] });
+        })
+      )
+    );
+  };
 
   useEffect(() => {
     getDoc()
@@ -18,41 +50,98 @@ function App() {
       });
   }, []);
 
+  useEffect(() => {
+    if (doc) {
+      generateValues(doc);
+      const newTabs: TabsProps["items"] = doc.map((page, index) => {
+        return {
+          key: index.toString(),
+          label: page.name,
+          children: parsePage(page),
+        };
+      });
+      setTabs(newTabs);
+    }
+  }, [doc]);
+
+  const parsePage = (page: SheetPage): ReactNode => {
+    return (
+      <table>
+        <tbody>
+          {page.cells.map((row, rowIndex) => (
+            <tr key={"row:" + rowIndex}>
+              {row.map((cell, cellIndex) => (
+                <td key={cell.key + ":" + cellIndex}>{parseCell(cell)}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    );
+  };
+
+  const parseCell = (cell: Cell): ReactNode => {
+    if (cell.attributes) {
+      if (cell.attributes.type === "input") {
+        switch (cell.attributes.content?.type) {
+          case "text":
+            return <Input type="text" />;
+          case "number":
+            return cell.attributes.content.formatAsCurrency ? (
+              <InputNumber<number>
+                formatter={(value) =>
+                  `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                }
+                parser={(value) =>
+                  value?.replace(/\$\s?|(,*)/g, "") as unknown as number
+                }
+              />
+            ) : (
+              <Input
+                type="number"
+                min={cell.attributes.content.min}
+                max={cell.attributes.content.max}
+              />
+            );
+          case "date":
+            return <DatePicker />;
+          case "dropdown":
+            return (
+              <Select
+                style={{ minWidth: "10rem" }}
+                allowClear
+                options={cell.attributes.content.options?.map(
+                  (option, index) => {
+                    return { value: option + index, label: option };
+                  }
+                )}
+              />
+            );
+          case "radio":
+            return (
+              <Radio.Group
+                options={cell.attributes.content.options?.map(
+                  (option, index) => {
+                    return { value: option + index, label: option };
+                  }
+                )}
+              />
+            );
+          default:
+            return;
+        }
+      }
+    } else if (cell.value[0] === "=") {
+      return <></>;
+    } else {
+      return <>{cell.value}</>;
+    }
+    return <></>;
+  };
+
   return (
     <div className="App">
-      <Tabs>
-        <TabList>
-          {doc?.map((sheet) => (
-            <Tab key={"tab-" + sheet.Name}>{sheet.Name}</Tab>
-          ))}
-        </TabList>
-        {doc?.map((sheet) => (
-          <TabPanel key={"panel-" + sheet.Name}>
-            <table>
-              <tbody>
-                {sheet.Cells.map((row: any, rowIndex: number) => (
-                  <tr key={"panel-" + sheet.Name + ":" + rowIndex}>
-                    {row.map((cell: any, colIndex: number) => (
-                      <td
-                        key={
-                          "panel-" +
-                          sheet.Name +
-                          ":" +
-                          rowIndex +
-                          ":" +
-                          colIndex
-                        }
-                      >
-                        {cell.Value}
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </TabPanel>
-        ))}
-      </Tabs>
+      <Tabs defaultActiveKey="0" items={tabs} />
     </div>
   );
 }
