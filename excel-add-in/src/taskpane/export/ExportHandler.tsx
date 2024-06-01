@@ -52,9 +52,10 @@ const unfoldFormula = (sheetName: string, formula: string): string => {
 
   // Add missing sheet names
   result = result.replace(/[^A-Z!:'][A-Z]{1,}\d{1,}[^!]/g, (match) => {
-    return match.substring(0, 1) + "'" + sheetName + "'!" + match.substring(1);
+    return match.substring(0, 1) + "'" + sheetName.toUpperCase() + "'!" + match.substring(1);
   });
 
+  // Unfold Cell Ranges
   result = result.replace(/'(('')|[^']){1,}'![A-Z]{1,}\d{1,}:[A-Z]{1,}\d{1,}/g, (match) => {
     const namePortion: string = match.match(/'(('')|[^']){1,}'!/g)![0];
     const cellPortion: string = match.match(/[A-Z]{1,}\d{1,}:[A-Z]{1,}\d{1,}/g)![0];
@@ -75,8 +76,6 @@ const unfoldFormula = (sheetName: string, formula: string): string => {
     return cellList.join(",");
   });
 
-  result = result.replace("''", "'");
-
   return result;
 };
 
@@ -96,6 +95,14 @@ const ExportHandler: FC = () => {
         for (let i = 0; i < items.length; i++) {
           const sheet = items[i];
           const range = sheet.getUsedRange();
+
+          if (sheet.name.indexOf("!") > -1) {
+            throw new Error(
+              "Invalid sheet name:" +
+                sheet.name +
+                "\n! is not allowed in Sheet Names as it can cause errors in formula parsing."
+            );
+          }
 
           const bracketsRegex = /{.*}/;
           const isPdfSheet = bracketsRegex.test(sheet.name);
@@ -185,6 +192,8 @@ const ExportHandler: FC = () => {
   return (
     <div>
       <h1>Export</h1>
+
+      <p>*The exclamation point (!) is not allowed in Sheet Names as it will cause issues with formula parsing.</p>
 
       <Button
         onClick={() => {
