@@ -1,7 +1,8 @@
 /* global Excel */
 //* global setTimeout */
 /* global console */
-import { Button } from "antd";
+/* global btoa */
+import { Button, message } from "antd";
 import React, { FC } from "react";
 import { SheetPage } from "../../../../shared/SheetPage";
 import { Cell } from "../../../../shared/Cell";
@@ -38,32 +39,37 @@ const nextExcelColumnCode = (column: string): string => {
   return nextColumn;
 };
 
-const unfoldFormula = (sheetName: string, formula: string): string => {
+const unfoldFormula = (sheetName: string, sheetNames: string[], formula: string): string => {
   let result = formula;
 
   // Simplify
-  result = result.toUpperCase();
+  // result = result.toUpperCase();
 
   // Add single quotes to sheet names that don't already have them
-  result = result.replace(/[A-Z\d]{1,}![A-Z]{1,}\d{1,}[^!]/g, (match) => {
+  result = result.replace(/[A-Za-z\d]+![A-Za-z]+\d+[^!]/g, (match) => {
     const [name, cell] = match.split("!");
     return "'" + name + "'!" + cell;
   });
 
   // Add missing sheet names
-  result = result.replace(/[^A-Z!:'][A-Z]{1,}\d{1,}[^!]/g, (match) => {
+  result = result.replace(/[^A-Za-z!:'][A-Za-z]{1,}\d{1,}[^!]/g, (match) => {
     return match.substring(0, 1) + "'" + sheetName.toUpperCase() + "'!" + match.substring(1);
   });
 
+  // Encode sheet names to avoid parsing errors with symbols
+  sheetNames.forEach((name) => {
+    result.replace("'" + name.replace(/('')/g, "'") + "'", "'" + encodeSheetName(name) + "'");
+  });
+
   // Unfold Cell Ranges
-  result = result.replace(/'(('')|[^']){1,}'![A-Z]{1,}\d{1,}:[A-Z]{1,}\d{1,}/g, (match) => {
-    const namePortion: string = match.match(/'(('')|[^']){1,}'!/g)![0];
-    const cellPortion: string = match.match(/[A-Z]{1,}\d{1,}:[A-Z]{1,}\d{1,}/g)![0];
+  result = result.replace(/'.+'![A-Za-z]+\d+:[A-Za-z]+\d+/g, (match) => {
+    const namePortion: string = match.match(/'.+'!/)![0];
+    const cellPortion: string = match.match(/[A-Za-z]+\d+:[A-Za-z]+\d+/)![0];
     const [startCell, endCell] = cellPortion.split(":");
-    const startCol: string = startCell.match(/[A-Z]{1,}/g)![0];
-    const startRow: number = +startCell.match(/\d{1,}/g)![0];
-    const endCol: string = endCell.match(/[A-Z]{1,}/g)![0];
-    const endRow: number = +endCell.match(/\d{1,}/g)![0];
+    const startCol: string = startCell.match(/[A-Za-z]+/)![0];
+    const startRow: number = +startCell.match(/\d+/)![0];
+    const endCol: string = endCell.match(/[A-Za-z]+/)![0];
+    const endRow: number = +endCell.match(/\d+/)![0];
 
     const cellList: string[] = [];
 
@@ -79,7 +85,13 @@ const unfoldFormula = (sheetName: string, formula: string): string => {
   return result;
 };
 
+const encodeSheetName = (name: string) => {
+  return btoa(name).replace(/[=+/]/g, "");
+};
+
 const ExportHandler: FC = () => {
+  const [messageApi, contextHolder] = message.useMessage();
+
   const exportDocument = async () => {
     try {
       Excel.run(async (context) => {
@@ -92,16 +104,19 @@ const ExportHandler: FC = () => {
         let mappedSheets: SheetPage[] = [];
         let pdfSheets: PdfMap[] = [];
 
+        const sheetNames = items.map((sheet) => sheet.name).sort((a, b) => b.length - a.length);
+
         for (let i = 0; i < items.length; i++) {
           const sheet = items[i];
           const range = sheet.getUsedRange();
 
           if (sheet.name.indexOf("!") > -1) {
-            throw new Error(
+            const errorMessage =
               "Invalid sheet name:" +
-                sheet.name +
-                "\n! is not allowed in Sheet Names as it can cause errors in formula parsing."
-            );
+              sheet.name +
+              "\n! is not allowed in Sheet Names as it can cause errors in formula parsing.";
+            messageApi.open({ type: "error", content: errorMessage });
+            throw new Error(errorMessage);
           }
 
           const bracketsRegex = /{.*}/;
@@ -113,7 +128,7 @@ const ExportHandler: FC = () => {
             await context.sync();
 
             const connections = range.formulas.map((row) =>
-              row[0][0] === "=" ? unfoldFormula(sheet.name, row[0]) : row[0]
+              row[0][0] === "=" ? unfoldFormula(sheet.name, sheetNames, row[0]) : row[0]
             );
             const pdfSheet = {
               fileName: sheet.name.replace(/[{}]/g, ""),
@@ -155,10 +170,11 @@ const ExportHandler: FC = () => {
                   mappedAttributes = undefined;
                 }
 
+                // TODO make sure key matches how the formula parser parses names. With '' instead of '
                 return {
                   key: sheet.name + ":" + positionKey,
                   value: value,
-                  formula: value[0] === "=" ? unfoldFormula(sheet.name, value) : undefined,
+                  formula: value[0] === "=" ? unfoldFormula(sheet.name, sheetNames, value) : undefined,
                   attributes: mappedAttributes,
                 };
               });
@@ -192,8 +208,7 @@ const ExportHandler: FC = () => {
   return (
     <div>
       <h1>Export</h1>
-
-      <p>*The exclamation point (!) is not allowed in Sheet Names as it will cause issues with formula parsing.</p>
+      {contextHolder}
 
       <Button
         onClick={() => {
