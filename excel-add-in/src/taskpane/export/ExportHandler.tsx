@@ -42,42 +42,34 @@ const nextExcelColumnCode = (column: string): string => {
 const unfoldFormula = (sheetName: string, sheetNames: string[], formula: string): string => {
   let result = formula;
 
-  // Add single quotes to sheet names that don't already have them
-  result = result.replace(/[A-Za-z\d]+![A-Za-z]+\d+[^!]/g, (match) => {
-    const [name, cell] = match.split("!");
-    return "'" + name + "'!" + cell;
-  });
-
   // Remove double single quotes from sheet names
   result = result.replace(/('')/g, "'");
 
   // Encode sheet names to avoid parsing errors with symbols
-  // TODO: This doesn't seem to work
   sheetNames.forEach((name) => {
-    result.replace("'" + name + "'", "'" + encodeSheetName(name) + "'");
+    const escapedName = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    result = result.replace(new RegExp(`[']{0,1}(${escapedName})[']{0,1}!`, "g"), "'" + encodeSheetName(name) + "'!");
   });
 
-  // TODO: make sure this is working right as well
   // Add missing sheet names
-  result = result.replace(/[^A-Za-z!:'][A-Za-z]+\d+[^!]/g, (match) => {
+  result = result.replace(/[^A-Za-z\d!:'][A-Z]+\d+/g, (match) => {
     return match.substring(0, 1) + "'" + encodeSheetName(sheetName) + "'!" + match.substring(1);
   });
 
   // Unfold Cell Ranges
-  result = result.replace(/'.+'![A-Za-z]+\d+:[A-Za-z]+\d+/g, (match) => {
-    const namePortion: string = match.match(/'.+'!/)![0];
-    const cellPortion: string = match.match(/[A-Za-z]+\d+:[A-Za-z]+\d+/)![0];
+  result = result.replace(/'[A-Za-z\d]+'![A-Z]+\d+:[A-Z]+\d+/g, (match) => {
+    const [namePortion, cellPortion] = match.split("!");
     const [startCell, endCell] = cellPortion.split(":");
-    const startCol: string = startCell.match(/[A-Za-z]+/)![0];
+    const startCol: string = startCell.match(/[A-Z]+/)![0];
     const startRow: number = +startCell.match(/\d+/)![0];
-    const endCol: string = endCell.match(/[A-Za-z]+/)![0];
+    const endCol: string = endCell.match(/[A-Z]+/)![0];
     const endRow: number = +endCell.match(/\d+/)![0];
 
     const cellList: string[] = [];
 
-    for (let row: number = startRow; row < endRow; row++) {
-      for (let col: string = startCol; col != endCol; col = nextExcelColumnCode(col)) {
-        cellList.push(namePortion + col + row);
+    for (let row: number = startRow; row <= endRow; row++) {
+      for (let col: string = startCol; col != nextExcelColumnCode(endCol); col = nextExcelColumnCode(col)) {
+        cellList.push(namePortion + "!" + col + row);
       }
     }
 
@@ -146,11 +138,9 @@ const ExportHandler: FC = () => {
             const comments = sheet.comments.items;
             const xOffset: number = range.columnIndex;
             const yOffset: number = range.rowIndex;
-            console.log("range", range.address);
             const rowAddress: number = +range.address.match(/![A-Z]+[1-9]+/g)![0].match(/[1-9]+/g)![0];
-            console.log("rowAddress:", rowAddress);
             const colAddress: string = range.address.match(/![A-Z]+[1-9]+/g)![0].match(/[A-Z]+/g)![0];
-            console.log("colAddress:", colAddress);
+
             let mappedComments: Map<string, string> = new Map<string, string>();
 
             for (let c = 0; c < comments.length; c++) {
@@ -180,7 +170,6 @@ const ExportHandler: FC = () => {
                 } catch {
                   mappedAttributes = undefined;
                 }
-                console.log(sheetNames);
 
                 return {
                   key: "'" + encodeSheetName(sheet.name) + "'!" + cols[x] + (rowAddress + y),

@@ -5,8 +5,8 @@ import { makeStyles } from "@fluentui/react-components";
 import CellHandler from "./magic-cell/CellHandler";
 import MessageHandler from "./messages/MessageHandler";
 import PdfHandler from "./pdf/PdfHandler";
-import Layout, { Content, Header } from "antd/es/layout/layout";
-import { Menu } from "antd";
+import Layout, { Content } from "antd/es/layout/layout";
+import { Tabs, TabsProps } from "antd";
 import ExportHandler from "./export/ExportHandler";
 
 const useStyles = makeStyles({
@@ -25,8 +25,45 @@ export interface CellRange {
 const App = () => {
   const styles = useStyles();
   const [selectedRange, setSelectedRange] = useState<CellRange>();
-  const defaultNavIndex = "cell";
-  const [navIndex, setNavIndex] = useState<string>(defaultNavIndex);
+
+  const views: TabsProps["items"] = [
+    {
+      key: "0",
+      label: "Custom Cell",
+      children: (
+        <div style={{ padding: "1rem" }}>
+          <CellHandler range={selectedRange} />
+        </div>
+      ),
+    },
+    {
+      key: "1",
+      label: "Page Controls",
+      children: (
+        <div style={{ padding: "1rem" }}>
+          <MessageHandler title="Error Messages" />
+        </div>
+      ),
+    },
+    {
+      key: "2",
+      label: "Map PDF",
+      children: (
+        <div style={{ padding: "1rem" }}>
+          <PdfHandler />
+        </div>
+      ),
+    },
+    {
+      key: "3",
+      label: "Export",
+      children: (
+        <div style={{ padding: "1rem" }}>
+          <ExportHandler />
+        </div>
+      ),
+    },
+  ];
 
   useEffect(() => {
     handleSelectionChanged(null);
@@ -76,41 +113,8 @@ const App = () => {
   return (
     <div className={styles.root}>
       <Layout>
-        <Header
-          style={{
-            position: "sticky",
-            top: 0,
-            zIndex: 1,
-            width: "100%",
-            display: "flex",
-            alignItems: "center",
-            padding: "0",
-          }}
-        >
-          <Menu
-            theme="dark"
-            mode="horizontal"
-            defaultSelectedKeys={[defaultNavIndex]}
-            items={[
-              { key: "cell", label: "Custom Cell" },
-              { key: "page", label: "Page Controls" },
-              { key: "pdf", label: "Map PDF" },
-              { key: "export", label: "Export" },
-            ]}
-            style={{ flex: 1, minWidth: 0, width: "100%" }}
-            onClick={(e) => {
-              setNavIndex(e.key);
-            }}
-          />
-        </Header>
-
-        <Content style={{ padding: "1rem" }}>
-          <div>
-            {navIndex === "cell" && <CellHandler range={selectedRange} />}
-            {navIndex === "page" && <MessageHandler title="Error Messages" />}
-            {navIndex === "pdf" && <PdfHandler />}
-            {navIndex === "export" && <ExportHandler />}
-          </div>
+        <Content>
+          <Tabs defaultActiveKey="0" items={views} size="small" centered tabBarGutter={16} />
         </Content>
       </Layout>
     </div>
