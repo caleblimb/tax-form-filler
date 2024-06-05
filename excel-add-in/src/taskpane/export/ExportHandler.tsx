@@ -42,23 +42,25 @@ const nextExcelColumnCode = (column: string): string => {
 const unfoldFormula = (sheetName: string, sheetNames: string[], formula: string): string => {
   let result = formula;
 
-  // Simplify
-  // result = result.toUpperCase();
-
   // Add single quotes to sheet names that don't already have them
   result = result.replace(/[A-Za-z\d]+![A-Za-z]+\d+[^!]/g, (match) => {
     const [name, cell] = match.split("!");
     return "'" + name + "'!" + cell;
   });
 
-  // Add missing sheet names
-  result = result.replace(/[^A-Za-z!:'][A-Za-z]{1,}\d{1,}[^!]/g, (match) => {
-    return match.substring(0, 1) + "'" + sheetName.toUpperCase() + "'!" + match.substring(1);
-  });
+  // Remove double single quotes from sheet names
+  result = result.replace(/('')/g, "'");
 
   // Encode sheet names to avoid parsing errors with symbols
+  // TODO: This doesn't seem to work
   sheetNames.forEach((name) => {
-    result.replace("'" + name.replace(/('')/g, "'") + "'", "'" + encodeSheetName(name) + "'");
+    result.replace("'" + name + "'", "'" + encodeSheetName(name) + "'");
+  });
+
+  // TODO: make sure this is working right as well
+  // Add missing sheet names
+  result = result.replace(/[^A-Za-z!:'][A-Za-z]+\d+[^!]/g, (match) => {
+    return match.substring(0, 1) + "'" + encodeSheetName(sheetName) + "'!" + match.substring(1);
   });
 
   // Unfold Cell Ranges
@@ -94,7 +96,7 @@ const ExportHandler: FC = () => {
 
   const exportDocument = async () => {
     try {
-      Excel.run(async (context) => {
+      Excel.run(async (context: Excel.RequestContext) => {
         const worksheets = context.workbook.worksheets;
         worksheets.load("items");
 
@@ -136,7 +138,7 @@ const ExportHandler: FC = () => {
             };
             pdfSheets.push(pdfSheet);
           } else {
-            range.load("formulas,columnIndex,rowIndex");
+            range.load("formulas,columnIndex,rowIndex,address");
             sheet.comments.load("items");
 
             await context.sync();
@@ -144,6 +146,11 @@ const ExportHandler: FC = () => {
             const comments = sheet.comments.items;
             const xOffset: number = range.columnIndex;
             const yOffset: number = range.rowIndex;
+            console.log("range", range.address);
+            const rowAddress: number = +range.address.match(/![A-Z]+[1-9]+/g)![0].match(/[1-9]+/g)![0];
+            console.log("rowAddress:", rowAddress);
+            const colAddress: string = range.address.match(/![A-Z]+[1-9]+/g)![0].match(/[A-Z]+/g)![0];
+            console.log("colAddress:", colAddress);
             let mappedComments: Map<string, string> = new Map<string, string>();
 
             for (let c = 0; c < comments.length; c++) {
@@ -156,11 +163,15 @@ const ExportHandler: FC = () => {
               mappedComments.set(key, comments[c].content);
             }
 
-            const mappedCells: Cell[][] = range.formulas.map((row, y: number): Cell[] => {
-              return row.map((value, x: number): Cell => {
+            const mappedCells: Cell[][] = range.formulas.map((row: string[], y: number): Cell[] => {
+              const cols: string[] = [colAddress];
+              return row.map((value: string, x: number): Cell => {
                 const xPosition = xOffset + x;
                 const yPosition = yOffset + y;
                 const positionKey = xPosition + ":" + yPosition;
+                if (cols.length === x) {
+                  cols.push(nextExcelColumnCode(cols[cols.length - 1]));
+                }
 
                 const attributes = mappedComments.get(positionKey);
                 let mappedAttributes;
@@ -169,10 +180,10 @@ const ExportHandler: FC = () => {
                 } catch {
                   mappedAttributes = undefined;
                 }
+                console.log(sheetNames);
 
-                // TODO make sure key matches how the formula parser parses names. With '' instead of '
                 return {
-                  key: sheet.name + ":" + positionKey,
+                  key: "'" + encodeSheetName(sheet.name) + "'!" + cols[x] + (rowAddress + y),
                   value: value,
                   formula: value[0] === "=" ? unfoldFormula(sheet.name, sheetNames, value) : undefined,
                   attributes: mappedAttributes,
