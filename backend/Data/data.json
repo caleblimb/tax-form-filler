@@ -1,1076 +1,2620 @@
 [
   {
-    "name": "Cover Sheet",
-    "cells": [
-      [
-        { "key": "Cover Sheet:0:0", "value": "TAX RETURN COVER SHEET" },
-        { "key": "Cover Sheet:1:0", "value": "" },
-        { "key": "Cover Sheet:2:0", "value": "" },
-        { "key": "Cover Sheet:3:0", "value": "" },
-        { "key": "Cover Sheet:4:0", "value": "" },
-        { "key": "Cover Sheet:5:0", "value": "" },
-        { "key": "Cover Sheet:6:0", "value": "" }
-      ],
-      [
-        { "key": "Cover Sheet:0:1", "value": "" },
-        { "key": "Cover Sheet:1:1", "value": "" },
-        { "key": "Cover Sheet:2:1", "value": "" },
-        { "key": "Cover Sheet:3:1", "value": "" },
-        { "key": "Cover Sheet:4:1", "value": "" },
-        { "key": "Cover Sheet:5:1", "value": "" },
-        { "key": "Cover Sheet:6:1", "value": "" }
-      ],
-      [
-        { "key": "Cover Sheet:0:2", "value": "" },
-        { "key": "Cover Sheet:1:2", "value": "" },
-        { "key": "Cover Sheet:2:2", "value": "" },
-        { "key": "Cover Sheet:3:2", "value": "" },
-        { "key": "Cover Sheet:4:2", "value": "" },
-        { "key": "Cover Sheet:5:2", "value": "" },
-        { "key": "Cover Sheet:6:2", "value": "" }
-      ],
-      [
-        { "key": "Cover Sheet:0:3", "value": "" },
-        { "key": "Cover Sheet:1:3", "value": "" },
-        { "key": "Cover Sheet:2:3", "value": "" },
-        { "key": "Cover Sheet:3:3", "value": "" },
-        { "key": "Cover Sheet:4:3", "value": "" },
-        { "key": "Cover Sheet:5:3", "value": "" },
-        { "key": "Cover Sheet:6:3", "value": "" }
-      ],
-      [
-        { "key": "Cover Sheet:0:4", "value": "Client Name:" },
-        { "key": "Cover Sheet:1:4", "value": "" },
-        {
-          "key": "Cover Sheet:2:4",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "text", "min": 1 }
-          }
-        },
-        { "key": "Cover Sheet:3:4", "value": "" },
-        { "key": "Cover Sheet:4:4", "value": "" },
-        { "key": "Cover Sheet:5:4", "value": "" },
-        { "key": "Cover Sheet:6:4", "value": "" }
-      ],
-      [
-        { "key": "Cover Sheet:0:5", "value": "Tax Year:" },
-        { "key": "Cover Sheet:1:5", "value": "" },
-        {
-          "key": "Cover Sheet:2:5",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": {
-              "type": "dropdown",
-              "options": ["2024", "2025", "2026"]
-            }
-          }
-        },
-        { "key": "Cover Sheet:3:5", "value": "" },
-        { "key": "Cover Sheet:4:5", "value": "" },
-        { "key": "Cover Sheet:5:5", "value": "" },
-        { "key": "Cover Sheet:6:5", "value": "" }
-      ],
-      [
-        { "key": "Cover Sheet:0:6", "value": "Federal Tax Return:" },
-        { "key": "Cover Sheet:1:6", "value": "" },
-        { "key": "Cover Sheet:2:6", "value": 1040 },
-        { "key": "Cover Sheet:3:6", "value": "" },
-        { "key": "Cover Sheet:4:6", "value": "" },
-        { "key": "Cover Sheet:5:6", "value": "" },
-        { "key": "Cover Sheet:6:6", "value": "" }
-      ],
-      [
-        { "key": "Cover Sheet:0:7", "value": "SSN" },
-        { "key": "Cover Sheet:1:7", "value": "" },
-        {
-          "key": "Cover Sheet:2:7",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": false }
-          }
-        },
-        { "key": "Cover Sheet:3:7", "value": "" },
-        { "key": "Cover Sheet:4:7", "value": "" },
-        { "key": "Cover Sheet:5:7", "value": "" },
-        { "key": "Cover Sheet:6:7", "value": "" }
-      ],
-      [
-        { "key": "Cover Sheet:0:8", "value": "Profession" },
-        { "key": "Cover Sheet:1:8", "value": "" },
-        {
-          "key": "Cover Sheet:2:8",
-          "value": "",
-          "attributes": { "type": "input", "content": { "type": "text" } }
-        },
-        { "key": "Cover Sheet:3:8", "value": "" },
-        { "key": "Cover Sheet:4:8", "value": "" },
-        { "key": "Cover Sheet:5:8", "value": "" },
-        { "key": "Cover Sheet:6:8", "value": "" }
-      ],
-      [
-        { "key": "Cover Sheet:0:9", "value": "EIN" },
-        { "key": "Cover Sheet:1:9", "value": "" },
-        {
-          "key": "Cover Sheet:2:9",
-          "value": "",
-          "attributes": { "type": "input", "content": { "type": "text" } }
-        },
-        { "key": "Cover Sheet:3:9", "value": "" },
-        { "key": "Cover Sheet:4:9", "value": "" },
-        { "key": "Cover Sheet:5:9", "value": "" },
-        { "key": "Cover Sheet:6:9", "value": "" }
-      ],
-      [
-        { "key": "Cover Sheet:0:10", "value": "Business Name" },
-        { "key": "Cover Sheet:1:10", "value": "" },
-        {
-          "key": "Cover Sheet:2:10",
-          "value": "",
-          "attributes": { "type": "input", "content": { "type": "text" } }
-        },
-        { "key": "Cover Sheet:3:10", "value": "" },
-        { "key": "Cover Sheet:4:10", "value": "" },
-        { "key": "Cover Sheet:5:10", "value": "" },
-        { "key": "Cover Sheet:6:10", "value": "" }
-      ],
-      [
-        { "key": "Cover Sheet:0:11", "value": "Business Address" },
-        { "key": "Cover Sheet:1:11", "value": "" },
-        {
-          "key": "Cover Sheet:2:11",
-          "value": "",
-          "attributes": { "type": "input", "content": { "type": "text" } }
-        },
-        { "key": "Cover Sheet:3:11", "value": "" },
-        { "key": "Cover Sheet:4:11", "value": "" },
-        { "key": "Cover Sheet:5:11", "value": "" },
-        { "key": "Cover Sheet:6:11", "value": "" }
-      ],
-      [
-        { "key": "Cover Sheet:0:12", "value": "Address #2" },
-        { "key": "Cover Sheet:1:12", "value": "" },
-        {
-          "key": "Cover Sheet:2:12",
-          "value": "",
-          "attributes": { "type": "input", "content": { "type": "text" } }
-        },
-        { "key": "Cover Sheet:3:12", "value": "" },
-        { "key": "Cover Sheet:4:12", "value": "" },
-        { "key": "Cover Sheet:5:12", "value": "" },
-        { "key": "Cover Sheet:6:12", "value": "" }
-      ],
-      [
-        { "key": "Cover Sheet:0:13", "value": "Cash, Accrual, Other" },
-        { "key": "Cover Sheet:1:13", "value": "" },
-        {
-          "key": "Cover Sheet:2:13",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": {
-              "type": "radio",
-              "options": ["Cash", "Accrual", "Other"]
-            }
-          }
-        },
-        { "key": "Cover Sheet:3:13", "value": "" },
-        { "key": "Cover Sheet:4:13", "value": "" },
-        { "key": "Cover Sheet:5:13", "value": "" },
-        { "key": "Cover Sheet:6:13", "value": "" }
-      ],
-      [
-        { "key": "Cover Sheet:0:14", "value": "Specify" },
-        { "key": "Cover Sheet:1:14", "value": "" },
-        {
-          "key": "Cover Sheet:2:14",
-          "value": "",
-          "attributes": { "type": "input", "content": { "type": "text" } }
-        },
-        { "key": "Cover Sheet:3:14", "value": "" },
-        { "key": "Cover Sheet:4:14", "value": "" },
-        { "key": "Cover Sheet:5:14", "value": "" },
-        { "key": "Cover Sheet:6:14", "value": "" }
-      ],
-      [
-        { "key": "Cover Sheet:0:15", "value": "Materially Participate" },
-        { "key": "Cover Sheet:1:15", "value": "" },
-        {
-          "key": "Cover Sheet:2:15",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "radio", "options": ["Yes", "No"] }
-          }
-        },
-        { "key": "Cover Sheet:3:15", "value": "" },
-        { "key": "Cover Sheet:4:15", "value": "" },
-        { "key": "Cover Sheet:5:15", "value": "" },
-        { "key": "Cover Sheet:6:15", "value": "" }
-      ],
-      [
-        { "key": "Cover Sheet:0:16", "value": "Started Business" },
-        { "key": "Cover Sheet:1:16", "value": "" },
-        {
-          "key": "Cover Sheet:2:16",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "radio", "options": ["Yes", "No"] }
-          }
-        },
-        { "key": "Cover Sheet:3:16", "value": "" },
-        { "key": "Cover Sheet:4:16", "value": "" },
-        { "key": "Cover Sheet:5:16", "value": "" },
-        { "key": "Cover Sheet:6:16", "value": "" }
-      ],
-      [
-        { "key": "Cover Sheet:0:17", "value": "Payments Made" },
-        { "key": "Cover Sheet:1:17", "value": "" },
-        {
-          "key": "Cover Sheet:2:17",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "radio", "options": ["Yes", "No"] }
-          }
-        },
-        { "key": "Cover Sheet:3:17", "value": "" },
-        { "key": "Cover Sheet:4:17", "value": "" },
-        { "key": "Cover Sheet:5:17", "value": "" },
-        { "key": "Cover Sheet:6:17", "value": "" }
-      ],
-      [
-        { "key": "Cover Sheet:0:18", "value": "Filed Forms" },
-        { "key": "Cover Sheet:1:18", "value": "" },
-        {
-          "key": "Cover Sheet:2:18",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "radio", "options": ["Yes", "No"] }
-          }
-        },
-        { "key": "Cover Sheet:3:18", "value": "" },
-        { "key": "Cover Sheet:4:18", "value": "" },
-        { "key": "Cover Sheet:5:18", "value": "" },
-        { "key": "Cover Sheet:6:18", "value": "" }
+      "name": "Cover Sheet",
+      "cells": [
+          [
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!A1",
+                  "value": "TAX RETURN COVER SHEET"
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!B1",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!C1",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!D1",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!E1",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!F1",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!G1",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!A2",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!B2",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!C2",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!D2",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!E2",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!F2",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!G2",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!A3",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!B3",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!C3",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!D3",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!E3",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!F3",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!G3",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!A4",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!B4",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!C4",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!D4",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!E4",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!F4",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!G4",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!A5",
+                  "value": "Client Name:"
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!B5",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!C5",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "text",
+                          "min": 1
+                      }
+                  }
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!D5",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!E5",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!F5",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!G5",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!A6",
+                  "value": "Tax Year:"
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!B6",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!C6",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "dropdown",
+                          "options": [
+                              "2024",
+                              "2025",
+                              "2026"
+                          ]
+                      }
+                  }
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!D6",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!E6",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!F6",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!G6",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!A7",
+                  "value": "Federal Tax Return:"
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!B7",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!C7",
+                  "value": 1040
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!D7",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!E7",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!F7",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!G7",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!A8",
+                  "value": "SSN"
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!B8",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!C8",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": false
+                      }
+                  }
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!D8",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!E8",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!F8",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!G8",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!A9",
+                  "value": "Profession"
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!B9",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!C9",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "text"
+                      }
+                  }
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!D9",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!E9",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!F9",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!G9",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!A10",
+                  "value": "EIN"
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!B10",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!C10",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "text"
+                      }
+                  }
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!D10",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!E10",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!F10",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!G10",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!A11",
+                  "value": "Business Name"
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!B11",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!C11",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "text"
+                      }
+                  }
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!D11",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!E11",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!F11",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!G11",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!A12",
+                  "value": "Business Address"
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!B12",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!C12",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "text"
+                      }
+                  }
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!D12",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!E12",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!F12",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!G12",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!A13",
+                  "value": "Address #2"
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!B13",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!C13",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "text"
+                      }
+                  }
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!D13",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!E13",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!F13",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!G13",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!A14",
+                  "value": "Cash, Accrual, Other"
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!B14",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!C14",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "radio",
+                          "options": [
+                              "Cash",
+                              "Accrual",
+                              "Other"
+                          ]
+                      }
+                  }
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!D14",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!E14",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!F14",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!G14",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!A15",
+                  "value": "Specify"
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!B15",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!C15",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "text"
+                      }
+                  }
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!D15",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!E15",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!F15",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!G15",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!A16",
+                  "value": "Materially Participate"
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!B16",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!C16",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "radio",
+                          "options": [
+                              "Yes",
+                              "No"
+                          ]
+                      }
+                  }
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!D16",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!E16",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!F16",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!G16",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!A17",
+                  "value": "Started Business"
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!B17",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!C17",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "radio",
+                          "options": [
+                              "Yes",
+                              "No"
+                          ]
+                      }
+                  }
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!D17",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!E17",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!F17",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!G17",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!A18",
+                  "value": "Payments Made"
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!B18",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!C18",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "radio",
+                          "options": [
+                              "Yes",
+                              "No"
+                          ]
+                      }
+                  }
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!D18",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!E18",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!F18",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!G18",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!A19",
+                  "value": "Filed Forms"
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!B19",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!C19",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "radio",
+                          "options": [
+                              "Yes",
+                              "No"
+                          ]
+                      }
+                  }
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!D19",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!E19",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!F19",
+                  "value": ""
+              },
+              {
+                  "key": "'Q292ZXIgU2hlZXQ'!G19",
+                  "value": ""
+              }
+          ]
       ]
-    ]
   },
   {
-    "name": "Schedule C",
-    "cells": [
-      [
-        { "key": "Schedule C:0:0", "value": "SCHEDULE C: BUSINESS INCOME" },
-        { "key": "Schedule C:1:0", "value": "" },
-        { "key": "Schedule C:2:0", "value": "" },
-        { "key": "Schedule C:3:0", "value": "" },
-        { "key": "Schedule C:4:0", "value": "" },
-        { "key": "Schedule C:5:0", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:1", "value": "" },
-        { "key": "Schedule C:1:1", "value": "" },
-        { "key": "Schedule C:2:1", "value": "" },
-        { "key": "Schedule C:3:1", "value": "" },
-        { "key": "Schedule C:4:1", "value": "" },
-        { "key": "Schedule C:5:1", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:2", "value": "" },
-        { "key": "Schedule C:1:2", "value": "" },
-        { "key": "Schedule C:2:2", "value": "" },
-        { "key": "Schedule C:3:2", "value": "" },
-        { "key": "Schedule C:4:2", "value": "" },
-        { "key": "Schedule C:5:2", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:3", "value": "" },
-        { "key": "Schedule C:1:3", "value": "" },
-        { "key": "Schedule C:2:3", "value": "Business Name" },
-        { "key": "Schedule C:3:3", "value": "" },
-        { "key": "Schedule C:4:3", "value": "" },
-        { "key": "Schedule C:5:3", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:4", "value": "" },
-        { "key": "Schedule C:1:4", "value": "" },
-        { "key": "Schedule C:2:4", "value": "" },
-        { "key": "Schedule C:3:4", "value": "" },
-        { "key": "Schedule C:4:4", "value": "" },
-        { "key": "Schedule C:5:4", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:5", "value": "INCOME" },
-        { "key": "Schedule C:1:5", "value": "" },
-        { "key": "Schedule C:2:5", "value": "wp" },
-        { "key": "Schedule C:3:5", "value": "" },
-        { "key": "Schedule C:4:5", "value": "" },
-        { "key": "Schedule C:5:5", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:6", "value": "" },
-        { "key": "Schedule C:1:6", "value": "Gross receipts or sales" },
-        { "key": "Schedule C:2:6", "value": "" },
-        { "key": "Schedule C:3:6", "value": "" },
-        {
-          "key": "Schedule C:4:6",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:5:6", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:7", "value": "" },
-        { "key": "Schedule C:1:7", "value": "Returns and allowances" },
-        { "key": "Schedule C:2:7", "value": "" },
-        { "key": "Schedule C:3:7", "value": "" },
-        {
-          "key": "Schedule C:4:7",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:5:7", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:8", "value": "" },
-        { "key": "Schedule C:1:8", "value": "Cost of goods sold" },
-        { "key": "Schedule C:2:8", "value": "" },
-        { "key": "Schedule C:3:8", "value": "" },
-        {
-          "key": "Schedule C:4:8",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:5:8", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:9", "value": "" },
-        { "key": "Schedule C:1:9", "value": "  Purchase" },
-        { "key": "Schedule C:2:9", "value": "" },
-        { "key": "Schedule C:3:9", "value": "?" },
-        {
-          "key": "Schedule C:4:9",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:5:9", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:10", "value": "" },
-        { "key": "Schedule C:1:10", "value": "  Commissions & Selling Cost" },
-        { "key": "Schedule C:2:10", "value": "" },
-        { "key": "Schedule C:3:10", "value": "?" },
-        {
-          "key": "Schedule C:4:10",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:5:10", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:11", "value": "" },
-        { "key": "Schedule C:1:11", "value": "Other Income" },
-        { "key": "Schedule C:2:11", "value": "" },
-        { "key": "Schedule C:3:11", "value": "" },
-        {
-          "key": "Schedule C:4:11",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:5:11", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:12", "value": "" },
-        { "key": "Schedule C:1:12", "value": "Gross Income" },
-        { "key": "Schedule C:2:12", "value": "" },
-        { "key": "Schedule C:3:12", "value": "" },
-        {
-          "key": "Schedule C:4:12",
-          "value": "=R[-6]C-R[-5]C-R[-4]C+R[-1]C-R[-3]C-R[-2]C"
-        },
-        { "key": "Schedule C:5:12", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:13", "value": "" },
-        { "key": "Schedule C:1:13", "value": "" },
-        { "key": "Schedule C:2:13", "value": "" },
-        { "key": "Schedule C:3:13", "value": "" },
-        { "key": "Schedule C:4:13", "value": "" },
-        { "key": "Schedule C:5:13", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:14", "value": "EXPENSES" },
-        { "key": "Schedule C:1:14", "value": "" },
-        { "key": "Schedule C:2:14", "value": "" },
-        { "key": "Schedule C:3:14", "value": "" },
-        { "key": "Schedule C:4:14", "value": "" },
-        { "key": "Schedule C:5:14", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:15", "value": "" },
-        { "key": "Schedule C:1:15", "value": "Advertising" },
-        { "key": "Schedule C:2:15", "value": "" },
-        { "key": "Schedule C:3:15", "value": "" },
-        {
-          "key": "Schedule C:4:15",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:5:15", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:16", "value": "" },
-        { "key": "Schedule C:1:16", "value": "Car and Truck Expense" },
-        { "key": "Schedule C:2:16", "value": "" },
-        { "key": "Schedule C:3:16", "value": "" },
-        {
-          "key": "Schedule C:4:16",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:5:16", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:17", "value": "" },
-        { "key": "Schedule C:1:17", "value": "Commissions & fees" },
-        { "key": "Schedule C:2:17", "value": "" },
-        { "key": "Schedule C:3:17", "value": "" },
-        {
-          "key": "Schedule C:4:17",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:5:17", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:18", "value": "" },
-        { "key": "Schedule C:1:18", "value": "Contract labor" },
-        { "key": "Schedule C:2:18", "value": "" },
-        { "key": "Schedule C:3:18", "value": "" },
-        {
-          "key": "Schedule C:4:18",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:5:18", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:19", "value": "" },
-        { "key": "Schedule C:1:19", "value": "Depletion" },
-        { "key": "Schedule C:2:19", "value": "" },
-        { "key": "Schedule C:3:19", "value": "" },
-        {
-          "key": "Schedule C:4:19",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:5:19", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:20", "value": "" },
-        { "key": "Schedule C:1:20", "value": "Depreciation" },
-        { "key": "Schedule C:2:20", "value": "" },
-        { "key": "Schedule C:3:20", "value": "" },
-        {
-          "key": "Schedule C:4:20",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:5:20", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:21", "value": "" },
-        { "key": "Schedule C:1:21", "value": "Employee Benefit Programs" },
-        { "key": "Schedule C:2:21", "value": "" },
-        { "key": "Schedule C:3:21", "value": "" },
-        {
-          "key": "Schedule C:4:21",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:5:21", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:22", "value": "" },
-        { "key": "Schedule C:1:22", "value": "Insurance" },
-        { "key": "Schedule C:2:22", "value": "" },
-        { "key": "Schedule C:3:22", "value": "" },
-        {
-          "key": "Schedule C:4:22",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:5:22", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:23", "value": "" },
-        { "key": "Schedule C:1:23", "value": "Interest" },
-        { "key": "Schedule C:2:23", "value": "" },
-        { "key": "Schedule C:3:23", "value": "" },
-        {
-          "key": "Schedule C:4:23",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:5:23", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:24", "value": "" },
-        { "key": "Schedule C:1:24", "value": "Legal & professional fees" },
-        { "key": "Schedule C:2:24", "value": "" },
-        { "key": "Schedule C:3:24", "value": "" },
-        {
-          "key": "Schedule C:4:24",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:5:24", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:25", "value": "" },
-        { "key": "Schedule C:1:25", "value": "Office expense" },
-        { "key": "Schedule C:2:25", "value": "" },
-        { "key": "Schedule C:3:25", "value": "" },
-        {
-          "key": "Schedule C:4:25",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:5:25", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:26", "value": "" },
-        { "key": "Schedule C:1:26", "value": "Pension & profit sharing" },
-        { "key": "Schedule C:2:26", "value": "" },
-        { "key": "Schedule C:3:26", "value": "" },
-        {
-          "key": "Schedule C:4:26",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:5:26", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:27", "value": "" },
-        { "key": "Schedule C:1:27", "value": "Rent or lease" },
-        { "key": "Schedule C:2:27", "value": "" },
-        { "key": "Schedule C:3:27", "value": "" },
-        {
-          "key": "Schedule C:4:27",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:5:27", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:28", "value": "" },
-        { "key": "Schedule C:1:28", "value": "Repairs & maintenance" },
-        { "key": "Schedule C:2:28", "value": "" },
-        { "key": "Schedule C:3:28", "value": "" },
-        {
-          "key": "Schedule C:4:28",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:5:28", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:29", "value": "" },
-        { "key": "Schedule C:1:29", "value": "Supplies" },
-        { "key": "Schedule C:2:29", "value": "" },
-        { "key": "Schedule C:3:29", "value": "" },
-        {
-          "key": "Schedule C:4:29",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:5:29", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:30", "value": "" },
-        { "key": "Schedule C:1:30", "value": "Taxes & licenses" },
-        { "key": "Schedule C:2:30", "value": "" },
-        { "key": "Schedule C:3:30", "value": "" },
-        {
-          "key": "Schedule C:4:30",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:5:30", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:31", "value": "" },
-        { "key": "Schedule C:1:31", "value": "Travel" },
-        { "key": "Schedule C:2:31", "value": "" },
-        { "key": "Schedule C:3:31", "value": "" },
-        {
-          "key": "Schedule C:4:31",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:5:31", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:32", "value": "" },
-        { "key": "Schedule C:1:32", "value": "Meals & entertainment" },
-        { "key": "Schedule C:2:32", "value": "" },
-        {
-          "key": "Schedule C:3:32",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:4:32", "value": "=RC[-1]*0.5" },
-        { "key": "Schedule C:5:32", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:33", "value": "" },
-        { "key": "Schedule C:1:33", "value": "Utilities" },
-        { "key": "Schedule C:2:33", "value": "" },
-        { "key": "Schedule C:3:33", "value": "" },
-        {
-          "key": "Schedule C:4:33",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:5:33", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:34", "value": "" },
-        { "key": "Schedule C:1:34", "value": "Wages" },
-        { "key": "Schedule C:2:34", "value": "" },
-        { "key": "Schedule C:3:34", "value": "" },
-        {
-          "key": "Schedule C:4:34",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:5:34", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:35", "value": "" },
-        { "key": "Schedule C:1:35", "value": "Other" },
-        { "key": "Schedule C:2:35", "value": "" },
-        { "key": "Schedule C:3:35", "value": "" },
-        {
-          "key": "Schedule C:4:35",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:5:35", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:36", "value": "" },
-        { "key": "Schedule C:1:36", "value": "Business Development" },
-        { "key": "Schedule C:2:36", "value": "" },
-        {
-          "key": "Schedule C:3:36",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:4:36", "value": "" },
-        { "key": "Schedule C:5:36", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:37", "value": "" },
-        { "key": "Schedule C:1:37", "value": "Bank Fees" },
-        { "key": "Schedule C:2:37", "value": "" },
-        {
-          "key": "Schedule C:3:37",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:4:37", "value": "" },
-        { "key": "Schedule C:5:37", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:38", "value": "" },
-        { "key": "Schedule C:1:38", "value": "Reimbursable Exp" },
-        { "key": "Schedule C:2:38", "value": "" },
-        {
-          "key": "Schedule C:3:38",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:4:38", "value": "" },
-        { "key": "Schedule C:5:38", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:39", "value": "" },
-        { "key": "Schedule C:1:39", "value": "Dues and subscriptions" },
-        { "key": "Schedule C:2:39", "value": "" },
-        {
-          "key": "Schedule C:3:39",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:4:39", "value": "" },
-        { "key": "Schedule C:5:39", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:40", "value": "" },
-        { "key": "Schedule C:1:40", "value": "Telephone" },
-        { "key": "Schedule C:2:40", "value": "" },
-        {
-          "key": "Schedule C:3:40",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:4:40", "value": "" },
-        { "key": "Schedule C:5:40", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:41", "value": "" },
-        { "key": "Schedule C:1:41", "value": "Shipping/Postage" },
-        { "key": "Schedule C:2:41", "value": "" },
-        {
-          "key": "Schedule C:3:41",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:4:41", "value": "" },
-        { "key": "Schedule C:5:41", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:42", "value": "" },
-        { "key": "Schedule C:1:42", "value": "Client Gifts" },
-        { "key": "Schedule C:2:42", "value": "" },
-        {
-          "key": "Schedule C:3:42",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:4:42", "value": "" },
-        { "key": "Schedule C:5:42", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:43", "value": "" },
-        { "key": "Schedule C:1:43", "value": "Client Meetings" },
-        { "key": "Schedule C:2:43", "value": "" },
-        {
-          "key": "Schedule C:3:43",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:4:43", "value": "" },
-        { "key": "Schedule C:5:43", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:44", "value": "" },
-        { "key": "Schedule C:1:44", "value": "Client Refunds" },
-        { "key": "Schedule C:2:44", "value": "" },
-        {
-          "key": "Schedule C:3:44",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:4:44", "value": "" },
-        { "key": "Schedule C:5:44", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:45", "value": "" },
-        { "key": "Schedule C:1:45", "value": "Software" },
-        { "key": "Schedule C:2:45", "value": "" },
-        {
-          "key": "Schedule C:3:45",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:4:45", "value": "" },
-        { "key": "Schedule C:5:45", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:46", "value": "" },
-        { "key": "Schedule C:1:46", "value": "Website " },
-        { "key": "Schedule C:2:46", "value": "" },
-        {
-          "key": "Schedule C:3:46",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:4:46", "value": "" },
-        { "key": "Schedule C:5:46", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:47", "value": "" },
-        { "key": "Schedule C:1:47", "value": "Minor Equipemnt" },
-        { "key": "Schedule C:2:47", "value": "" },
-        {
-          "key": "Schedule C:3:47",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:4:47", "value": "" },
-        { "key": "Schedule C:5:47", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:48", "value": "" },
-        { "key": "Schedule C:1:48", "value": "Nutritional services" },
-        { "key": "Schedule C:2:48", "value": "" },
-        {
-          "key": "Schedule C:3:48",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:4:48", "value": "" },
-        { "key": "Schedule C:5:48", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:49", "value": "" },
-        { "key": "Schedule C:1:49", "value": "Merchant fees" },
-        { "key": "Schedule C:2:49", "value": "" },
-        {
-          "key": "Schedule C:3:49",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:4:49", "value": "" },
-        { "key": "Schedule C:5:49", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:50", "value": "" },
-        { "key": "Schedule C:1:50", "value": "Late charge" },
-        { "key": "Schedule C:2:50", "value": "" },
-        {
-          "key": "Schedule C:3:50",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:4:50", "value": "" },
-        { "key": "Schedule C:5:50", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:51", "value": "" },
-        { "key": "Schedule C:1:51", "value": "Total Other Deductions" },
-        { "key": "Schedule C:2:51", "value": "" },
-        { "key": "Schedule C:3:51", "value": "" },
-        { "key": "Schedule C:4:51", "value": "=SUM(R[-15]C[-1]:R[-1]C[-1])" },
-        { "key": "Schedule C:5:51", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:52", "value": "" },
-        { "key": "Schedule C:1:52", "value": "Total Expenses" },
-        { "key": "Schedule C:2:52", "value": "" },
-        { "key": "Schedule C:3:52", "value": "" },
-        { "key": "Schedule C:4:52", "value": "=SUM(R[-37]C:R[-1]C)" },
-        { "key": "Schedule C:5:52", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:53", "value": "" },
-        { "key": "Schedule C:1:53", "value": "" },
-        { "key": "Schedule C:2:53", "value": "" },
-        { "key": "Schedule C:3:53", "value": "" },
-        { "key": "Schedule C:4:53", "value": "" },
-        { "key": "Schedule C:5:53", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:54", "value": "NET INCOME/LOSS" },
-        { "key": "Schedule C:1:54", "value": "" },
-        { "key": "Schedule C:2:54", "value": "" },
-        { "key": "Schedule C:3:54", "value": "" },
-        { "key": "Schedule C:4:54", "value": "=+R[-42]C-R[-2]C" },
-        { "key": "Schedule C:5:54", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:55", "value": "" },
-        { "key": "Schedule C:1:55", "value": "" },
-        { "key": "Schedule C:2:55", "value": "" },
-        { "key": "Schedule C:3:55", "value": "" },
-        { "key": "Schedule C:4:55", "value": "" },
-        { "key": "Schedule C:5:55", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:56", "value": "AUTO EXPENSE-MILEAGE" },
-        { "key": "Schedule C:1:56", "value": "" },
-        { "key": "Schedule C:2:56", "value": " " },
-        { "key": "Schedule C:3:56", "value": "" },
-        {
-          "key": "Schedule C:4:56",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:5:56", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:57", "value": "" },
-        { "key": "Schedule C:1:57", "value": "" },
-        { "key": "Schedule C:2:57", "value": "" },
-        { "key": "Schedule C:3:57", "value": "" },
-        { "key": "Schedule C:4:57", "value": "" },
-        { "key": "Schedule C:5:57", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:58", "value": "BUSINESS USE OF HOME" },
-        { "key": "Schedule C:1:58", "value": "" },
-        { "key": "Schedule C:2:58", "value": " " },
-        { "key": "Schedule C:3:58", "value": "" },
-        {
-          "key": "Schedule C:4:58",
-          "value": "",
-          "attributes": {
-            "type": "input",
-            "content": { "type": "number", "formatAsCurrency": true }
-          }
-        },
-        { "key": "Schedule C:5:58", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:59", "value": "" },
-        { "key": "Schedule C:1:59", "value": "" },
-        { "key": "Schedule C:2:59", "value": "" },
-        { "key": "Schedule C:3:59", "value": "" },
-        { "key": "Schedule C:4:59", "value": "" },
-        { "key": "Schedule C:5:59", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:60", "value": "" },
-        { "key": "Schedule C:1:60", "value": "" },
-        { "key": "Schedule C:2:60", "value": "" },
-        { "key": "Schedule C:3:60", "value": "" },
-        { "key": "Schedule C:4:60", "value": "" },
-        { "key": "Schedule C:5:60", "value": "" }
-      ],
-      [
-        { "key": "Schedule C:0:61", "value": "NET PROFIT  " },
-        { "key": "Schedule C:1:61", "value": "" },
-        { "key": "Schedule C:2:61", "value": "" },
-        { "key": "Schedule C:3:61", "value": "" },
-        { "key": "Schedule C:4:61", "value": "=+R[-7]C-R[-5]C-R[-3]C-R[-2]C" },
-        { "key": "Schedule C:5:61", "value": "Must tie to tax return" }
+      "name": "Schedule C",
+      "cells": [
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A1",
+                  "value": "SCHEDULE C: BUSINESS INCOME"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B1",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C1",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D1",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E1",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F1",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A2",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B2",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C2",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D2",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E2",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F2",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A3",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B3",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C3",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D3",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E3",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F3",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A4",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B4",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C4",
+                  "value": "Business Name"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D4",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E4",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F4",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A5",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B5",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C5",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D5",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E5",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F5",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A6",
+                  "value": "INCOME"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B6",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C6",
+                  "value": "wp"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D6",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E6",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F6",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A7",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B7",
+                  "value": "Gross receipts or sales"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C7",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D7",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E7",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F7",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A8",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B8",
+                  "value": "Returns and allowances"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C8",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D8",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E8",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F8",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A9",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B9",
+                  "value": "Cost of goods sold"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C9",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D9",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E9",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F9",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A10",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B10",
+                  "value": "  Purchase"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C10",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D10",
+                  "value": "?"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E10",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F10",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A11",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B11",
+                  "value": "  Commissions & Selling Cost"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C11",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D11",
+                  "value": "?"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E11",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F11",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A12",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B12",
+                  "value": "Other Income"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C12",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D12",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E12",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F12",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A13",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B13",
+                  "value": "Gross Income"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C13",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D13",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E13",
+                  "value": "=E7-E8-E9+E12-E10-E11",
+                  "formula": "='U2NoZWR1bGUgQw'!E7-'U2NoZWR1bGUgQw'!E8-'U2NoZWR1bGUgQw'!E9+'U2NoZWR1bGUgQw'!E12-'U2NoZWR1bGUgQw'!E10-'U2NoZWR1bGUgQw'!E11"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F13",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A14",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B14",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C14",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D14",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E14",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F14",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A15",
+                  "value": "EXPENSES"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B15",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C15",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D15",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E15",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F15",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A16",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B16",
+                  "value": "Advertising"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C16",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D16",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E16",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F16",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A17",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B17",
+                  "value": "Car and Truck Expense"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C17",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D17",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E17",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F17",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A18",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B18",
+                  "value": "Commissions & fees"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C18",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D18",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E18",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F18",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A19",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B19",
+                  "value": "Contract labor"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C19",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D19",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E19",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F19",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A20",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B20",
+                  "value": "Depletion"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C20",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D20",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E20",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F20",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A21",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B21",
+                  "value": "Depreciation"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C21",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D21",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E21",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F21",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A22",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B22",
+                  "value": "Employee Benefit Programs"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C22",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D22",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E22",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F22",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A23",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B23",
+                  "value": "Insurance"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C23",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D23",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E23",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F23",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A24",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B24",
+                  "value": "Interest"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C24",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D24",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E24",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F24",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A25",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B25",
+                  "value": "Legal & professional fees"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C25",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D25",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E25",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F25",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A26",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B26",
+                  "value": "Office expense"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C26",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D26",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E26",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F26",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A27",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B27",
+                  "value": "Pension & profit sharing"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C27",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D27",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E27",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F27",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A28",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B28",
+                  "value": "Rent or lease"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C28",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D28",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E28",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F28",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A29",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B29",
+                  "value": "Repairs & maintenance"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C29",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D29",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E29",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F29",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A30",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B30",
+                  "value": "Supplies"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C30",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D30",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E30",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F30",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A31",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B31",
+                  "value": "Taxes & licenses"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C31",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D31",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E31",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F31",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A32",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B32",
+                  "value": "Travel"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C32",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D32",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E32",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F32",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A33",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B33",
+                  "value": "Meals & entertainment"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C33",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D33",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E33",
+                  "value": "=D33*0.5",
+                  "formula": "='U2NoZWR1bGUgQw'!D33*0.5"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F33",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A34",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B34",
+                  "value": "Utilities"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C34",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D34",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E34",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F34",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A35",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B35",
+                  "value": "Wages"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C35",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D35",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E35",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F35",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A36",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B36",
+                  "value": "Other"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C36",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D36",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E36",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F36",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A37",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B37",
+                  "value": "Business Development"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C37",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D37",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E37",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F37",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A38",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B38",
+                  "value": "Bank Fees"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C38",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D38",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E38",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F38",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A39",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B39",
+                  "value": "Reimbursable Exp"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C39",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D39",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E39",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F39",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A40",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B40",
+                  "value": "Dues and subscriptions"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C40",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D40",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E40",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F40",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A41",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B41",
+                  "value": "Telephone"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C41",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D41",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E41",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F41",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A42",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B42",
+                  "value": "Shipping/Postage"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C42",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D42",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E42",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F42",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A43",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B43",
+                  "value": "Client Gifts"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C43",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D43",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E43",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F43",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A44",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B44",
+                  "value": "Client Meetings"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C44",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D44",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E44",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F44",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A45",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B45",
+                  "value": "Client Refunds"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C45",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D45",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E45",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F45",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A46",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B46",
+                  "value": "Software"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C46",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D46",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E46",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F46",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A47",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B47",
+                  "value": "Website "
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C47",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D47",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E47",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F47",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A48",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B48",
+                  "value": "Minor Equipemnt"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C48",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D48",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E48",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F48",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A49",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B49",
+                  "value": "Nutritional services"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C49",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D49",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E49",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F49",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A50",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B50",
+                  "value": "Merchant fees"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C50",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D50",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E50",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F50",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A51",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B51",
+                  "value": "Late charge"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C51",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D51",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E51",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F51",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A52",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B52",
+                  "value": "Total Other Deductions"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C52",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D52",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E52",
+                  "value": "=SUM(D37:D51)",
+                  "formula": "=SUM('U2NoZWR1bGUgQw'!D37,'U2NoZWR1bGUgQw'!D38,'U2NoZWR1bGUgQw'!D39,'U2NoZWR1bGUgQw'!D40,'U2NoZWR1bGUgQw'!D41,'U2NoZWR1bGUgQw'!D42,'U2NoZWR1bGUgQw'!D43,'U2NoZWR1bGUgQw'!D44,'U2NoZWR1bGUgQw'!D45,'U2NoZWR1bGUgQw'!D46,'U2NoZWR1bGUgQw'!D47,'U2NoZWR1bGUgQw'!D48,'U2NoZWR1bGUgQw'!D49,'U2NoZWR1bGUgQw'!D50,'U2NoZWR1bGUgQw'!D51)"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F52",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A53",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B53",
+                  "value": "Total Expenses"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C53",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D53",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E53",
+                  "value": "=SUM(E16:E52)",
+                  "formula": "=SUM('U2NoZWR1bGUgQw'!E16,'U2NoZWR1bGUgQw'!E17,'U2NoZWR1bGUgQw'!E18,'U2NoZWR1bGUgQw'!E19,'U2NoZWR1bGUgQw'!E20,'U2NoZWR1bGUgQw'!E21,'U2NoZWR1bGUgQw'!E22,'U2NoZWR1bGUgQw'!E23,'U2NoZWR1bGUgQw'!E24,'U2NoZWR1bGUgQw'!E25,'U2NoZWR1bGUgQw'!E26,'U2NoZWR1bGUgQw'!E27,'U2NoZWR1bGUgQw'!E28,'U2NoZWR1bGUgQw'!E29,'U2NoZWR1bGUgQw'!E30,'U2NoZWR1bGUgQw'!E31,'U2NoZWR1bGUgQw'!E32,'U2NoZWR1bGUgQw'!E33,'U2NoZWR1bGUgQw'!E34,'U2NoZWR1bGUgQw'!E35,'U2NoZWR1bGUgQw'!E36,'U2NoZWR1bGUgQw'!E37,'U2NoZWR1bGUgQw'!E38,'U2NoZWR1bGUgQw'!E39,'U2NoZWR1bGUgQw'!E40,'U2NoZWR1bGUgQw'!E41,'U2NoZWR1bGUgQw'!E42,'U2NoZWR1bGUgQw'!E43,'U2NoZWR1bGUgQw'!E44,'U2NoZWR1bGUgQw'!E45,'U2NoZWR1bGUgQw'!E46,'U2NoZWR1bGUgQw'!E47,'U2NoZWR1bGUgQw'!E48,'U2NoZWR1bGUgQw'!E49,'U2NoZWR1bGUgQw'!E50,'U2NoZWR1bGUgQw'!E51,'U2NoZWR1bGUgQw'!E52)"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F53",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A54",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B54",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C54",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D54",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E54",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F54",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A55",
+                  "value": "NET INCOME/LOSS"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B55",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C55",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D55",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E55",
+                  "value": "=+E13-E53",
+                  "formula": "=+'U2NoZWR1bGUgQw'!E13-'U2NoZWR1bGUgQw'!E53"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F55",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A56",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B56",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C56",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D56",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E56",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F56",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A57",
+                  "value": "AUTO EXPENSE-MILEAGE"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B57",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C57",
+                  "value": " "
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D57",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E57",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F57",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A58",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B58",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C58",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D58",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E58",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F58",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A59",
+                  "value": "BUSINESS USE OF HOME"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B59",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C59",
+                  "value": " "
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D59",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E59",
+                  "value": "",
+                  "attributes": {
+                      "type": "input",
+                      "content": {
+                          "type": "number",
+                          "formatAsCurrency": true
+                      }
+                  }
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F59",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A60",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B60",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C60",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D60",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E60",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F60",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A61",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B61",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C61",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D61",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E61",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F61",
+                  "value": ""
+              }
+          ],
+          [
+              {
+                  "key": "'U2NoZWR1bGUgQw'!A62",
+                  "value": "NET PROFIT  "
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!B62",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!C62",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!D62",
+                  "value": ""
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!E62",
+                  "value": "=+E55-E57-E59-E60",
+                  "formula": "=+'U2NoZWR1bGUgQw'!E55-'U2NoZWR1bGUgQw'!E57-'U2NoZWR1bGUgQw'!E59-'U2NoZWR1bGUgQw'!E60"
+              },
+              {
+                  "key": "'U2NoZWR1bGUgQw'!F62",
+                  "value": "Must tie to tax return"
+              }
+          ]
       ]
-    ]
   }
 ]

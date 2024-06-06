@@ -17,23 +17,41 @@ import { Cell } from "../../shared/Cell";
 function App() {
   const [doc, setDoc] = useState<SheetPage[]>();
   const [tabs, setTabs] = useState<TabsProps["items"]>();
-
-  const watchedValues = new Map<
+  const data = new Map<
     string,
-    { value: number | string; dependencies: string[] }
+    {
+      value: null | string | number | Date;
+      formula: string;
+      dependents: Set<string>;
+    }
   >();
 
   const generateValues = async (doc: SheetPage[]) => {
-    watchedValues.clear();
+    data.clear();
     doc.forEach((sheet) =>
       sheet.cells.forEach((row) =>
         row.forEach((cell) => {
-          if (cell.value[0] === "=") {
+          if (cell.formula) {
+            if (!data.has(cell.key)) {
+              data.set(cell.key, {
+                value: "",
+                formula: cell.formula,
+                dependents: new Set(),
+              });
+            }
+
+            cell.formula.match(/'[A-Za-z\d]+'![A-Z]+\d+/g)?.forEach((key) => {
+              const item = data.get(key);
+              if (item) {
+                //TODO: fix this
+                data.set(key, {value: item.value, formula: item.formula, item.dependents})
+                item.dependents;
+              }
+            });
             // TODO: find the keys of the cells that the formula needs so they can be added as depencencies
             // Perhaps investigate source code on simple js excel page to see how formulas are evaluated
             // Don't re-invent the wheel. There has to be code for evaluating excel equations that you can find
           }
-          watchedValues.set(cell.key, { value: cell.value, dependencies: [] });
         })
       )
     );
