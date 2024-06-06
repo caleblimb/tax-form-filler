@@ -17,44 +17,77 @@ import { Cell } from "../../shared/Cell";
 function App() {
   const [doc, setDoc] = useState<SheetPage[]>();
   const [tabs, setTabs] = useState<TabsProps["items"]>();
+  // TODO: See if data needs to be a state
   const data = new Map<
     string,
     {
-      value: null | string | number | Date;
-      formula: string;
+      value: string;
+      formula: null | string;
       dependents: Set<string>;
     }
   >();
 
+  const updateCell = (key: string, newValue?: string) => {
+    const cell = data.get(key);
+    if (cell) {
+      if (cell.formula) {
+        cell.formula.replace(/'[A-Za-z\d]+'![A-Z]+\d+/g, (match) => {
+          return data.get(match)!.value;
+        });
+        data.set(key, {
+          value: newValue ?? "",
+          formula: cell.formula,
+          dependents: cell.dependents,
+        });
+        cell.dependents.forEach((dependent) => {
+          updateCell(dependent);
+        });
+      }
+    }
+  };
+
   const generateValues = async (doc: SheetPage[]) => {
     data.clear();
     doc.forEach((sheet) =>
-      sheet.cells.forEach((row) =>
-        row.forEach((cell) => {
+      sheet.cells.forEach((row: Cell[]) =>
+        row.forEach((cell: Cell) => {
           if (cell.formula) {
-            if (!data.has(cell.key)) {
+            const item = data.get(cell.key);
+            if (item) {
               data.set(cell.key, {
                 value: "",
                 formula: cell.formula,
-                dependents: new Set(),
+                dependents: item.dependents,
+              });
+            } else {
+              data.set(cell.key, {
+                value: "",
+                formula: cell.formula,
+                dependents: new Set<string>(),
               });
             }
 
             cell.formula.match(/'[A-Za-z\d]+'![A-Z]+\d+/g)?.forEach((key) => {
-              const item = data.get(key);
-              if (item) {
-                //TODO: fix this
-                data.set(key, {value: item.value, formula: item.formula, item.dependents})
-                item.dependents;
+              const dependency = data.get(key);
+              if (dependency) {
+                data.set(key, {
+                  value: dependency.value,
+                  formula: dependency.formula,
+                  dependents: dependency.dependents.add(cell.key),
+                });
+              } else {
+                data.set(key, {
+                  value: "",
+                  formula: null,
+                  dependents: new Set<string>().add(cell.key),
+                });
               }
             });
-            // TODO: find the keys of the cells that the formula needs so they can be added as depencencies
-            // Perhaps investigate source code on simple js excel page to see how formulas are evaluated
-            // Don't re-invent the wheel. There has to be code for evaluating excel equations that you can find
           }
         })
       )
     );
+    console.log(data);
   };
 
   useEffect(() => {
@@ -103,7 +136,12 @@ function App() {
       if (cell.attributes.type === "input") {
         switch (cell.attributes.content?.type) {
           case "text":
-            return <Input type="text" />;
+            return (
+              <Input
+                type="text"
+                onChange={(e) => updateCell(cell.key, e.target.value)}
+              />
+            );
           case "number":
             return cell.attributes.content.formatAsCurrency ? (
               <InputNumber<number>
@@ -113,12 +151,14 @@ function App() {
                 parser={(value) =>
                   value?.replace(/\$\s?|(,*)/g, "") as unknown as number
                 }
+                onChange={(e) => updateCell(cell.key, e?.toString())}
               />
             ) : (
               <Input
                 type="number"
                 min={cell.attributes.content.min}
                 max={cell.attributes.content.max}
+                onChange={(e) => updateCell(cell.key, e.target.value)}
               />
             );
           case "date":
@@ -133,6 +173,7 @@ function App() {
                     return { value: option + index, label: option };
                   }
                 )}
+                onChange={(e) => updateCell(cell.key, e.target.value)}
               />
             );
           case "radio":
@@ -143,14 +184,15 @@ function App() {
                     return { value: option + index, label: option };
                   }
                 )}
+                onChange={(e) => updateCell(cell.key, e.target.value)}
               />
             );
           default:
             return;
         }
       }
-    } else if (cell.value[0] === "=") {
-      return <></>;
+    } else if (cell.formula) {
+      return <>{data.get(cell.key)?.value}</>;
     } else {
       return <>{cell.value}</>;
     }
