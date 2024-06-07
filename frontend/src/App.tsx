@@ -1,84 +1,108 @@
-import React, { ReactNode, useEffect, useState } from "react";
-import logo from "./logo.svg";
+import { useEffect, useRef, useState } from "react";
 import "./App.scss";
 import { getDoc } from "./api/ServerData";
 import { SheetPage } from "../../shared/SheetPage";
-import {
-  DatePicker,
-  Input,
-  InputNumber,
-  Radio,
-  Select,
-  Tabs,
-  TabsProps,
-} from "antd";
 import { Cell } from "../../shared/Cell";
+import DataPage from "./components/DataPage";
+
+export type CellData = {
+  value: string;
+  formula?: string;
+  dependents: Set<string>;
+};
 
 function App() {
   const [doc, setDoc] = useState<SheetPage[]>();
-  const [tabs, setTabs] = useState<TabsProps["items"]>();
-  // TODO: See if data needs to be a state
-  const data = new Map<
-    string,
-    {
-      value: string;
-      formula: null | string;
-      dependents: Set<string>;
-    }
-  >();
+
+  const [dataState, setDataState] = useState<Map<string, CellData>>();
+
+  console.log("hello");
+  const data = useRef<Map<string, CellData>>(new Map());
 
   const updateCell = (key: string, newValue?: string) => {
-    const cell = data.get(key);
+    const cell = data.current.get(key);
     if (cell) {
-      if (cell.formula) {
-        cell.formula.replace(/'[A-Za-z\d]+'![A-Z]+\d+/g, (match) => {
-          return data.get(match)!.value;
-        });
-        data.set(key, {
-          value: newValue ?? "",
+      if (newValue) {
+        data.current.set(key, {
+          value: newValue,
           formula: cell.formula,
           dependents: cell.dependents,
         });
-        cell.dependents.forEach((dependent) => {
-          updateCell(dependent);
+      } else if (cell.formula) {
+        const referenceFreeFormula = cell.formula.replace(
+          /'[A-Za-z\d]+'![A-Z]+\d+/g,
+          (match) => {
+            return data.current.get(match)!.value;
+          }
+        );
+        data.current.set(key, {
+          value: referenceFreeFormula, //TODO: parse
+          formula: cell.formula,
+          dependents: cell.dependents,
+        });
+      } else {
+        data.current.set(key, {
+          value: "",
+          formula: cell.formula,
+          dependents: cell.dependents,
         });
       }
+      cell.dependents.forEach((dependent) => {
+        updateCell(dependent);
+      });
     }
   };
 
+  const handleChange = (key: string, newValue?: string) => {
+    updateCell(key, newValue);
+    console.log("data:", data);
+    setDataState(new Map(data.current));
+  };
+
+  useEffect(() => {
+    console.log("dataState:", dataState);
+    console.log("CellState:", dataState?.get("'U2NoZWR1bGUgQw'!E33")?.value);
+  }, [dataState]);
+
   const generateValues = async (doc: SheetPage[]) => {
-    data.clear();
+    data.current.clear();
     doc.forEach((sheet) =>
       sheet.cells.forEach((row: Cell[]) =>
         row.forEach((cell: Cell) => {
           if (cell.formula) {
-            const item = data.get(cell.key);
+            const item = data.current.get(cell.key);
             if (item) {
-              data.set(cell.key, {
-                value: "",
+              data.current.set(cell.key, {
+                value: item.value,
                 formula: cell.formula,
                 dependents: item.dependents,
               });
             } else {
-              data.set(cell.key, {
-                value: "",
+              data.current.set(cell.key, {
+                value: cell.value, // This is probably a formula
                 formula: cell.formula,
                 dependents: new Set<string>(),
               });
             }
 
             cell.formula.match(/'[A-Za-z\d]+'![A-Z]+\d+/g)?.forEach((key) => {
-              const dependency = data.get(key);
+              const dependency = data.current.get(key);
               if (dependency) {
-                data.set(key, {
+                data.current.set(key, {
                   value: dependency.value,
                   formula: dependency.formula,
                   dependents: dependency.dependents.add(cell.key),
                 });
               } else {
-                data.set(key, {
-                  value: "",
-                  formula: null,
+                let initialValue: string = "";
+                if (cell.key === key) {
+                  if (cell.attributes?.type === "input") {
+                    //TODO: add switch statement for type of input
+                  }
+                }
+                data.current.set(key, {
+                  value: initialValue,
+                  formula: undefined,
                   dependents: new Set<string>().add(cell.key),
                 });
               }
@@ -87,14 +111,14 @@ function App() {
         })
       )
     );
-    console.log(data);
+    setDataState(data.current);
+    console.log(data.current);
   };
 
   useEffect(() => {
     getDoc()
       .then((response: any) => {
         setDoc(response.data);
-        console.log(response.data);
       })
       .catch((error) => {
         console.error(error);
@@ -104,104 +128,20 @@ function App() {
   useEffect(() => {
     if (doc) {
       generateValues(doc);
-      const newTabs: TabsProps["items"] = doc.map((page, index) => {
-        return {
-          key: index.toString(),
-          label: page.name,
-          children: parsePage(page),
-        };
-      });
-      setTabs(newTabs);
     }
   }, [doc]);
 
-  const parsePage = (page: SheetPage): ReactNode => {
-    return (
-      <table>
-        <tbody>
-          {page.cells.map((row, rowIndex) => (
-            <tr key={"row:" + rowIndex}>
-              {row.map((cell, cellIndex) => (
-                <td key={cell.key + ":" + cellIndex}>{parseCell(cell)}</td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    );
-  };
-
-  const parseCell = (cell: Cell): ReactNode => {
-    if (cell.attributes) {
-      if (cell.attributes.type === "input") {
-        switch (cell.attributes.content?.type) {
-          case "text":
-            return (
-              <Input
-                type="text"
-                onChange={(e) => updateCell(cell.key, e.target.value)}
-              />
-            );
-          case "number":
-            return cell.attributes.content.formatAsCurrency ? (
-              <InputNumber<number>
-                formatter={(value) =>
-                  `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                }
-                parser={(value) =>
-                  value?.replace(/\$\s?|(,*)/g, "") as unknown as number
-                }
-                onChange={(e) => updateCell(cell.key, e?.toString())}
-              />
-            ) : (
-              <Input
-                type="number"
-                min={cell.attributes.content.min}
-                max={cell.attributes.content.max}
-                onChange={(e) => updateCell(cell.key, e.target.value)}
-              />
-            );
-          case "date":
-            return <DatePicker />;
-          case "dropdown":
-            return (
-              <Select
-                style={{ minWidth: "10rem" }}
-                allowClear
-                options={cell.attributes.content.options?.map(
-                  (option, index) => {
-                    return { value: option + index, label: option };
-                  }
-                )}
-                onChange={(e) => updateCell(cell.key, e.target.value)}
-              />
-            );
-          case "radio":
-            return (
-              <Radio.Group
-                options={cell.attributes.content.options?.map(
-                  (option, index) => {
-                    return { value: option + index, label: option };
-                  }
-                )}
-                onChange={(e) => updateCell(cell.key, e.target.value)}
-              />
-            );
-          default:
-            return;
-        }
-      }
-    } else if (cell.formula) {
-      return <>{data.get(cell.key)?.value}</>;
-    } else {
-      return <>{cell.value}</>;
-    }
-    return <></>;
-  };
-
   return (
     <div className="App">
-      <Tabs defaultActiveKey="0" items={tabs} />
+      {/* <Tabs defaultActiveKey="0" items={tabs} /> */}
+      {doc?.map((page, index) => (
+        <DataPage
+          key={"page:" + index}
+          page={page}
+          handleChange={(key, change) => handleChange(key, change)}
+          dataState={dataState}
+        />
+      ))}
     </div>
   );
 }
