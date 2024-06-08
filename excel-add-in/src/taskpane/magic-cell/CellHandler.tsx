@@ -5,7 +5,7 @@ import React, { FC, useEffect, useState } from "react";
 import { CellRange } from "../App";
 import InputHandler from "./input-handler/InputHandler";
 import { Radio } from "antd";
-import { CustomAttributes } from "../../../../shared/CustomAttributes";
+import { CustomAttributes } from "../types/CustomAttributes";
 
 interface InputHandlerProps {
   range: CellRange | undefined;
