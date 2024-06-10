@@ -71,6 +71,9 @@ export const unfoldFormula = (sheetName: string, sheetNames: string[], formula: 
   // Remove leading '='
   result = result.replace(/^=/, "");
 
+  // Convert excel comparison to js comparison
+  result = result.replace(/=/g, "===");
+
   return result;
 };
 

@@ -157,13 +157,21 @@ export const generateTypescript = (sheets: SheetPage[]) => {
     return values.reduce((total, current) => total + +current, 0);
   };
   
+  const NOT = (expression: any) => {
+    return !expression;
+  };
+
+  const IF = (expression: any, ifTrue: any, ifFalse: any) => {
+    return expression ? ifTrue : ifFalse;
+  };
+
   type DataEntryMonolithProps = {
   p?: any;
   };
   
   const DataEntryMonolith: FC<DataEntryMonolithProps> = ({
   p,
-  }: DataEntryMonolithProps) => {`
+  }: DataEntryMonolithProps) => {`,
   );
 
   sheets.forEach((sheet) => {
@@ -193,7 +201,7 @@ export const generateTypescript = (sheets: SheetPage[]) => {
     sheet.cells.forEach((row) => {
       stringBuilder.append(`<tr>\n`);
       row.forEach((cell) => {
-        stringBuilder.append(`<td>\n`);
+        stringBuilder.append(`<td colSpan={${cell.colSpan}} rowSpan={${cell.rowSpan}}>\n`);
         stringBuilder.append(buildCell(cell));
         stringBuilder.append(`</td>\n`);
       });

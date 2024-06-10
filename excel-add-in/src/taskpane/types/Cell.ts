@@ -7,4 +7,6 @@ export interface Cell {
   formula?: string;
   set: string;
   get: string;
+  rowSpan: number;
+  colSpan: number;
 }

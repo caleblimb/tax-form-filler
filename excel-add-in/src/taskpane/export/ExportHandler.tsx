@@ -49,7 +49,7 @@ const ExportHandler: FC = () => {
             await context.sync();
 
             const connections = range.formulas.map((row) =>
-              row[0][0] === "=" ? unfoldFormula(sheet.name, sheetNames, row[0]) : row[0]
+              row[0][0] === "=" ? unfoldFormula(sheet.name, sheetNames, row[0]) : row[0],
             );
             const pdfSheet = {
               fileName: sheet.name.replace(/[{}]/g, ""),
@@ -59,16 +59,39 @@ const ExportHandler: FC = () => {
           } else {
             range.load("formulas,columnIndex,rowIndex,address");
             sheet.comments.load("items");
+            const mergedAreas = range.getMergedAreasOrNullObject();
+            mergedAreas.load("areas");
 
             await context.sync();
 
             const comments = sheet.comments.items;
             const xOffset: number = range.columnIndex;
             const yOffset: number = range.rowIndex;
-            const rowAddress: number = +range.address.match(/![A-Z]+[1-9]+/g)![0].match(/[1-9]+/g)![0];
-            const colAddress: string = range.address.match(/![A-Z]+[1-9]+/g)![0].match(/[A-Z]+/g)![0];
+            const rowAddress: number = +range.address.match(/![A-Z]+\d+/g)![0].match(/\d+/g)![0];
+            const colAddress: string = range.address.match(/![A-Z]+\d+/g)![0].match(/[A-Z]+/g)![0];
 
             let mappedComments: Map<string, string> = new Map<string, string>();
+            let mappedCellSpans: Map<string, { col: number; row: number }> = new Map<
+              string,
+              { col: number; row: number }
+            >();
+            let cellsToSkip: Set<string> = new Set<string>();
+
+            for (let a = 0; a < mergedAreas.areas.items.length; a++) {
+              const area = mergedAreas.areas.items[a];
+              const address: string = area.address.match(/![A-Z]+\d+/g)![0].match(/[A-Z]+\d+/g)![0];
+              mappedCellSpans.set(address, { col: area.columnCount, row: area.rowCount });
+
+              const startRow: number = +address.match(/\d+/g)![0];
+              let currentColumn: string = address.match(/[A-Z]+/g)![0];
+              for (let col: number = 0; col < area.columnCount; col++) {
+                for (let row: number = 0; row < area.rowCount; row++) {
+                  const currentRow = startRow + row;
+                  cellsToSkip.add(currentColumn + currentRow);
+                }
+                currentColumn = nextExcelColumnCode(currentColumn);
+              }
+            }
 
             for (let c = 0; c < comments.length; c++) {
               const location = comments[c].getLocation();
@@ -80,14 +103,31 @@ const ExportHandler: FC = () => {
               mappedComments.set(key, comments[c].content);
             }
 
-            const mappedCells: Cell[][] = range.formulas.map((row: string[], y: number): Cell[] => {
+            let mappedCells: Cell[][] = [];
+            for (let y = 0; y < range.formulas.length; y++) {
+              const row = range.formulas[y];
               const cols: string[] = [colAddress];
-              return row.map((value: string, x: number): Cell => {
+              let mappedRow: Cell[] = [];
+              for (let x = 0; x < row.length; x++) {
+                const value = row[x];
                 const xPosition = xOffset + x;
                 const yPosition = yOffset + y;
                 const positionKey = xPosition + ":" + yPosition;
+                const rowNumber = rowAddress + y;
                 if (cols.length === x) {
                   cols.push(nextExcelColumnCode(cols[cols.length - 1]));
+                }
+
+                let colSpan: number = 1;
+                let rowSpan: number = 1;
+                const span = mappedCellSpans.get(cols[x] + rowNumber);
+                if (span) {
+                  rowSpan = span.row;
+                  colSpan = span.col;
+                } else {
+                  if (cellsToSkip.has(cols[x] + rowNumber)) {
+                    continue;
+                  }
                 }
 
                 const attributes = mappedComments.get(positionKey);
@@ -98,16 +138,20 @@ const ExportHandler: FC = () => {
                   mappedAttributes = undefined;
                 }
 
-                return {
-                  key: "'" + encodeSheetName(sheet.name) + "'!" + cols[x] + (rowAddress + y),
+                const cell = {
+                  key: "'" + encodeSheetName(sheet.name) + "'!" + cols[x] + rowNumber,
                   value: value,
                   formula: value[0] === "=" ? unfoldFormula(sheet.name, sheetNames, value) : undefined,
                   attributes: mappedAttributes,
-                  set: "set_" + encodeSheetName(sheet.name) + "_" + cols[x] + (rowAddress + y),
-                  get: "get_" + encodeSheetName(sheet.name) + "_" + cols[x] + (rowAddress + y),
+                  set: "set_" + encodeSheetName(sheet.name) + "_" + cols[x] + rowNumber,
+                  get: "get_" + encodeSheetName(sheet.name) + "_" + cols[x] + rowNumber,
+                  rowSpan: rowSpan,
+                  colSpan: colSpan,
                 };
-              });
-            });
+                mappedRow.push(cell);
+              }
+              mappedCells.push(mappedRow);
+            }
 
             const mappedSheet: SheetPage = {
               name: sheet.name,
@@ -118,7 +162,7 @@ const ExportHandler: FC = () => {
           }
 
           range.load(
-            "address,addressLocal,cellCount,columnCount,columnHidden,columnIndex,conditionalFormats,dataValidation,format,formulas,formulasLocal,formulasR1C1,hasSpill,height,hidden,hyperlink,isEntireColumn,isEntireRow,left,linkedDataTypeState,numberFormat,numberFormatCategories,numberFormatLocal,rowCount,rowHidden,rowIndex,savedAsArray,sort,style,text,top,valueTypes,values"
+            "address,addressLocal,cellCount,columnCount,columnHidden,columnIndex,conditionalFormats,dataValidation,format,formulas,formulasLocal,formulasR1C1,hasSpill,height,hidden,hyperlink,isEntireColumn,isEntireRow,left,linkedDataTypeState,numberFormat,numberFormatCategories,numberFormatLocal,rowCount,rowHidden,rowIndex,savedAsArray,sort,style,text,top,valueTypes,values",
           );
 
           await context.sync();
