@@ -1,19 +1,12 @@
 /* global Excel */
 //* global setTimeout */
 /* global console */
+
 import React, { FC, useEffect, useState } from "react";
 import { CellRange } from "../App";
 import InputHandler from "./input-handler/InputHandler";
 import { Radio } from "antd";
 import { CustomAttributes } from "../types/CustomAttributes";
-
-const NOT = (expression: any) => {
-  return !expression;
-};
-
-const IF = (expression: any, ifTrue: any, ifFalse: any) => {
-  return expression ? ifTrue : ifFalse;
-};
 
 interface InputHandlerProps {
   range: CellRange | undefined;
@@ -78,7 +71,8 @@ const CellHandler: FC<InputHandlerProps> = ({ range }: InputHandlerProps) => {
     <div>
       <h1>Manage Cell</h1>
       <p>{range?.address && range.cellCount === 1}</p>
-      {range ? (
+
+      {range && range?.address && range.cellCount === 1 ? (
         <div>
           <div>
             <Radio.Group

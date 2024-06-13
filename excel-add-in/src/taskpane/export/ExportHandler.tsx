@@ -60,7 +60,8 @@ const ExportHandler: FC = () => {
             range.load("formulas,columnIndex,rowIndex,address");
             sheet.comments.load("items");
             const mergedAreas = range.getMergedAreasOrNullObject();
-            mergedAreas.load("areas");
+
+            mergedAreas.load("areaCount, areas/items/address, areas/items/columnCount, areas/items/rowCount");
 
             await context.sync();
 
@@ -77,43 +78,47 @@ const ExportHandler: FC = () => {
             >();
             let cellsToSkip: Set<string> = new Set<string>();
 
-            for (let a = 0; a < mergedAreas.areas.items.length; a++) {
-              const area = mergedAreas.areas.items[a];
-              const address: string = area.address.match(/![A-Z]+\d+/g)![0].match(/[A-Z]+\d+/g)![0];
-              mappedCellSpans.set(address, { col: area.columnCount, row: area.rowCount });
+            if (mergedAreas.areaCount > 0) {
+              for (let a = 0; a < mergedAreas.areas.items.length; a++) {
+                const area = mergedAreas.areas.items[a];
+                const address: string = area.address.match(/![A-Z]+\d+/g)![0].match(/[A-Z]+\d+/g)![0];
+                mappedCellSpans.set(address, { col: area.columnCount, row: area.rowCount });
+                const startRow: number = +address.match(/\d+/g)![0];
+                let currentColumn: string = address.match(/[A-Z]+/g)![0];
 
-              const startRow: number = +address.match(/\d+/g)![0];
-              let currentColumn: string = address.match(/[A-Z]+/g)![0];
-              for (let col: number = 0; col < area.columnCount; col++) {
-                for (let row: number = 0; row < area.rowCount; row++) {
-                  const currentRow = startRow + row;
-                  cellsToSkip.add(currentColumn + currentRow);
+                for (let col: number = 0; col < area.columnCount; col++) {
+                  for (let row: number = 0; row < area.rowCount; row++) {
+                    const currentRow = startRow + row;
+                    cellsToSkip.add(currentColumn + currentRow);
+                  }
+                  currentColumn = nextExcelColumnCode(currentColumn);
                 }
-                currentColumn = nextExcelColumnCode(currentColumn);
               }
             }
 
             for (let c = 0; c < comments.length; c++) {
               const location = comments[c].getLocation();
               location.load("columnIndex,rowIndex");
-
               await context.sync();
-
               const key: string = location.columnIndex + ":" + location.rowIndex;
               mappedComments.set(key, comments[c].content);
             }
 
             let mappedCells: Cell[][] = [];
+            // eslint-disable-next-line office-addins/load-object-before-read
             for (let y = 0; y < range.formulas.length; y++) {
+              // eslint-disable-next-line office-addins/load-object-before-read
               const row = range.formulas[y];
               const cols: string[] = [colAddress];
               let mappedRow: Cell[] = [];
+
               for (let x = 0; x < row.length; x++) {
                 const value = row[x];
                 const xPosition = xOffset + x;
                 const yPosition = yOffset + y;
                 const positionKey = xPosition + ":" + yPosition;
                 const rowNumber = rowAddress + y;
+
                 if (cols.length === x) {
                   cols.push(nextExcelColumnCode(cols[cols.length - 1]));
                 }

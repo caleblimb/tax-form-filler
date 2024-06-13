@@ -168,7 +168,7 @@ export const generateTypescript = (sheets: SheetPage[]) => {
   type DataEntryMonolithProps = {
   p?: any;
   };
-  
+
   const DataEntryMonolith: FC<DataEntryMonolithProps> = ({
   p,
   }: DataEntryMonolithProps) => {`,
