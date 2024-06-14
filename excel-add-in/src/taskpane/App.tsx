@@ -1,5 +1,6 @@
 /* global Excel */
 /* global console */
+
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@fluentui/react-components";
 import CellHandler from "./magic-cell/CellHandler";
@@ -16,6 +17,7 @@ const useStyles = makeStyles({
 });
 
 export interface CellRange {
+  worksheet: string;
   address: string;
   text: string;
   cellCount: number;
@@ -41,7 +43,7 @@ const App = () => {
       label: "Page Controls",
       children: (
         <div style={{ padding: "1rem" }}>
-          <MessageHandler title="Error Messages" />
+          <MessageHandler worksheet={selectedRange?.worksheet} />
         </div>
       ),
     },
@@ -85,11 +87,17 @@ const App = () => {
   const handleSelectionChanged = async (_: Excel.SelectionChangedEventArgs | null): Promise<void> => {
     return Excel.run(async (context) => {
       const newSelectedRange = context.workbook.getSelectedRange();
-      newSelectedRange.load("address,addressLocal,text,cellCount");
+      newSelectedRange.load("address,addressLocal,text,cellCount,worksheet/name");
 
-      await context.sync();
+      try {
+        await context.sync();
+      } catch {
+        setSelectedRange(undefined);
+        return;
+      }
 
       let commentContent;
+
       try {
         const comment = context.workbook.comments.getItemByCell(newSelectedRange.address);
         comment.load("content");
@@ -100,6 +108,7 @@ const App = () => {
       }
 
       setSelectedRange({
+        worksheet: newSelectedRange.worksheet.name,
         address: newSelectedRange.address,
         text: newSelectedRange.text[0][0],
         cellCount: newSelectedRange.cellCount,

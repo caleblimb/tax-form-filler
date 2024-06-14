@@ -1,87 +1,14 @@
 /* global Excel */
 //* global setTimeout */
 /* global console */
-/* global btoa */
+
 import { Button, message } from "antd";
 import React, { FC } from "react";
-import { SheetPage } from "../../../../shared/SheetPage";
-import { Cell } from "../../../../shared/Cell";
-import { PdfMap } from "../../../../shared/PdfMap";
-
-const nextExcelColumnCode = (column: string): string => {
-  const n: number = column.length;
-  const charCodeA: number = "A".charCodeAt(0);
-  const charCodeZ: number = "Z".charCodeAt(0);
-
-  let carry: number = 1; // Start with a carry to increment the column
-  let nextColumn: string = "";
-
-  for (let i: number = n - 1; i >= 0; i--) {
-    let currentChar: number = column.charCodeAt(i);
-
-    // Add carry to the current character
-    let newChar: number = currentChar + carry;
-    if (newChar > charCodeZ) {
-      newChar = charCodeA;
-      carry = 1; // Carry over to the next significant digit
-    } else {
-      carry = 0; // No carry over needed
-    }
-
-    nextColumn = String.fromCharCode(newChar) + nextColumn;
-  }
-
-  // If there is still a carry after processing all characters, add a new 'A' at the front
-  if (carry === 1) {
-    nextColumn = "A" + nextColumn;
-  }
-
-  return nextColumn;
-};
-
-const unfoldFormula = (sheetName: string, sheetNames: string[], formula: string): string => {
-  let result = formula;
-
-  // Remove double single quotes from sheet names
-  result = result.replace(/('')/g, "'");
-
-  // Encode sheet names to avoid parsing errors with symbols
-  sheetNames.forEach((name) => {
-    const escapedName = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    result = result.replace(new RegExp(`[']{0,1}(${escapedName})[']{0,1}!`, "g"), "'" + encodeSheetName(name) + "'!");
-  });
-
-  // Add missing sheet names
-  result = result.replace(/[^A-Za-z\d!:'][A-Z]+\d+/g, (match) => {
-    return match.substring(0, 1) + "'" + encodeSheetName(sheetName) + "'!" + match.substring(1);
-  });
-
-  // Unfold Cell Ranges
-  result = result.replace(/'[A-Za-z\d]+'![A-Z]+\d+:[A-Z]+\d+/g, (match) => {
-    const [namePortion, cellPortion] = match.split("!");
-    const [startCell, endCell] = cellPortion.split(":");
-    const startCol: string = startCell.match(/[A-Z]+/)![0];
-    const startRow: number = +startCell.match(/\d+/)![0];
-    const endCol: string = endCell.match(/[A-Z]+/)![0];
-    const endRow: number = +endCell.match(/\d+/)![0];
-
-    const cellList: string[] = [];
-
-    for (let row: number = startRow; row <= endRow; row++) {
-      for (let col: string = startCol; col != nextExcelColumnCode(endCol); col = nextExcelColumnCode(col)) {
-        cellList.push(namePortion + "!" + col + row);
-      }
-    }
-
-    return cellList.join(",");
-  });
-
-  return result;
-};
-
-const encodeSheetName = (name: string) => {
-  return btoa(name).replace(/[=+/]/g, "");
-};
+import { SheetPage } from "../types/SheetPage";
+import { PdfMap } from "../types/PdfMap";
+import { Cell } from "../types/Cell";
+import { encodeSheetName, nextExcelColumnCode, unfoldFormula } from "./ExportUtilities";
+import { generateTypescript } from "./DataEntryMonolithBuilder";
 
 const ExportHandler: FC = () => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -122,7 +49,7 @@ const ExportHandler: FC = () => {
             await context.sync();
 
             const connections = range.formulas.map((row) =>
-              row[0][0] === "=" ? unfoldFormula(sheet.name, sheetNames, row[0]) : row[0]
+              row[0][0] === "=" ? unfoldFormula(sheet.name, sheetNames, row[0]) : row[0],
             );
             const pdfSheet = {
               fileName: sheet.name.replace(/[{}]/g, ""),
@@ -132,35 +59,80 @@ const ExportHandler: FC = () => {
           } else {
             range.load("formulas,columnIndex,rowIndex,address");
             sheet.comments.load("items");
+            const mergedAreas = range.getMergedAreasOrNullObject();
+
+            mergedAreas.load("areaCount, areas/items/address, areas/items/columnCount, areas/items/rowCount");
 
             await context.sync();
 
             const comments = sheet.comments.items;
             const xOffset: number = range.columnIndex;
             const yOffset: number = range.rowIndex;
-            const rowAddress: number = +range.address.match(/![A-Z]+[1-9]+/g)![0].match(/[1-9]+/g)![0];
-            const colAddress: string = range.address.match(/![A-Z]+[1-9]+/g)![0].match(/[A-Z]+/g)![0];
+            const rowAddress: number = +range.address.match(/![A-Z]+\d+/g)![0].match(/\d+/g)![0];
+            const colAddress: string = range.address.match(/![A-Z]+\d+/g)![0].match(/[A-Z]+/g)![0];
 
             let mappedComments: Map<string, string> = new Map<string, string>();
+            let mappedCellSpans: Map<string, { col: number; row: number }> = new Map<
+              string,
+              { col: number; row: number }
+            >();
+            let cellsToSkip: Set<string> = new Set<string>();
+
+            if (mergedAreas.areaCount > 0) {
+              for (let a = 0; a < mergedAreas.areas.items.length; a++) {
+                const area = mergedAreas.areas.items[a];
+                const address: string = area.address.match(/![A-Z]+\d+/g)![0].match(/[A-Z]+\d+/g)![0];
+                mappedCellSpans.set(address, { col: area.columnCount, row: area.rowCount });
+                const startRow: number = +address.match(/\d+/g)![0];
+                let currentColumn: string = address.match(/[A-Z]+/g)![0];
+
+                for (let col: number = 0; col < area.columnCount; col++) {
+                  for (let row: number = 0; row < area.rowCount; row++) {
+                    const currentRow = startRow + row;
+                    cellsToSkip.add(currentColumn + currentRow);
+                  }
+                  currentColumn = nextExcelColumnCode(currentColumn);
+                }
+              }
+            }
 
             for (let c = 0; c < comments.length; c++) {
               const location = comments[c].getLocation();
               location.load("columnIndex,rowIndex");
-
               await context.sync();
-
               const key: string = location.columnIndex + ":" + location.rowIndex;
               mappedComments.set(key, comments[c].content);
             }
 
-            const mappedCells: Cell[][] = range.formulas.map((row: string[], y: number): Cell[] => {
+            let mappedCells: Cell[][] = [];
+            // eslint-disable-next-line office-addins/load-object-before-read
+            for (let y = 0; y < range.formulas.length; y++) {
+              // eslint-disable-next-line office-addins/load-object-before-read
+              const row = range.formulas[y];
               const cols: string[] = [colAddress];
-              return row.map((value: string, x: number): Cell => {
+              let mappedRow: Cell[] = [];
+
+              for (let x = 0; x < row.length; x++) {
+                const value = row[x];
                 const xPosition = xOffset + x;
                 const yPosition = yOffset + y;
                 const positionKey = xPosition + ":" + yPosition;
+                const rowNumber = rowAddress + y;
+
                 if (cols.length === x) {
                   cols.push(nextExcelColumnCode(cols[cols.length - 1]));
+                }
+
+                let colSpan: number = 1;
+                let rowSpan: number = 1;
+                const span = mappedCellSpans.get(cols[x] + rowNumber);
+                if (span) {
+                  rowSpan = span.row;
+                  colSpan = span.col;
+                } else {
+                  if (cellsToSkip.has(cols[x] + rowNumber)) {
+                    continue;
+                  }
                 }
 
                 const attributes = mappedComments.get(positionKey);
@@ -171,14 +143,20 @@ const ExportHandler: FC = () => {
                   mappedAttributes = undefined;
                 }
 
-                return {
-                  key: "'" + encodeSheetName(sheet.name) + "'!" + cols[x] + (rowAddress + y),
+                const cell = {
+                  key: "'" + encodeSheetName(sheet.name) + "'!" + cols[x] + rowNumber,
                   value: value,
                   formula: value[0] === "=" ? unfoldFormula(sheet.name, sheetNames, value) : undefined,
                   attributes: mappedAttributes,
+                  set: "set_" + encodeSheetName(sheet.name) + "_" + cols[x] + rowNumber,
+                  get: "get_" + encodeSheetName(sheet.name) + "_" + cols[x] + rowNumber,
+                  rowSpan: rowSpan,
+                  colSpan: colSpan,
                 };
-              });
-            });
+                mappedRow.push(cell);
+              }
+              mappedCells.push(mappedRow);
+            }
 
             const mappedSheet: SheetPage = {
               name: sheet.name,
@@ -189,7 +167,7 @@ const ExportHandler: FC = () => {
           }
 
           range.load(
-            "address,addressLocal,cellCount,columnCount,columnHidden,columnIndex,conditionalFormats,dataValidation,format,formulas,formulasLocal,formulasR1C1,hasSpill,height,hidden,hyperlink,isEntireColumn,isEntireRow,left,linkedDataTypeState,numberFormat,numberFormatCategories,numberFormatLocal,rowCount,rowHidden,rowIndex,savedAsArray,sort,style,text,top,valueTypes,values"
+            "address,addressLocal,cellCount,columnCount,columnHidden,columnIndex,conditionalFormats,dataValidation,format,formulas,formulasLocal,formulasR1C1,hasSpill,height,hidden,hyperlink,isEntireColumn,isEntireRow,left,linkedDataTypeState,numberFormat,numberFormatCategories,numberFormatLocal,rowCount,rowHidden,rowIndex,savedAsArray,sort,style,text,top,valueTypes,values",
           );
 
           await context.sync();
@@ -199,6 +177,8 @@ const ExportHandler: FC = () => {
 
         console.log("Mapped Sheets:", mappedSheets);
         console.log("PDF Sheets:", pdfSheets);
+
+        console.log(generateTypescript(mappedSheets));
       });
     } catch (error) {
       console.log("Error: " + error);

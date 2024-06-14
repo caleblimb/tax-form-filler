@@ -1,6 +1,7 @@
 /* global console */
 /* global setTimeout */
 /* global Excel */
+
 import React, { FC } from "react";
 import FileLoader from "../components/FileLoader";
 import { pdfjs } from "react-pdf";
@@ -36,19 +37,21 @@ const PdfHandler: FC = () => {
       const width = cur.getWidth();
       return width > acc ? width : acc;
     }, 0);
-    setBColumnWidth(maxWidth);
 
+    setBColumnWidth(maxWidth);
     addConnections(pdfDocument, pdfPages, pageHeights);
 
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     Excel.run(async (context) => {
       let shapes = context.workbook.worksheets.getActiveWorksheet().shapes;
+
       pdfPages.map((_page, index) => {
         const pageNumber = index + 1;
         const pageImage = shapes.getItem(imageTag + pageNumber);
         pageImage.setZOrder(Excel.ShapeZOrder.sendToBack);
       });
+
       await context.sync();
     });
   };
@@ -56,7 +59,6 @@ const PdfHandler: FC = () => {
   const createDocument = async (file: File) => {
     await Excel.run(async (context) => {
       const worksheets = context.workbook.worksheets;
-
       const newWorksheet = worksheets.add("{" + file.name + "}");
       newWorksheet.activate();
       await context.sync();
@@ -78,10 +80,8 @@ const PdfHandler: FC = () => {
   const addConnections = async (pdfDocument: PDFDocument, pdfPages: PDFPage[], pageHeights: number[]) => {
     const pdfForm: PDFForm = pdfDocument.getForm();
     const pdfFormFields: PDFField[] = pdfForm.getFields();
-
     pdfFormFields.map((field: PDFField, index: number): void => {
       const pageNumber: number = getPageNumberOfField(pdfDocument, pdfPages, field);
-
       const widgets: PDFWidgetAnnotation[] = field.acroField.getWidgets();
       const rect:
         | {
@@ -102,13 +102,14 @@ const PdfHandler: FC = () => {
             x: rect.x + rect.width / 2,
             y: pageOffset + pageHeights[pageNumber - 1] - rect.y - rect.height / 2,
           },
-          colors[index % colors.length]
+          colors[index % colors.length],
         );
 
         addRect(
           cell,
           { ...rect, y: pageOffset + pageHeights[pageNumber - 1] - rect.y },
-          colorsLight[index % colors.length]
+
+          colorsLight[index % colors.length],
         );
       }
     });
@@ -117,7 +118,7 @@ const PdfHandler: FC = () => {
   const addLine = async (cell: number, position: { x: number; y: number }, color: string, attempt: number = 0) => {
     try {
       await Excel.run(async (context) => {
-        let shapes = context.workbook.worksheets.getActiveWorksheet().shapes;
+        const shapes = context.workbook.worksheets.getActiveWorksheet().shapes;
         const cellRange = context.workbook.worksheets.getActiveWorksheet().getRange("A" + cell);
         cellRange.load("left, top, width, height");
 
@@ -128,7 +129,7 @@ const PdfHandler: FC = () => {
           cellRange.top + cellRange.height / 2,
           cellRange.left + cellRange.width + position.x,
           position.y,
-          Excel.ConnectorType.straight
+          Excel.ConnectorType.straight,
         );
         line.name = "ConnectionLine:" + cell;
         line.lineFormat.color = color;
@@ -153,7 +154,7 @@ const PdfHandler: FC = () => {
     cell: number,
     rect: { x: number; y: number; width: number; height: number },
     color: string,
-    attempt: number = 0
+    attempt: number = 0,
   ) => {
     try {
       await Excel.run(async (context) => {
@@ -171,7 +172,9 @@ const PdfHandler: FC = () => {
         shape.name = "ConnectionRect" + cell;
         shape.fill.foregroundColor = color;
         shape.setZOrder(Excel.ShapeZOrder.sendToBack);
+
         await context.sync();
+
         shape.setZOrder(Excel.ShapeZOrder.bringForward);
 
         await context.sync();
@@ -194,20 +197,20 @@ const PdfHandler: FC = () => {
       try {
         await Excel.run(async (context) => {
           const cellRange = context.workbook.worksheets.getActiveWorksheet().getRange("B1");
-
           cellRange.load("left, top");
+
           await context.sync();
 
           const sheet = context.workbook.worksheets.getActiveWorksheet();
           const startIndex = png64.indexOf("base64,");
           const image = sheet.shapes.addImage(png64.substr(startIndex + 7));
           image.name = imageTag + page.num;
-
           image.top = cellRange.top + page.yOffset;
           image.left = cellRange.left + 1;
           image.width = page.width;
           image.height = page.height;
           image.setZOrder(Excel.ShapeZOrder.sendToBack);
+
           await context.sync();
         });
       } catch (error) {

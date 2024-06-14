@@ -3,8 +3,8 @@ import React, { FC } from "react";
 import { DatePicker, InputNumber, Switch } from "antd";
 // import type { RadioChangeEvent } from "antd";
 import { Radio, Input, Button, Space, Select } from "antd";
-import { CustomAttributes } from "../../../../../shared/CustomAttributes";
-import { InputAttributes } from "../../../../../shared/InputAttributes";
+import { CustomAttributes } from "../../types/CustomAttributes";
+import { InputAttributes } from "../../types/InputAttributes";
 
 interface InputHandlerProps {
   cell: CustomAttributes;
