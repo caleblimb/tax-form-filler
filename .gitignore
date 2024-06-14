@@ -27,5 +27,6 @@
 /backend/obj
 
 /excel-add-in/node_modules
+/excel-add-in/dist
 
 /.vscode
