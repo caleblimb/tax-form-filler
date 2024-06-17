@@ -4,7 +4,7 @@
   <Version>1.0.0.0</Version>
   <ProviderName>Caleb Limb</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="Web Form Control Panel"/>
+  <DisplayName DefaultValue="Webpage Crafter"/>
   <Description DefaultValue="A template to get started."/>
   <IconUrl DefaultValue="https://localhost:3000/assets/icon-32.png"/>
   <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-64.png"/>
@@ -39,6 +39,7 @@
                   <bt:Image size="80" resid="Icon.80x80"/>
                 </Icon>
                 <Control xsi:type="Button" id="TaskpaneButton">
+                  <Label resid="TaskpaneButton.Label"/>
                   <Supertip>
                     <Title resid="TaskpaneButton.Label"/>
                     <Description resid="TaskpaneButton.Tooltip"/>
@@ -73,10 +74,11 @@
       <bt:ShortStrings>
         <bt:String id="GetStarted.Title" DefaultValue="Get started building the web form!"/>
         <bt:String id="CommandsGroup.Label" DefaultValue="Webpage Crafter"/>
+        <bt:String id="TaskpaneButton.Label" DefaultValue="Show Taskpane"/>
       </bt:ShortStrings>
       <bt:LongStrings>
-        <bt:String id="GetStarted.Description" DefaultValue="Web Form Builder has loaded successfully. Go to the HOME tab and click the button under Webpage Creafter to open the control panel."/>
-        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Click to open webpage control panel."/>
+        <bt:String id="GetStarted.Description" DefaultValue="Web Form Builder loaded successfully. Go to the HOME tab and click the button under Webpage Creafter to open the control panel."/>
+        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Click to open the webpage control panel"/>
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>
