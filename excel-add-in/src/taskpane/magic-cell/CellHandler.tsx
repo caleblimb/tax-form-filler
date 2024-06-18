@@ -29,7 +29,7 @@ const CellHandler: FC<InputHandlerProps> = ({ range }: InputHandlerProps) => {
     if (cell) {
       try {
         Excel.run(async (context) => {
-          if (range?.address && range.cellCount === 1) {
+          if (range?.address) {
             try {
               const comment = context.workbook.comments.getItemByCell(range.address);
               comment.resolved = false;
@@ -74,9 +74,8 @@ const CellHandler: FC<InputHandlerProps> = ({ range }: InputHandlerProps) => {
   return (
     <div>
       <h1>Manage Cell</h1>
-      <p>{range?.address && range.cellCount === 1}</p>
 
-      {range && range?.address && range.cellCount === 1 ? (
+      {range && range?.address ? (
         <div>
           <div>
             <Radio.Group

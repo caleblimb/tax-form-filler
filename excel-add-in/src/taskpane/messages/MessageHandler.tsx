@@ -9,13 +9,13 @@ interface MessageHandlerProps {
   worksheet?: string;
 }
 
-interface SheetProperties {
-  name?: string;
+export const SHEET_PROPERTIES = "PropertiesContainer";
+export interface SheetProperties {
+  tabName: string;
 }
 
 const MessageHandler: FC<MessageHandlerProps> = ({ worksheet }: MessageHandlerProps) => {
   const [sheetProperties, setSheetProperties] = useState<SheetProperties | null>(null);
-  const propertiesContainerName = "PropertiesContainer";
 
   useEffect(() => {
     try {
@@ -23,14 +23,14 @@ const MessageHandler: FC<MessageHandlerProps> = ({ worksheet }: MessageHandlerPr
         const shapes = context.workbook.worksheets.getActiveWorksheet().shapes;
         let propsContainer: Excel.Shape;
         console.log("trying to get item");
-        propsContainer = shapes.getItemOrNullObject(propertiesContainerName);
+        propsContainer = shapes.getItemOrNullObject(SHEET_PROPERTIES);
         propsContainer.load("name");
 
         await context.sync();
 
         if (!propsContainer.name) {
           propsContainer = shapes.addGeometricShape(Excel.GeometricShapeType.rectangle);
-          propsContainer.name = propertiesContainerName;
+          propsContainer.name = SHEET_PROPERTIES;
           propsContainer.width = 2;
           propsContainer.height = 2;
 
@@ -54,7 +54,7 @@ const MessageHandler: FC<MessageHandlerProps> = ({ worksheet }: MessageHandlerPr
         let propsContainer: Excel.Shape;
 
         try {
-          propsContainer = shapes.getItem(propertiesContainerName);
+          propsContainer = shapes.getItem(SHEET_PROPERTIES);
           propsContainer.load("altTextDescription");
           await context.sync();
           setSheetProperties(JSON.parse(propsContainer.altTextDescription));
@@ -79,9 +79,9 @@ const MessageHandler: FC<MessageHandlerProps> = ({ worksheet }: MessageHandlerPr
           <label>
             Tab Name
             <Input
-              value={sheetProperties?.name}
+              value={sheetProperties?.tabName}
               placeholder={worksheet}
-              onChange={(e) => setSheetProperties({ ...sheetProperties, name: e.target.value })}
+              onChange={(e) => setSheetProperties({ ...sheetProperties, tabName: e.target.value })}
             />
           </label>
         </>

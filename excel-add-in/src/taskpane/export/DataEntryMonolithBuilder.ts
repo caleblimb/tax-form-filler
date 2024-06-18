@@ -1,4 +1,3 @@
-/* global console */
 import { Cell } from "../types/Cell";
 import { SheetPage } from "../types/SheetPage";
 import { StringBuilder } from "./ExportUtilities";
@@ -25,11 +24,6 @@ const getExcelDataType = (value: string | number | Date): "string" | "number" | 
     if (!isNaN(numberValue) && isFinite(numberValue)) {
       return "number";
     }
-
-    // const dateValue = new Date(value);
-    // if (!isNaN(dateValue.getTime())) {
-    //   return "Date";
-    // }
   }
 
   return "string";
@@ -143,7 +137,6 @@ const buildCell = (cell: Cell): string => {
 };
 
 export const generateTypescript = (sheets: SheetPage[]): string => {
-  // const dependencies = calculateDependencies(sheets);
   const stringBuilder = new StringBuilder();
   stringBuilder.append(
     `
@@ -151,7 +144,7 @@ export const generateTypescript = (sheets: SheetPage[]): string => {
   // * IMPORANT: This file was generated, do not try to modify directly! *
   // *********************************************************************
   import { FC, useState, useEffect } from "react";
-  import { DatePicker, Input, InputNumber, Radio, Select } from "antd";
+  import { DatePicker, Input, InputNumber, Radio, Select, Divider, Steps } from "antd";
   
   const SUM = (...values: any[]) => {
     return values.reduce((total, current) => total + +current, 0);
@@ -162,7 +155,7 @@ export const generateTypescript = (sheets: SheetPage[]): string => {
   };
 
   const IF = (expression: any, ifTrue: any, ifFalse: any) => {
-    return expression ? ifTrue : ifFalse;
+    return (expression) ? (ifTrue) : (ifFalse);
   };
 
   type DataEntryMonolithProps = {
@@ -171,7 +164,7 @@ export const generateTypescript = (sheets: SheetPage[]): string => {
 
   const DataEntryMonolith: FC<DataEntryMonolithProps> = ({
   p,
-  }: DataEntryMonolithProps) => {`,
+  }: DataEntryMonolithProps) => {`
   );
 
   sheets.forEach((sheet) => {
@@ -193,11 +186,31 @@ export const generateTypescript = (sheets: SheetPage[]): string => {
   });
 
   stringBuilder.append(`
-    return (
-      <div className="data-entry-mololith">`);
+    const [currentSheet, setCurrentSheet] = useState<number>(0);
+    const onSheetChange = (value: number) => {
+      setCurrentSheet(value);
+    };\n`);
 
+  stringBuilder.append(`
+  return (
+    <div className="data-entry-mololith">\n`);
+
+  stringBuilder.append(`
+  <Steps
+    current={currentSheet}
+    onChange={onSheetChange}
+    items={[\n`);
   sheets.forEach((sheet) => {
-    stringBuilder.append(`<table><tbody>\n`);
+    stringBuilder.append(`{title: "${sheet.name}"},\n`);
+  });
+  stringBuilder.append(`
+    {title: "Exports"},
+    ]}
+  />
+  <Divider />\n`);
+
+  sheets.forEach((sheet, index: number) => {
+    stringBuilder.append(`{currentSheet === ${index} && (<div><table><tbody>\n`);
     sheet.cells.forEach((row) => {
       stringBuilder.append(`<tr>\n`);
       row.forEach((cell) => {
@@ -207,11 +220,16 @@ export const generateTypescript = (sheets: SheetPage[]): string => {
       });
       stringBuilder.append(`</tr>\n`);
     });
-    stringBuilder.append(`</tbody></table>\n`);
+    stringBuilder.append(`</tbody></table></div>)}\n`);
   });
 
   stringBuilder.append(`
-      </div>
+    {currentSheet === ${sheets.length} && (
+    <div><h1>PDF Exports</h1>\n`);
+  stringBuilder.append(`</div>)}\n`);
+
+  stringBuilder.append(`
+      </div> //data-entry-monolith
     );
   };
   
