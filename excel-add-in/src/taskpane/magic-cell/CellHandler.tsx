@@ -7,6 +7,7 @@ import { CellRange } from "../App";
 import InputHandler from "./input-handler/InputHandler";
 import { Radio } from "antd";
 import { CustomAttributes } from "../types/CustomAttributes";
+import { LIVE_SERVER } from "../export/ExportHandler";
 
 interface InputHandlerProps {
   range: CellRange | undefined;
@@ -35,11 +36,13 @@ const CellHandler: FC<InputHandlerProps> = ({ range }: InputHandlerProps) => {
               comment.content = JSON.stringify(cell);
               comment.resolved = true;
               await context.sync();
+              LIVE_SERVER.handleChange();
             } catch (error) {
               if (range.address) {
                 const comment = context.workbook.comments.add(range.address, JSON.stringify(cell));
                 comment.resolved = true;
                 await context.sync();
+                LIVE_SERVER.handleChange();
               }
             }
           }
@@ -55,11 +58,12 @@ const CellHandler: FC<InputHandlerProps> = ({ range }: InputHandlerProps) => {
     try {
       Excel.run(async (context) => {
         if (range) {
-          const rang = context.workbook.getSelectedRange();
+          const selectedRange = context.workbook.getSelectedRange();
           const comment = context.workbook.comments.getItemByCell(range.address);
           comment.delete();
-          rang.format.set({ horizontalAlignment: Excel.HorizontalAlignment.general });
+          selectedRange.format.set({ horizontalAlignment: Excel.HorizontalAlignment.general });
           await context.sync();
+          LIVE_SERVER.handleChange();
         }
       });
     } catch (error) {

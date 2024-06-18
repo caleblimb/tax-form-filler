@@ -108,12 +108,12 @@ const buildCell = (cell: Cell): string => {
             allowClear
             options={[` +
             cell.attributes.content.options
-              ?.map((option, index) => {
-                return `{ value: "${option + index}", label: "${option}" }`;
+              ?.map((option) => {
+                return `{ value: "${option}", label: "${option}" }`;
               })
               .join(",") +
             `]}
-            onChange={(e) => ${cell.set}(e.target.value)}
+            onChange={(value) => ${cell.set}(value)}
             />`
           );
         case "radio":
@@ -121,8 +121,8 @@ const buildCell = (cell: Cell): string => {
             `<Radio.Group
                     options={[` +
             cell.attributes.content.options
-              ?.map((option, index) => {
-                return `{ value: "${option + index}", label: "${option}" }`;
+              ?.map((option) => {
+                return `{ value: "${option}", label: "${option}" }`;
               })
               .join(",") +
             `]}

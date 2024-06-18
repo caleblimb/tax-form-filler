@@ -8,7 +8,7 @@ import MessageHandler from "./messages/MessageHandler";
 import PdfHandler from "./pdf/PdfHandler";
 import Layout, { Content } from "antd/es/layout/layout";
 import { Tabs, TabsProps } from "antd";
-import ExportHandler from "./export/ExportHandler";
+import { LIVE_SERVER } from "./export/ExportHandler";
 
 const useStyles = makeStyles({
   root: {
@@ -53,15 +53,6 @@ const App = () => {
       children: (
         <div style={{ padding: "1rem" }}>
           <PdfHandler />
-        </div>
-      ),
-    },
-    {
-      key: "3",
-      label: "Export",
-      children: (
-        <div style={{ padding: "1rem" }}>
-          <ExportHandler />
         </div>
       ),
     },
@@ -114,6 +105,8 @@ const App = () => {
         cellCount: newSelectedRange.cellCount,
         commentData: commentContent,
       });
+
+      LIVE_SERVER.handleChange();
     }).catch(function (error) {
       console.log("Error: " + error);
     });

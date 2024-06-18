@@ -26,7 +26,11 @@ const InputHandler: FC<InputHandlerProps> = ({ cell, setCellContent }: InputHand
         <Radio.Group
           options={inputOptions}
           onChange={({ target: { value } }) => {
-            setCellContent({ type: value });
+            if (value === "dropdown" || value === "radio") {
+              setCellContent({ type: value, options: [""] });
+            } else {
+              setCellContent({ type: value });
+            }
           }}
           value={cell.content?.type}
           optionType="button"
@@ -155,55 +159,6 @@ const InputHandler: FC<InputHandlerProps> = ({ cell, setCellContent }: InputHand
           </>
         )}
       </Space>
-
-      <hr />
-      <div>
-        <h2>Preview:</h2>
-
-        <div>
-          {cell?.content?.type === "text" && (
-            <label>
-              Example
-              <Input type="text" />
-            </label>
-          )}
-
-          {cell?.content?.type === "number" && (
-            <label>
-              Example
-              {cell?.content.formatAsCurrency ? (
-                <InputNumber<number>
-                  defaultValue={1000}
-                  formatter={(value) => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                  parser={(value) => value?.replace(/\$\s?|(,*)/g, "") as unknown as number}
-                />
-              ) : (
-                <Input type="number" min={cell.content.min} max={cell.content.max} />
-              )}
-            </label>
-          )}
-
-          {cell?.content?.type === "date" && <DatePicker />}
-
-          {cell?.content?.type === "dropdown" && (
-            <Select
-              style={{ minWidth: "10rem" }}
-              allowClear
-              options={cell.content.options?.map((option, index) => {
-                return { value: option + index, label: option };
-              })}
-            />
-          )}
-
-          {cell?.content?.type === "radio" && (
-            <Radio.Group
-              options={cell.content.options?.map((option, index) => {
-                return { value: option + index, label: option };
-              })}
-            />
-          )}
-        </div>
-      </div>
     </div>
   );
 };

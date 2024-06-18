@@ -7,6 +7,7 @@ import FileLoader from "../components/FileLoader";
 import { pdfjs } from "react-pdf";
 import { convertToBase64 } from "../utilities/Png";
 import { PDFDocument, PDFField, PDFForm, PDFPage, PDFWidgetAnnotation } from "pdf-lib";
+import { LIVE_SERVER } from "../export/ExportHandler";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -41,8 +42,6 @@ const PdfHandler: FC = () => {
     setBColumnWidth(maxWidth);
     addConnections(pdfDocument, pdfPages, pageHeights);
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
     Excel.run(async (context) => {
       let shapes = context.workbook.worksheets.getActiveWorksheet().shapes;
 
@@ -54,6 +53,7 @@ const PdfHandler: FC = () => {
 
       await context.sync();
     });
+    LIVE_SERVER.handleChange();
   };
 
   const createDocument = async (file: File) => {

@@ -3,6 +3,7 @@
 
 import { Input } from "antd";
 import React, { FC, useEffect, useState } from "react";
+import { LIVE_SERVER } from "../export/ExportHandler";
 
 interface MessageHandlerProps {
   worksheet?: string;
@@ -38,7 +39,8 @@ const MessageHandler: FC<MessageHandlerProps> = ({ worksheet }: MessageHandlerPr
 
         propsContainer.altTextDescription = JSON.stringify(sheetProperties);
 
-        return context.sync();
+        await context.sync();
+        LIVE_SERVER.handleChange();
       });
     } catch (error) {
       console.log("Save Page Props Error:", error);
