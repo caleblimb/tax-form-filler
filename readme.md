@@ -2,34 +2,27 @@
 
 This application aims to simplify the process of completing basic tax form for the IRS.
 
-## Run Excel Add-in
+## Run Excel Add-In
 
-- Windows 10, 11
-- Excel 2021+
-- npm version 10+
-- Change directory to `/excel-add-in`
-- Run `npm install`
-- Run `npm run build`
-- VS Code
-  - `RUN AND DEBUG` tab
-  - Select `Excel Desktop (Edge Chromium)`
-  - Run
+- Requirements
+  - Windows 10/11
+  - Excel 2021+
+- Right click on `Start Excel Plugin.ps1` and select `Run with PowerShell`. This will do the following:
+  - Check for and install the latest version of node
+  - Check for and build the `node_modules`
+  - Check for and install local certificate from Microsoft so Excel trusts the Add-In
+  - Open Excel
+  - Sideload the Add-In
+  - Open the Add-In
 
-## Run fronend
+## Backend
 
-- npm version 10+
-- Change directory to `/tax-form-filler/frontend`
-- Run `npm install`
-- Run `npm start`
+- [README](./backend/README.md)
 
-## Run backend
+## Frontend
 
-- Install .NET Core SDK version 8+: https://dotnet.microsoft.com/download/dotnet-core
-- `dotnet add package ClosedXML` [https://docs.closedxml.io/en/latest/index.html](Closed XML Documentation)
-- Change directory to `/tax-form-filler/backend`
-- Run `dotnet run`
-- Default Swagger URL: `http://localhost:5291/swagger/index.html`
+- [README](./frontend/README.md)
 
-## Shared
+## Excel Add-In
 
-- Contains interfaces and enums that are used in both the excell-add-in and frontend
+- [README](./excel-add-in/README.md)
