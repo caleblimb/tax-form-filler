@@ -1,5 +1,7 @@
 /* global btoa */
 
+import axios from "axios";
+
 export const nextExcelColumnCode = (column: string): string => {
   const n: number = column.length;
   const charCodeA: number = "A".charCodeAt(0);
@@ -96,3 +98,12 @@ export class StringBuilder {
     return this.parts.join("");
   }
 }
+
+export const exportToFrontend = async (content: string) => {
+  try {
+    const response = await axios.post("http://localhost:3001/edit-file", { content });
+    console.log(response.data.message);
+  } catch (error) {
+    console.error("Error editing file:", error);
+  }
+};

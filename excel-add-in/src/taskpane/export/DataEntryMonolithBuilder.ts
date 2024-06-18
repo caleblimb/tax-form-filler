@@ -142,7 +142,7 @@ const buildCell = (cell: Cell): string => {
   return "";
 };
 
-export const generateTypescript = (sheets: SheetPage[]) => {
+export const generateTypescript = (sheets: SheetPage[]): string => {
   // const dependencies = calculateDependencies(sheets);
   const stringBuilder = new StringBuilder();
   stringBuilder.append(
@@ -217,5 +217,6 @@ export const generateTypescript = (sheets: SheetPage[]) => {
   
   export default DataEntryMonolith;
   `);
-  console.log(stringBuilder.toString());
+
+  return stringBuilder.toString();
 };

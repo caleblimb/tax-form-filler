@@ -7,7 +7,7 @@ import React, { FC } from "react";
 import { SheetPage } from "../types/SheetPage";
 import { PdfMap } from "../types/PdfMap";
 import { Cell } from "../types/Cell";
-import { encodeSheetName, nextExcelColumnCode, unfoldFormula } from "./ExportUtilities";
+import { encodeSheetName, exportToFrontend, nextExcelColumnCode, unfoldFormula } from "./ExportUtilities";
 import { generateTypescript } from "./DataEntryMonolithBuilder";
 
 const ExportHandler: FC = () => {
@@ -179,6 +179,7 @@ const ExportHandler: FC = () => {
         console.log("PDF Sheets:", pdfSheets);
 
         console.log(generateTypescript(mappedSheets));
+        exportToFrontend(generateTypescript(mappedSheets));
       });
     } catch (error) {
       console.log("Error: " + error);

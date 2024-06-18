@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-  ]
+, "live-update-server.js"  ]
 }
