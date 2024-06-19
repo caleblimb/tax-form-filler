@@ -3,10 +3,11 @@
 
 import { Input } from "antd";
 import React, { FC, useEffect, useState } from "react";
-import { LIVE_SERVER } from "../export/ExportHandler";
+import { ExportHandler } from "../export/ExportHandler";
 
 interface MessageHandlerProps {
   worksheet?: string;
+  LIVE_SERVER: ExportHandler;
 }
 
 export const SHEET_PROPERTIES = "PropertiesContainer";
@@ -14,7 +15,7 @@ export interface SheetProperties {
   tabName: string;
 }
 
-const MessageHandler: FC<MessageHandlerProps> = ({ worksheet }: MessageHandlerProps) => {
+const MessageHandler: FC<MessageHandlerProps> = ({ worksheet, LIVE_SERVER }: MessageHandlerProps) => {
   const [sheetProperties, setSheetProperties] = useState<SheetProperties | null>(null);
 
   useEffect(() => {

@@ -9,8 +9,13 @@ import { generateTypescript } from "./DataEntryMonolithBuilder";
 import { SHEET_PROPERTIES, SheetProperties } from "../messages/MessageHandler";
 import { formatHorizontalAlignment, formatUnderline } from "../types/ExcelFormatMaps";
 
-class ExportHandler {
+export class ExportHandler {
   private latestController: AbortController | null = null;
+  private updateProgress: (progress: number) => void;
+
+  constructor(updateProgress: (progress: number) => void) {
+    this.updateProgress = updateProgress;
+  }
 
   async handleChange() {
     // Cancel the previous request if it's still ongoing
@@ -24,13 +29,15 @@ class ExportHandler {
 
     try {
       // Simulate processing
-      const result = await this.simulateProcessing(signal);
+      const result = await this.buildWebpage(signal);
 
       // If processing is successful, write the result to a file
       await this.writeToFile(result);
 
       console.log("Successfully wrote the result to the file.");
+      this.updateProgress(1);
     } catch (error: any) {
+      this.updateProgress(0);
       if (error.name === "AbortError") {
         console.log("Processing was aborted.");
       } else {
@@ -111,25 +118,25 @@ class ExportHandler {
     const backgroundColor = cell.format.fill.color;
     const color = cell.format.font.color;
 
-    let styles: string = "{\n";
+    let styles: string = "{ ";
 
     if (textAlign) {
-      styles += `textAlign: "${textAlign}",\n`;
+      styles += `textAlign: "${textAlign}", `;
     }
     if (fontWeight && fontWeight !== "normal") {
-      styles += `fontWeight: "${fontWeight}",\n`;
+      styles += `fontWeight: "${fontWeight}", `;
     }
     if (textDecoration) {
-      styles += `textDecoration: "${textDecoration}",\n`;
+      styles += `textDecoration: "${textDecoration}", `;
     }
     if (fontSize !== 11) {
-      styles += `fontSize: "${fontSize}pt",`;
+      styles += `fontSize: "${fontSize}pt", `;
     }
     if (color != "#000000") {
-      styles += `color: "${color}",`;
+      styles += `color: "${color}", `;
     }
     if (backgroundColor !== "#FFFFFF") {
-      styles += `backgroundColor: "${backgroundColor}",`;
+      styles += `backgroundColor: "${backgroundColor}", `;
     }
 
     styles += "}";
@@ -137,7 +144,8 @@ class ExportHandler {
     return styles;
   }
 
-  private simulateProcessing(signal: AbortSignal): Promise<string> {
+  private buildWebpage(signal: AbortSignal): Promise<string> {
+    this.updateProgress(0);
     return new Promise(async (resolve, reject) => {
       let result: string = "";
       try {
@@ -278,6 +286,7 @@ class ExportHandler {
             await context.sync();
 
             // console.log("range:", range);
+            this.updateProgress(i / items.length);
           }
 
           //   console.log("Mapped Sheets:", mappedSheets);
@@ -307,5 +316,3 @@ class ExportHandler {
     });
   }
 }
-
-export const LIVE_SERVER = new ExportHandler();

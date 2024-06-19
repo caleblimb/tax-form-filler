@@ -7,13 +7,14 @@ import { CellRange } from "../App";
 import InputHandler from "./input-handler/InputHandler";
 import { Radio } from "antd";
 import { CustomAttributes } from "../types/CustomAttributes";
-import { LIVE_SERVER } from "../export/ExportHandler";
+import { ExportHandler } from "../export/ExportHandler";
 
 interface InputHandlerProps {
   range: CellRange | undefined;
+  LIVE_SERVER: ExportHandler;
 }
 
-const CellHandler: FC<InputHandlerProps> = ({ range }: InputHandlerProps) => {
+const CellHandler: FC<InputHandlerProps> = ({ range, LIVE_SERVER }: InputHandlerProps) => {
   const [cell, setCell] = useState<CustomAttributes>();
   useEffect(() => {
     if (range && range.cellCount === 1) {

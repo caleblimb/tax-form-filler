@@ -7,8 +7,8 @@ import CellHandler from "./magic-cell/CellHandler";
 import MessageHandler from "./messages/MessageHandler";
 import PdfHandler from "./pdf/PdfHandler";
 import Layout, { Content } from "antd/es/layout/layout";
-import { Tabs, TabsProps } from "antd";
-import { LIVE_SERVER } from "./export/ExportHandler";
+import { Progress, Tabs, TabsProps } from "antd";
+import { ExportHandler } from "./export/ExportHandler";
 
 const useStyles = makeStyles({
   root: {
@@ -27,6 +27,9 @@ export interface CellRange {
 const App = () => {
   const styles = useStyles();
   const [selectedRange, setSelectedRange] = useState<CellRange>();
+  const [exportProgress, setExportProgress] = useState<number>(0.0);
+
+  const LIVE_SERVER = new ExportHandler(setExportProgress);
 
   const views: TabsProps["items"] = [
     {
@@ -34,7 +37,7 @@ const App = () => {
       label: "Custom Cell",
       children: (
         <div style={{ padding: "1rem" }}>
-          <CellHandler range={selectedRange} />
+          <CellHandler range={selectedRange} LIVE_SERVER={LIVE_SERVER} />
         </div>
       ),
     },
@@ -43,7 +46,7 @@ const App = () => {
       label: "Page Controls",
       children: (
         <div style={{ padding: "1rem" }}>
-          <MessageHandler worksheet={selectedRange?.worksheet} />
+          <MessageHandler worksheet={selectedRange?.worksheet} LIVE_SERVER={LIVE_SERVER} />
         </div>
       ),
     },
@@ -52,7 +55,7 @@ const App = () => {
       label: "Map PDF",
       children: (
         <div style={{ padding: "1rem" }}>
-          <PdfHandler />
+          <PdfHandler LIVE_SERVER={LIVE_SERVER} />
         </div>
       ),
     },
@@ -63,16 +66,29 @@ const App = () => {
 
     Excel.run(function (context) {
       context.workbook.onSelectionChanged.add(handleSelectionChanged);
+      context.workbook.worksheets.onChanged.add(handleChange);
+      context.workbook.worksheets.onMoved.add(handleChange);
+      context.workbook.worksheets.onNameChanged.add(handleChange);
+      context.workbook.worksheets.onDeleted.add(handleChange);
       return context.sync();
     });
 
     return () => {
       Excel.run(function (context) {
         context.workbook.onSelectionChanged.remove(handleSelectionChanged);
+        context.workbook.worksheets.onChanged.remove(handleChange);
+        context.workbook.worksheets.onMoved.remove(handleChange);
+        context.workbook.worksheets.onNameChanged.remove(handleChange);
+        context.workbook.worksheets.onDeleted.remove(handleChange);
         return context.sync();
       });
     };
   }, []);
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const handleChange = async (_: any): Promise<void> => {
+    LIVE_SERVER.handleChange();
+  };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleSelectionChanged = async (_: Excel.SelectionChangedEventArgs | null): Promise<void> => {
@@ -105,8 +121,6 @@ const App = () => {
         cellCount: newSelectedRange.cellCount,
         commentData: commentContent,
       });
-
-      LIVE_SERVER.handleChange();
     }).catch(function (error) {
       console.log("Error: " + error);
     });
@@ -114,6 +128,9 @@ const App = () => {
 
   return (
     <div className={styles.root}>
+      <div className={"loading-bar" + (exportProgress === 0 ? " reset" : "")}>
+        <Progress percent={exportProgress * 100} size="small" strokeLinecap="butt" showInfo={false} />
+      </div>
       <Layout>
         <Content>
           <Tabs defaultActiveKey="0" items={views} size="small" centered tabBarGutter={16} />

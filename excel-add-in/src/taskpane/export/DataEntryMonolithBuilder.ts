@@ -167,7 +167,7 @@ export const generateTypescript = (sheets: SheetPage[]): string => {
 
   const DataEntryMonolith: FC<DataEntryMonolithProps> = ({
   p,
-  }: DataEntryMonolithProps) => {`,
+  }: DataEntryMonolithProps) => {`
   );
 
   const constants = new Map<string, string>();
@@ -225,7 +225,7 @@ export const generateTypescript = (sheets: SheetPage[]): string => {
   sheets.forEach((sheet, index: number) => {
     stringBuilder.append(`{currentSheet === ${index} && (<div><table><tbody>\n`);
     sheet.cells.forEach((row) => {
-      stringBuilder.append(`<tr>\n`);
+      stringBuilder.append(`<tr>`);
       row.forEach((cell) => {
         stringBuilder.append(`<td`);
         if (cell.colSpan !== 1) {
@@ -234,9 +234,12 @@ export const generateTypescript = (sheets: SheetPage[]): string => {
         if (cell.rowSpan !== 1) {
           stringBuilder.append(` rowSpan={${cell.rowSpan}}`);
         }
-        stringBuilder.append(` style={${cell.style}}>\n`);
+        if (cell.style.length > 3) {
+          stringBuilder.append(` style={${cell.style}}`);
+        }
+        stringBuilder.append(`>`);
         stringBuilder.append(buildCell(cell));
-        stringBuilder.append(`</td>\n`);
+        stringBuilder.append(`</td>`);
       });
       stringBuilder.append(`</tr>\n`);
     });

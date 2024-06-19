@@ -7,7 +7,7 @@ import FileLoader from "../components/FileLoader";
 import { pdfjs } from "react-pdf";
 import { convertToBase64 } from "../utilities/Png";
 import { PDFDocument, PDFField, PDFForm, PDFPage, PDFWidgetAnnotation } from "pdf-lib";
-import { LIVE_SERVER } from "../export/ExportHandler";
+import { ExportHandler } from "../export/ExportHandler";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -15,7 +15,11 @@ const colors: string[] = ["f94144", "90be6d", "f9844a", "4d908e", "f3722c", "577
 const colorsLight: string[] = ["ff8184", "d0fead", "ffc48a", "8dd0ce", "ffb26c", "97b5d0", "ffe78f", "67bde1"];
 const imageTag: string = "pdf-image-";
 
-const PdfHandler: FC = () => {
+interface PdfHandlerProps {
+  LIVE_SERVER: ExportHandler;
+}
+
+const PdfHandler: FC<PdfHandlerProps> = ({ LIVE_SERVER }: PdfHandlerProps) => {
   const onLoadFile = async (file: File) => {
     await createDocument(file);
 
@@ -102,14 +106,14 @@ const PdfHandler: FC = () => {
             x: rect.x + rect.width / 2,
             y: pageOffset + pageHeights[pageNumber - 1] - rect.y - rect.height / 2,
           },
-          colors[index % colors.length],
+          colors[index % colors.length]
         );
 
         addRect(
           cell,
           { ...rect, y: pageOffset + pageHeights[pageNumber - 1] - rect.y },
 
-          colorsLight[index % colors.length],
+          colorsLight[index % colors.length]
         );
       }
     });
@@ -129,7 +133,7 @@ const PdfHandler: FC = () => {
           cellRange.top + cellRange.height / 2,
           cellRange.left + cellRange.width + position.x,
           position.y,
-          Excel.ConnectorType.straight,
+          Excel.ConnectorType.straight
         );
         line.name = "ConnectionLine:" + cell;
         line.lineFormat.color = color;
@@ -154,7 +158,7 @@ const PdfHandler: FC = () => {
     cell: number,
     rect: { x: number; y: number; width: number; height: number },
     color: string,
-    attempt: number = 0,
+    attempt: number = 0
   ) => {
     try {
       await Excel.run(async (context) => {
