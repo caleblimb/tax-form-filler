@@ -45,6 +45,8 @@ export const unfoldFormula = (sheetName: string, sheetNames: string[], formula: 
     result = result.replace(new RegExp(`[']{0,1}(${escapedName})[']{0,1}!`, "g"), "'" + encodeSheetName(name) + "'!");
   });
 
+  result = result.replace(/\$/g, "");
+
   // Add missing sheet names
   result = result.replace(/[^A-Za-z\d!:'][A-Z]+\d+/g, (match) => {
     return match.substring(0, 1) + "'" + encodeSheetName(sheetName) + "'!" + match.substring(1);
@@ -74,9 +76,10 @@ export const unfoldFormula = (sheetName: string, sheetNames: string[], formula: 
   result = result.replace(/^=/, "");
 
   // Convert excel comparison to js comparison
-  result = result.replace(/[^<>]=/g, "===");
+  result = result.replace(/[^<>]=/g, (match) => match + "==");
 
   result = result.replace(/%/g, "/100.0");
+  result = result.replace(/&/g, "+");
 
   return result;
 };

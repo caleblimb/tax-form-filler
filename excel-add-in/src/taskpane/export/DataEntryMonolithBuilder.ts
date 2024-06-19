@@ -65,7 +65,7 @@ const parseFormula = (cell: Cell, constants: Map<string, string>): string => {
     if (constants.has(cellName)) {
       const value = constants.get(cellName)!;
       if (value.toString().replace(/\s/g, "").length > 0) {
-        return cellName.replace(cellName, constants.get(cellName)!);
+        return cellName.replace(cellName, `"${constants.get(cellName)!}"`);
       } else {
         return cellName.replace(cellName, "0");
       }
@@ -161,13 +161,22 @@ export const generateTypescript = (sheets: SheetPage[]): string => {
     return (expression) ? (ifTrue) : (ifFalse);
   };
 
+  const RIGHT = (value: string) => {
+    if (value.length <= 2) return value;
+    return value.substring(value.length - 2);
+  };
+
+  const TEXT = (...values: any[]) => {
+    return values.reduce((total, current) => total + current.toString(), "");
+  };
+
   type DataEntryMonolithProps = {
   p?: any;
   };
 
   const DataEntryMonolith: FC<DataEntryMonolithProps> = ({
   p,
-  }: DataEntryMonolithProps) => {`
+  }: DataEntryMonolithProps) => {`,
   );
 
   const constants = new Map<string, string>();
