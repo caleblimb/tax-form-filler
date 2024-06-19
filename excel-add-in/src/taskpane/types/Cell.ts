@@ -9,4 +9,5 @@ export interface Cell {
   get: string;
   rowSpan: number;
   colSpan: number;
+  style: string;
 }

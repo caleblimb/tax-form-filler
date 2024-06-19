@@ -7,6 +7,7 @@ import { Cell } from "../types/Cell";
 import { encodeSheetName, exportToFrontend, nextExcelColumnCode, unfoldFormula } from "./ExportUtilities";
 import { generateTypescript } from "./DataEntryMonolithBuilder";
 import { SHEET_PROPERTIES, SheetProperties } from "../messages/MessageHandler";
+import { formatHorizontalAlignment, formatUnderline } from "../types/ExcelFormatMaps";
 
 class ExportHandler {
   private latestController: AbortController | null = null;
@@ -62,18 +63,6 @@ class ExportHandler {
     return { tabName: sheet.name };
   }
 
-  // private async mapCommentsOld(context: Excel.RequestContext, comments: Excel.Comment[]): Promise<Map<string, string>> {
-  //   let mappedComments: Map<string, string> = new Map<string, string>();
-  //   for (let c = 0; c < comments.length; c++) {
-  //     const location = comments[c].getLocation();
-  //     location.load("columnIndex,rowIndex");
-  //     await context.sync();
-  //     const key: string = location.columnIndex + ":" + location.rowIndex;
-  //     mappedComments.set(key, comments[c].content);
-  //   }
-  //   return mappedComments;
-  // }
-
   private async mapComments(context: Excel.RequestContext, comments: Excel.Comment[]): Promise<Map<string, string>> {
     let mappedComments: Map<string, string> = new Map<string, string>();
 
@@ -111,8 +100,41 @@ class ExportHandler {
         currentColumn = nextExcelColumnCode(currentColumn);
       }
     }
-    console.log(mappedCellSpans);
     return mappedCellSpans;
+  }
+
+  private mapStyles(cell: Excel.Range): string {
+    const textAlign = formatHorizontalAlignment.get(cell.format.horizontalAlignment);
+    const fontWeight = cell.format.font.bold ? "bold" : "normal";
+    const textDecoration = formatUnderline.get(cell.format.font.underline);
+    const fontSize = cell.format.font.size;
+    const backgroundColor = cell.format.fill.color;
+    const color = cell.format.font.color;
+
+    let styles: string = "{\n";
+
+    if (textAlign) {
+      styles += `textAlign: "${textAlign}",\n`;
+    }
+    if (fontWeight && fontWeight !== "normal") {
+      styles += `fontWeight: "${fontWeight}",\n`;
+    }
+    if (textDecoration) {
+      styles += `textDecoration: "${textDecoration}",\n`;
+    }
+    if (fontSize !== 11) {
+      styles += `fontSize: "${fontSize}pt",`;
+    }
+    if (color != "#000000") {
+      styles += `color: "${color}",`;
+    }
+    if (backgroundColor !== "#FFFFFF") {
+      styles += `backgroundColor: "${backgroundColor}",`;
+    }
+
+    styles += "}";
+
+    return styles;
   }
 
   private simulateProcessing(signal: AbortSignal): Promise<string> {
@@ -155,7 +177,7 @@ class ExportHandler {
               await context.sync();
 
               const connections = range.formulas.map((row) =>
-                row[0][0] === "=" ? unfoldFormula(sheet.name, sheetNames, row[0]) : row[0]
+                row[0][0] === "=" ? unfoldFormula(sheet.name, sheetNames, row[0]) : row[0],
               );
               const pdfSheet = {
                 fileName: sheet.name.replace(/[{}]/g, ""),
@@ -170,10 +192,6 @@ class ExportHandler {
               await context.sync();
 
               const comments = sheet.comments.items;
-              // const xOffset: number = range.columnIndex;
-              // const yOffset: number = range.rowIndex;
-              // const rowAddress: number = +range.address.match(/![A-Z]+\d+/g)![0].match(/\d+/g)![0];
-              // const colAddress: string = range.address.match(/![A-Z]+\d+/g)![0].match(/[A-Z]+/g)![0];
 
               let mappedComments: Map<string, string> = await this.mapComments(context, comments);
 
@@ -189,7 +207,11 @@ class ExportHandler {
                 const r = [];
                 for (let col = range.columnIndex; col < range.columnIndex + range.columnCount; col++) {
                   const cell = sheet.getCell(row, col);
-                  cell.load("address, format, formulas, values, columnIndex, rowIndex");
+                  cell.load(
+                    "address, font, format, formulas, values, columnIndex, rowIndex" +
+                      ",format/fill,format/font,format/horizontalAlignment,format/verticalAlignment",
+                    // ",format/autoIndent,format/borders,format/columnWidth,format/context,format/fill,format/font,format/horizontalAlignment,format/indentLevel,format/isNull,format/isNullObject,format/protection,format/readingOrder,format/rowHeight,format/shrinkToFit,format/textOrientation,format/useStandardHeight,format/useStandardWidth,format/verticalAlignment,format/wrapText",
+                  );
                   r.push(cell);
                 }
                 rawCells.push(r);
@@ -200,6 +222,7 @@ class ExportHandler {
               rawCells.forEach((row) => {
                 let mappedRow: Cell[] = [];
                 row.forEach((cell) => {
+                  // console.log(cell.format);
                   // eslint-disable-next-line @typescript-eslint/no-unused-vars
                   const [_, address] = cell.address.split("!");
 
@@ -221,7 +244,7 @@ class ExportHandler {
                     mappedAttributes = undefined;
                   }
 
-                  const mappedCell = {
+                  const mappedCell: Cell = {
                     key: "'" + encodeSheetName(sheet.name) + "'!" + address,
                     value: cell.values[0][0],
                     formula:
@@ -233,6 +256,7 @@ class ExportHandler {
                     get: "get_" + encodeSheetName(sheet.name) + "_" + address,
                     rowSpan: rowSpan,
                     colSpan: colSpan,
+                    style: this.mapStyles(cell),
                   };
                   mappedRow.push(mappedCell);
                 });
@@ -247,18 +271,13 @@ class ExportHandler {
               mappedSheets.push(mappedSheet);
             }
 
-            range.load(
-              "address,addressLocal,cellCount,columnCount,columnHidden,columnIndex,conditionalFormats,dataValidation,format,formulas,formulasLocal,formulasR1C1,hasSpill,height,hidden,hyperlink,isEntireColumn,isEntireRow,left,linkedDataTypeState,numberFormat,numberFormatCategories,numberFormatLocal,rowCount,rowHidden,rowIndex,savedAsArray,sort,style,text,top,valueTypes,values"
-            );
+            // range.load(
+            //   "address,addressLocal,cellCount,columnCount,columnHidden,columnIndex,conditionalFormats,dataValidation,format,formulas,formulasLocal,formulasR1C1,hasSpill,height,hidden,hyperlink,isEntireColumn,isEntireRow,left,linkedDataTypeState,numberFormat,numberFormatCategories,numberFormatLocal,rowCount,rowHidden,rowIndex,savedAsArray,sort,style,text,top,valueTypes,values",
+            // );
 
             await context.sync();
-            const format = range.format;
-            format.load(
-              "autoIndent,borders,columnWidth,context,fill,font,horizontalAlignment,indentLevel,isNull,isNullObject,protection,readingOrder,rowHeight,shrinkToFit,textOrientation,useStandardHeight,useStandardWidth,verticalAlignment,wrapText"
-            );
 
-            console.log("range:", range);
-            console.log("format", format);
+            // console.log("range:", range);
           }
 
           //   console.log("Mapped Sheets:", mappedSheets);

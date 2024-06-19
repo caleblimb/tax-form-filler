@@ -74,7 +74,9 @@ export const unfoldFormula = (sheetName: string, sheetNames: string[], formula: 
   result = result.replace(/^=/, "");
 
   // Convert excel comparison to js comparison
-  result = result.replace(/=/g, "===");
+  result = result.replace(/[^<>]=/g, "===");
+
+  result = result.replace(/%/g, "/100.0");
 
   return result;
 };

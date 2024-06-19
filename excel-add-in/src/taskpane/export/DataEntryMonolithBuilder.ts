@@ -20,10 +20,10 @@ const getExcelDataType = (value: string | number | Date): "string" | "number" | 
       return "boolean";
     }
 
-    const numberValue = parseFloat(value);
-    if (!isNaN(numberValue) && isFinite(numberValue)) {
-      return "number";
-    }
+    // const numberValue = parseFloat(value);
+    // if (!isNaN(numberValue) && isFinite(numberValue)) {
+    //   return "number";
+    // }
   }
 
   return "string";
@@ -32,34 +32,29 @@ const getExcelDataType = (value: string | number | Date): "string" | "number" | 
 const declareConstant = (cell: Cell): string => {
   let valueType: string = "any";
   let valueDefault: string = "";
-  if (cell.attributes?.type === "input" || cell.formula) {
-    if (cell.attributes?.type === "input") {
-      switch (cell.attributes.content?.type) {
-        case "number":
-          valueType = "number";
-          valueDefault = "0";
-          break;
-        case "text":
-        case "dropdown":
-        case "radio":
-        default:
-          valueType = "string";
-          valueDefault = "";
-          break;
-        case "date":
-          valueType = "Date";
-          valueDefault = "new Date()";
-          break;
-      }
+  if (cell.attributes?.type === "input") {
+    switch (cell.attributes.content?.type) {
+      case "number":
+        valueType = "number";
+        valueDefault = "0";
+        break;
+      case "text":
+      case "dropdown":
+      case "radio":
+      default:
+        valueType = "string";
+        valueDefault = "";
+        break;
+      case "date":
+        valueType = "Date";
+        valueDefault = "new Date()";
+        break;
     }
-    return `const [${cell.get}, ${cell.set}] = useState<${valueType}>(${valueDefault});\n`;
-  } else {
-    valueType = getExcelDataType(cell.value as string);
-    return `const ${cell.get}:${valueType} = ${valueType === "string" ? `"${cell.value}"` : `${cell.value}`};\n`;
   }
+  return `const [${cell.get}, ${cell.set}] = useState<${valueType}>(${valueDefault});\n`;
 };
 
-const parseFormula = (cell: Cell): string => {
+const parseFormula = (cell: Cell, constants: Map<string, string>): string => {
   if (!cell.formula) {
     throw new Error("Error trying to parse a cell without a formula: " + cell);
   }
@@ -67,6 +62,14 @@ const parseFormula = (cell: Cell): string => {
 
   const parsedFormula = cell.formula.replace(/'[A-Za-z\d]+'![A-Z]+\d+/g, (match) => {
     const cellName = `get_${match.replace(/'/g, "").replace("!", "_")}`;
+    if (constants.has(cellName)) {
+      const value = constants.get(cellName)!;
+      if (value.toString().replace(/\s/g, "").length > 0) {
+        return cellName.replace(cellName, constants.get(cellName)!);
+      } else {
+        return cellName.replace(cellName, "0");
+      }
+    }
     dependencies.push(cellName);
     return cellName;
   });
@@ -164,13 +167,23 @@ export const generateTypescript = (sheets: SheetPage[]): string => {
 
   const DataEntryMonolith: FC<DataEntryMonolithProps> = ({
   p,
-  }: DataEntryMonolithProps) => {`
+  }: DataEntryMonolithProps) => {`,
   );
 
+  const constants = new Map<string, string>();
   sheets.forEach((sheet) => {
     sheet.cells.forEach((row) => {
       row.forEach((cell) => {
-        stringBuilder.append(declareConstant(cell));
+        if (cell.attributes?.type === "input" || cell.formula) {
+          stringBuilder.append(declareConstant(cell));
+        } else {
+          const valueType = getExcelDataType(cell.value as string);
+          if (valueType === "string") {
+            constants.set(cell.get, cell.value.replace(/\n/g, "\\n").replace(/"/g, '\\"'));
+          } else {
+            constants.set(cell.get, cell.value);
+          }
+        }
       });
     });
   });
@@ -179,7 +192,7 @@ export const generateTypescript = (sheets: SheetPage[]): string => {
     sheet.cells.forEach((row) => {
       row.forEach((cell) => {
         if (cell.formula) {
-          stringBuilder.append(parseFormula(cell));
+          stringBuilder.append(parseFormula(cell, constants));
         }
       });
     });
@@ -214,7 +227,14 @@ export const generateTypescript = (sheets: SheetPage[]): string => {
     sheet.cells.forEach((row) => {
       stringBuilder.append(`<tr>\n`);
       row.forEach((cell) => {
-        stringBuilder.append(`<td colSpan={${cell.colSpan}} rowSpan={${cell.rowSpan}}>\n`);
+        stringBuilder.append(`<td`);
+        if (cell.colSpan !== 1) {
+          stringBuilder.append(` colSpan={${cell.colSpan}}`);
+        }
+        if (cell.rowSpan !== 1) {
+          stringBuilder.append(` rowSpan={${cell.rowSpan}}`);
+        }
+        stringBuilder.append(` style={${cell.style}}>\n`);
         stringBuilder.append(buildCell(cell));
         stringBuilder.append(`</td>\n`);
       });
