@@ -103,12 +103,3 @@ export class StringBuilder {
     return this.parts.join("");
   }
 }
-
-export const exportToFrontend = async (content: string) => {
-  try {
-    const response = await axios.post("http://localhost:3001/edit-file", { content });
-    console.log(response.data.message);
-  } catch (error) {
-    console.error("Error editing file:", error);
-  }
-};

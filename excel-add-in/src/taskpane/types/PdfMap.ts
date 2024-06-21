@@ -1,4 +1,7 @@
+import { Cell } from "./Cell";
+
 export interface PdfMap {
   fileName: string;
-  connections: string[];
+  name: string;
+  connections: Cell[];
 }

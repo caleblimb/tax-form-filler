@@ -3,9 +3,9 @@
 
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@fluentui/react-components";
-import CellHandler from "./magic-cell/CellHandler";
-import MessageHandler from "./messages/MessageHandler";
-import PdfHandler from "./pdf/PdfHandler";
+import CellHandler from "./cell-handler/CellHandler";
+import SheetHandler from "./sheet-handler/SheetHandler";
+import PdfHandler from "./pdf-handler/PdfHandler";
 import Layout, { Content } from "antd/es/layout/layout";
 import { Progress, Tabs, TabsProps } from "antd";
 import { ExportHandler } from "./export/ExportHandler";
@@ -34,7 +34,7 @@ const App = () => {
   const views: TabsProps["items"] = [
     {
       key: "0",
-      label: "Custom Cell",
+      label: "Manage Cell",
       children: (
         <div style={{ padding: "1rem" }}>
           <CellHandler range={selectedRange} LIVE_SERVER={LIVE_SERVER} />
@@ -43,16 +43,16 @@ const App = () => {
     },
     {
       key: "1",
-      label: "Page Controls",
+      label: "Manage Worksheet",
       children: (
         <div style={{ padding: "1rem" }}>
-          <MessageHandler worksheet={selectedRange?.worksheet} LIVE_SERVER={LIVE_SERVER} />
+          <SheetHandler worksheet={selectedRange?.worksheet} LIVE_SERVER={LIVE_SERVER} />
         </div>
       ),
     },
     {
       key: "2",
-      label: "Map PDF",
+      label: "Upload PDF",
       children: (
         <div style={{ padding: "1rem" }}>
           <PdfHandler LIVE_SERVER={LIVE_SERVER} />

@@ -4,10 +4,12 @@
 import { SheetPage } from "../types/SheetPage";
 import { PdfMap } from "../types/PdfMap";
 import { Cell } from "../types/Cell";
-import { encodeSheetName, exportToFrontend, nextExcelColumnCode, unfoldFormula } from "./ExportUtilities";
+import { encodeSheetName, nextExcelColumnCode, unfoldFormula } from "./ExportUtilities";
+import { exportToFrontend } from "../../api/frontend";
 import { generateTypescript } from "./DataEntryMonolithBuilder";
-import { SHEET_PROPERTIES, SheetProperties } from "../messages/MessageHandler";
+import { SHEET_PROPERTIES, SheetProperties } from "../types/SheetProperties";
 import { formatHorizontalAlignment, formatUnderline } from "../types/ExcelFormatMaps";
+import { getSheetProperties } from "../sheet-handler/SheetHandler";
 
 export class ExportHandler {
   private latestController: AbortController | null = null;
@@ -47,27 +49,6 @@ export class ExportHandler {
       // Clear the controller after processing is done
       this.latestController = null;
     }
-  }
-
-  private async getSheetProperties(context: Excel.RequestContext, sheet: Excel.Worksheet): Promise<SheetProperties> {
-    try {
-      const shapes = sheet.shapes;
-      const sheetPropertiesContainer: Excel.Shape = shapes.getItem(SHEET_PROPERTIES);
-      sheetPropertiesContainer.load("altTextDescription");
-      await context.sync();
-      if (sheetPropertiesContainer !== undefined) {
-        const parsedSheetProperties: SheetProperties = JSON.parse(sheetPropertiesContainer.altTextDescription);
-        if (parsedSheetProperties) {
-          return {
-            ...parsedSheetProperties,
-            tabName: parsedSheetProperties.tabName.length > 0 ? parsedSheetProperties.tabName : sheet.name,
-          };
-        }
-      }
-    } catch {
-      console.error("Could not fetch Sheet Properties for:", sheet.name);
-    }
-    return { tabName: sheet.name };
   }
 
   private async mapComments(context: Excel.RequestContext, comments: Excel.Comment[]): Promise<Map<string, string>> {
@@ -166,7 +147,7 @@ export class ExportHandler {
             const sheet = items[i];
             const range = sheet.getUsedRange();
 
-            const sheetProperties: SheetProperties = await this.getSheetProperties(context, sheet);
+            const sheetProperties: SheetProperties = await getSheetProperties(context, sheet);
             //   if (sheet.name.indexOf("!") > -1) {
             //     const errorMessage =
             //       "Invalid sheet name:" +
@@ -176,19 +157,32 @@ export class ExportHandler {
             //     throw new Error(errorMessage);
             //   }
 
-            const bracketsRegex = /{.*}/;
-            const isPdfSheet = bracketsRegex.test(sheet.name);
-
-            if (isPdfSheet) {
-              range.load("formulas");
+            if (sheetProperties.isPDF) {
+              range.load("formulas, address");
 
               await context.sync();
 
-              const connections = range.formulas.map((row) =>
-                row[0][0] === "=" ? unfoldFormula(sheet.name, sheetNames, row[0]) : row[0],
-              );
-              const pdfSheet = {
+              const connections = range.formulas.map((row, index): Cell => {
+                const isFormula = row[0][0] === "=";
+                const [_, rangeAddress] = range.address.split("!");
+                const address = rangeAddress.split(":")[0].replace(/\d+/, (match) => {
+                  return (+match + index).toString();
+                });
+                return {
+                  key: "'" + encodeSheetName(sheet.name) + "'!" + address,
+                  value: isFormula ? undefined : row[0],
+                  formula: isFormula ? unfoldFormula(sheet.name, sheetNames, row[0]) : undefined,
+                  set: "set_" + encodeSheetName(sheet.name) + "_" + address,
+                  get: "get_" + encodeSheetName(sheet.name) + "_" + address,
+                  rowSpan: 1,
+                  colSpan: 1,
+                  style: "",
+                };
+              });
+
+              const pdfSheet: PdfMap = {
                 fileName: sheet.name.replace(/[{}]/g, ""),
+                name: sheetProperties.tabName,
                 connections: connections,
               };
               pdfSheets.push(pdfSheet);
@@ -293,7 +287,7 @@ export class ExportHandler {
           //   console.log("PDF Sheets:", pdfSheets);
 
           //   console.log(generateTypescript(mappedSheets));
-          result = generateTypescript(mappedSheets);
+          result = generateTypescript(mappedSheets, pdfSheets);
         });
       } catch (error) {
         console.log("Error: " + error);

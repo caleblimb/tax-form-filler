@@ -1,4 +1,5 @@
 import { Cell } from "../types/Cell";
+import { PdfMap } from "../types/PdfMap";
 import { SheetPage } from "../types/SheetPage";
 import { StringBuilder } from "./ExportUtilities";
 
@@ -139,7 +140,7 @@ const buildCell = (cell: Cell): string => {
   return "";
 };
 
-export const generateTypescript = (sheets: SheetPage[]): string => {
+export const generateTypescript = (sheets: SheetPage[], pdfs: PdfMap[]): string => {
   const stringBuilder = new StringBuilder();
   stringBuilder.append(
     `
@@ -148,27 +149,8 @@ export const generateTypescript = (sheets: SheetPage[]): string => {
   // *********************************************************************
   import { FC, useState, useEffect } from "react";
   import { DatePicker, Input, InputNumber, Radio, Select, Divider, Steps } from "antd";
-  
-  const SUM = (...values: any[]) => {
-    return values.reduce((total, current) => total + +current, 0);
-  };
-  
-  const NOT = (expression: any) => {
-    return !expression;
-  };
-
-  const IF = (expression: any, ifTrue: any, ifFalse: any) => {
-    return (expression) ? (ifTrue) : (ifFalse);
-  };
-
-  const RIGHT = (value: string) => {
-    if (value.length <= 2) return value;
-    return value.substring(value.length - 2);
-  };
-
-  const TEXT = (...values: any[]) => {
-    return values.reduce((total, current) => total + current.toString(), "");
-  };
+  import { SUM, NOT, IF, RIGHT, TEXT } from "./ExcelFunctions";
+  import PdfExport from "../components/PdfExport";
 
   type DataEntryMonolithProps = {
   p?: any;
@@ -197,6 +179,23 @@ export const generateTypescript = (sheets: SheetPage[]): string => {
     });
   });
 
+  pdfs.forEach((pdf) => {
+    pdf.connections.forEach((cell) => {
+      if (cell.formula) {
+        stringBuilder.append(declareConstant(cell));
+      } else if (cell.value) {
+        const valueType = getExcelDataType(cell.value as string);
+        if (valueType === "string") {
+          stringBuilder.append(`const ${cell.get} = "${cell.value.replace(/\n/g, "\\n").replace(/"/g, '\\"')}";\n`);
+        } else {
+          stringBuilder.append(`const ${cell.get} = "${cell.value}";\n`);
+        }
+      } else {
+        stringBuilder.append(`const ${cell.get} = undefined;\n`);
+      }
+    });
+  });
+
   sheets.forEach((sheet) => {
     sheet.cells.forEach((row) => {
       row.forEach((cell) => {
@@ -204,6 +203,14 @@ export const generateTypescript = (sheets: SheetPage[]): string => {
           stringBuilder.append(parseFormula(cell, constants));
         }
       });
+    });
+  });
+
+  pdfs.forEach((pdf) => {
+    pdf.connections.forEach((cell) => {
+      if (cell.formula) {
+        stringBuilder.append(parseFormula(cell, constants));
+      }
     });
   });
 
@@ -258,6 +265,14 @@ export const generateTypescript = (sheets: SheetPage[]): string => {
   stringBuilder.append(`
     {currentSheet === ${sheets.length} && (
     <div><h1>PDF Exports</h1>\n`);
+
+  pdfs.forEach((pdf: PdfMap) => {
+    const formData = pdf.connections.map((cell) => cell.get).join(",");
+    stringBuilder.append(
+      `<PdfExport fileName={"${pdf.fileName}"} cardName={"${pdf.name}"} formData={[${formData}]} />`,
+    );
+  });
+
   stringBuilder.append(`</div>)}\n`);
 
   stringBuilder.append(`

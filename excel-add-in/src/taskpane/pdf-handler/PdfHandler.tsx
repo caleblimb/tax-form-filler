@@ -8,6 +8,8 @@ import { pdfjs } from "react-pdf";
 import { convertToBase64 } from "../utilities/Png";
 import { PDFDocument, PDFField, PDFForm, PDFPage, PDFWidgetAnnotation } from "pdf-lib";
 import { ExportHandler } from "../export/ExportHandler";
+import { uploadPdf } from "../../api/frontend";
+import { createSheetsPropsContainer } from "../sheet-handler/SheetHandler";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -21,6 +23,7 @@ interface PdfHandlerProps {
 
 const PdfHandler: FC<PdfHandlerProps> = ({ LIVE_SERVER }: PdfHandlerProps) => {
   const onLoadFile = async (file: File) => {
+    uploadPdf(file);
     await createDocument(file);
 
     const bytes: ArrayBuffer = await file.arrayBuffer();
@@ -63,8 +66,9 @@ const PdfHandler: FC<PdfHandlerProps> = ({ LIVE_SERVER }: PdfHandlerProps) => {
   const createDocument = async (file: File) => {
     await Excel.run(async (context) => {
       const worksheets = context.workbook.worksheets;
-      const newWorksheet = worksheets.add("{" + file.name + "}");
+      const newWorksheet = worksheets.add(file.name);
       newWorksheet.activate();
+      createSheetsPropsContainer(context, newWorksheet, true, file.name);
       await context.sync();
     });
   };
@@ -106,14 +110,14 @@ const PdfHandler: FC<PdfHandlerProps> = ({ LIVE_SERVER }: PdfHandlerProps) => {
             x: rect.x + rect.width / 2,
             y: pageOffset + pageHeights[pageNumber - 1] - rect.y - rect.height / 2,
           },
-          colors[index % colors.length]
+          colors[index % colors.length],
         );
 
         addRect(
           cell,
           { ...rect, y: pageOffset + pageHeights[pageNumber - 1] - rect.y },
 
-          colorsLight[index % colors.length]
+          colorsLight[index % colors.length],
         );
       }
     });
@@ -133,7 +137,7 @@ const PdfHandler: FC<PdfHandlerProps> = ({ LIVE_SERVER }: PdfHandlerProps) => {
           cellRange.top + cellRange.height / 2,
           cellRange.left + cellRange.width + position.x,
           position.y,
-          Excel.ConnectorType.straight
+          Excel.ConnectorType.straight,
         );
         line.name = "ConnectionLine:" + cell;
         line.lineFormat.color = color;
@@ -158,7 +162,7 @@ const PdfHandler: FC<PdfHandlerProps> = ({ LIVE_SERVER }: PdfHandlerProps) => {
     cell: number,
     rect: { x: number; y: number; width: number; height: number },
     color: string,
-    attempt: number = 0
+    attempt: number = 0,
   ) => {
     try {
       await Excel.run(async (context) => {
