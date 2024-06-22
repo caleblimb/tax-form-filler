@@ -21,6 +21,8 @@ interface PdfHandlerProps {
   LIVE_SERVER: ExportHandler;
 }
 
+const LEFT_MARGIN = 8;
+
 const PdfHandler: FC<PdfHandlerProps> = ({ LIVE_SERVER }: PdfHandlerProps) => {
   const onLoadFile = async (file: File) => {
     uploadPdf(file);
@@ -49,6 +51,7 @@ const PdfHandler: FC<PdfHandlerProps> = ({ LIVE_SERVER }: PdfHandlerProps) => {
     setBColumnWidth(maxWidth);
     addConnections(pdfDocument, pdfPages, pageHeights);
 
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     await Excel.run(async (context) => {
       let shapes = context.workbook.worksheets.getActiveWorksheet().shapes;
 
@@ -135,7 +138,7 @@ const PdfHandler: FC<PdfHandlerProps> = ({ LIVE_SERVER }: PdfHandlerProps) => {
         const line = shapes.addLine(
           cellRange.left + cellRange.width,
           cellRange.top + cellRange.height / 2,
-          cellRange.left + cellRange.width + position.x,
+          cellRange.left + cellRange.width + position.x + LEFT_MARGIN,
           position.y,
           Excel.ConnectorType.straight
         );
@@ -148,7 +151,7 @@ const PdfHandler: FC<PdfHandlerProps> = ({ LIVE_SERVER }: PdfHandlerProps) => {
         await context.sync();
       });
     } catch (error) {
-      const maxAttempts: number = 10;
+      const maxAttempts: number = 32;
       if (attempt < maxAttempts) {
         await new Promise((resolve) => setTimeout(resolve, (position.y / 10) * attempt));
         await addLine(cell, position, color, attempt + 1);
@@ -173,7 +176,7 @@ const PdfHandler: FC<PdfHandlerProps> = ({ LIVE_SERVER }: PdfHandlerProps) => {
         await context.sync();
 
         const shape = shapes.addGeometricShape(Excel.GeometricShapeType.rectangle);
-        shape.left = cellRange.width + rect.x;
+        shape.left = cellRange.width + rect.x + LEFT_MARGIN;
         shape.top = rect.y - rect.height;
         shape.width = rect.width;
         shape.height = rect.height;
@@ -188,7 +191,7 @@ const PdfHandler: FC<PdfHandlerProps> = ({ LIVE_SERVER }: PdfHandlerProps) => {
         await context.sync();
       });
     } catch (error) {
-      const maxAttempts: number = 10;
+      const maxAttempts: number = 32;
       if (attempt < maxAttempts) {
         await new Promise((resolve) => setTimeout(resolve, (rect.y / 10) * attempt));
         await addRect(cell, rect, color, attempt + 1);
@@ -218,7 +221,7 @@ const PdfHandler: FC<PdfHandlerProps> = ({ LIVE_SERVER }: PdfHandlerProps) => {
           const image = sheet.shapes.addImage(png64.substr(startIndex + 7));
           image.name = IMAGE_TAG_ + page.num;
           image.top = cellRange.top + page.yOffset;
-          image.left = cellRange.left + 1;
+          image.left = cellRange.left + LEFT_MARGIN;
           image.width = page.width;
           image.height = page.height;
           image.setZOrder(Excel.ShapeZOrder.sendToBack);
@@ -226,7 +229,7 @@ const PdfHandler: FC<PdfHandlerProps> = ({ LIVE_SERVER }: PdfHandlerProps) => {
           await context.sync();
         });
       } catch (error) {
-        const maxAttempts: number = 10;
+        const maxAttempts: number = 32;
         if (attempt < maxAttempts) {
           await new Promise((resolve) => setTimeout(resolve, page.num * 100 * attempt));
           await addPageImage(file, page, attempt + 1);

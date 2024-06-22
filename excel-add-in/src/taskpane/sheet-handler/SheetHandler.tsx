@@ -17,7 +17,7 @@ export const createSheetsPropsContainer = async (
   context: Excel.RequestContext,
   sheet: Excel.Worksheet,
   isPDF: boolean = false,
-  fileName?: string,
+  fileName?: string
 ) => {
   const shapes = sheet.shapes;
   let propsContainer = shapes.getItemOrNullObject(SHEET_PROPERTIES);
@@ -41,7 +41,7 @@ export const createSheetsPropsContainer = async (
 
 export const getSheetProperties = async (
   context: Excel.RequestContext,
-  sheet: Excel.Worksheet,
+  sheet: Excel.Worksheet
 ): Promise<SheetProperties> => {
   try {
     const shapes = sheet.shapes;
@@ -120,10 +120,10 @@ const SheetHandler: FC<MessageHandlerProps> = ({ worksheet, LIVE_SERVER }: Messa
             {sheetProperties.isPDF ? <>PDF Export Map</> : <>Data Entry Page</>}
           </p>
 
-          {sheetProperties.fileName !== undefined && <p>File Name {sheetProperties.fileName}</p>}
+          {sheetProperties.fileName !== undefined && <p>File Name: {sheetProperties.fileName}</p>}
 
           <label>
-            Tab Name
+            {sheetProperties.isPDF ? <>Card Name</> : <>Tab Name</>}
             <Input
               value={sheetProperties?.tabName}
               placeholder={worksheet}

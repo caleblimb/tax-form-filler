@@ -68,7 +68,7 @@ const parseFormula = (cell: Cell, constants: Map<string, string>): string => {
       if (value.toString().replace(/\s/g, "").length > 0) {
         return cellName.replace(cellName, `"${constants.get(cellName)!}"`);
       } else {
-        return cellName.replace(cellName, "0");
+        return cellName.replace(cellName, `""`);
       }
     }
     dependencies.push(cellName);
@@ -148,7 +148,7 @@ export const generateTypescript = (sheets: SheetPage[], pdfs: PdfMap[]): string 
   // * IMPORANT: This file was generated, do not try to modify directly! *
   // *********************************************************************
   import { FC, useState, useEffect } from "react";
-  import { DatePicker, Input, InputNumber, Radio, Select, Divider, Steps } from "antd";
+  import { DatePicker, Input, InputNumber, Radio, Select, Divider, Steps, Space } from "antd";
   import { SUM, NOT, IF, RIGHT, TEXT } from "./ExcelFunctions";
   import PdfExport from "../components/PdfExport";
 
@@ -191,7 +191,7 @@ export const generateTypescript = (sheets: SheetPage[], pdfs: PdfMap[]): string 
           constants.set(cell.get, cell.value);
         }
       } else {
-        constants.set(cell.get, `undefined`);
+        constants.set(cell.get, ``);
       }
     });
   });
@@ -266,14 +266,16 @@ export const generateTypescript = (sheets: SheetPage[], pdfs: PdfMap[]): string 
     {currentSheet === ${sheets.length} && (
     <div><h1>PDF Exports</h1>\n`);
 
+  stringBuilder.append(`<Space direction="horizontal" size={16}>\n`);
   pdfs.forEach((pdf: PdfMap) => {
     const formData = pdf.connections
       .map((cell) => (constants.has(cell.get) ? `"${constants.get(cell.get)}"` : cell.get))
       .join(",");
     stringBuilder.append(
-      `<PdfExport fileName={"${pdf.fileName}"} cardName={"${pdf.name}"} formData={[${formData}]} />`
+      `<PdfExport fileName={"${pdf.fileName}"} cardName={"${pdf.name}"} formData={[${formData}]} />\n`
     );
   });
+  stringBuilder.append(`</Space>`);
 
   stringBuilder.append(`</div>)}\n`);
 
