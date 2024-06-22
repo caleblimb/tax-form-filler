@@ -158,7 +158,7 @@ export const generateTypescript = (sheets: SheetPage[], pdfs: PdfMap[]): string 
 
   const DataEntryMonolith: FC<DataEntryMonolithProps> = ({
   p,
-  }: DataEntryMonolithProps) => {`,
+  }: DataEntryMonolithProps) => {`
   );
 
   const constants = new Map<string, string>();
@@ -186,12 +186,12 @@ export const generateTypescript = (sheets: SheetPage[], pdfs: PdfMap[]): string 
       } else if (cell.value) {
         const valueType = getExcelDataType(cell.value as string);
         if (valueType === "string") {
-          stringBuilder.append(`const ${cell.get} = "${cell.value.replace(/\n/g, "\\n").replace(/"/g, '\\"')}";\n`);
+          constants.set(cell.get, cell.value.replace(/\n/g, "\\n").replace(/"/g, '\\"'));
         } else {
-          stringBuilder.append(`const ${cell.get} = "${cell.value}";\n`);
+          constants.set(cell.get, cell.value);
         }
       } else {
-        stringBuilder.append(`const ${cell.get} = undefined;\n`);
+        constants.set(cell.get, `undefined`);
       }
     });
   });
@@ -267,9 +267,11 @@ export const generateTypescript = (sheets: SheetPage[], pdfs: PdfMap[]): string 
     <div><h1>PDF Exports</h1>\n`);
 
   pdfs.forEach((pdf: PdfMap) => {
-    const formData = pdf.connections.map((cell) => cell.get).join(",");
+    const formData = pdf.connections
+      .map((cell) => (constants.has(cell.get) ? `"${constants.get(cell.get)}"` : cell.get))
+      .join(",");
     stringBuilder.append(
-      `<PdfExport fileName={"${pdf.fileName}"} cardName={"${pdf.name}"} formData={[${formData}]} />`,
+      `<PdfExport fileName={"${pdf.fileName}"} cardName={"${pdf.name}"} formData={[${formData}]} />`
     );
   });
 

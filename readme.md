@@ -7,6 +7,10 @@ This application aims to simplify the process of completing basic tax form for t
 - Requirements
   - Windows 10/11
   - Excel 2021+
+- Node
+  - [Install nvm](https://github.com/nvm-sh/nvm) by running `wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash` in PowerShell as admin
+  - Install node `nvm install --lts`
+  - Use node `nvm use --lts`
 - Right click on `StartDevelopment.ps1` and select `Run with PowerShell`. This will do the following:
   - Verify dependencies
     - Check for and install the latest version of node

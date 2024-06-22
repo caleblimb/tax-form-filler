@@ -15,7 +15,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 
 const colors: string[] = ["f94144", "90be6d", "f9844a", "4d908e", "f3722c", "577590", "f9c74f", "277da1"];
 const colorsLight: string[] = ["ff8184", "d0fead", "ffc48a", "8dd0ce", "ffb26c", "97b5d0", "ffe78f", "67bde1"];
-const imageTag: string = "pdf-image-";
+const IMAGE_TAG_: string = "pdf-image-";
 
 interface PdfHandlerProps {
   LIVE_SERVER: ExportHandler;
@@ -49,12 +49,12 @@ const PdfHandler: FC<PdfHandlerProps> = ({ LIVE_SERVER }: PdfHandlerProps) => {
     setBColumnWidth(maxWidth);
     addConnections(pdfDocument, pdfPages, pageHeights);
 
-    Excel.run(async (context) => {
+    await Excel.run(async (context) => {
       let shapes = context.workbook.worksheets.getActiveWorksheet().shapes;
 
-      pdfPages.map((_page, index) => {
+      pdfPages.forEach((_page, index) => {
         const pageNumber = index + 1;
-        const pageImage = shapes.getItem(imageTag + pageNumber);
+        const pageImage = shapes.getItem(IMAGE_TAG_ + pageNumber);
         pageImage.setZOrder(Excel.ShapeZOrder.sendToBack);
       });
 
@@ -110,14 +110,14 @@ const PdfHandler: FC<PdfHandlerProps> = ({ LIVE_SERVER }: PdfHandlerProps) => {
             x: rect.x + rect.width / 2,
             y: pageOffset + pageHeights[pageNumber - 1] - rect.y - rect.height / 2,
           },
-          colors[index % colors.length],
+          colors[index % colors.length]
         );
 
         addRect(
           cell,
           { ...rect, y: pageOffset + pageHeights[pageNumber - 1] - rect.y },
 
-          colorsLight[index % colors.length],
+          colorsLight[index % colors.length]
         );
       }
     });
@@ -137,7 +137,7 @@ const PdfHandler: FC<PdfHandlerProps> = ({ LIVE_SERVER }: PdfHandlerProps) => {
           cellRange.top + cellRange.height / 2,
           cellRange.left + cellRange.width + position.x,
           position.y,
-          Excel.ConnectorType.straight,
+          Excel.ConnectorType.straight
         );
         line.name = "ConnectionLine:" + cell;
         line.lineFormat.color = color;
@@ -151,7 +151,7 @@ const PdfHandler: FC<PdfHandlerProps> = ({ LIVE_SERVER }: PdfHandlerProps) => {
       const maxAttempts: number = 10;
       if (attempt < maxAttempts) {
         await new Promise((resolve) => setTimeout(resolve, (position.y / 10) * attempt));
-        addLine(cell, position, color, attempt + 1);
+        await addLine(cell, position, color, attempt + 1);
       } else {
         console.error(error);
       }
@@ -162,7 +162,7 @@ const PdfHandler: FC<PdfHandlerProps> = ({ LIVE_SERVER }: PdfHandlerProps) => {
     cell: number,
     rect: { x: number; y: number; width: number; height: number },
     color: string,
-    attempt: number = 0,
+    attempt: number = 0
   ) => {
     try {
       await Excel.run(async (context) => {
@@ -191,14 +191,18 @@ const PdfHandler: FC<PdfHandlerProps> = ({ LIVE_SERVER }: PdfHandlerProps) => {
       const maxAttempts: number = 10;
       if (attempt < maxAttempts) {
         await new Promise((resolve) => setTimeout(resolve, (rect.y / 10) * attempt));
-        addRect(cell, rect, color, attempt + 1);
+        await addRect(cell, rect, color, attempt + 1);
       } else {
         console.error(error);
       }
     }
   };
 
-  const addPageImage = async (file: File, page: { num: number; width: number; height: number; yOffset: number }) => {
+  const addPageImage = async (
+    file: File,
+    page: { num: number; width: number; height: number; yOffset: number },
+    attempt: number = 0
+  ) => {
     const png64 = await convertToBase64(file, page.num);
 
     if (png64)
@@ -212,7 +216,7 @@ const PdfHandler: FC<PdfHandlerProps> = ({ LIVE_SERVER }: PdfHandlerProps) => {
           const sheet = context.workbook.worksheets.getActiveWorksheet();
           const startIndex = png64.indexOf("base64,");
           const image = sheet.shapes.addImage(png64.substr(startIndex + 7));
-          image.name = imageTag + page.num;
+          image.name = IMAGE_TAG_ + page.num;
           image.top = cellRange.top + page.yOffset;
           image.left = cellRange.left + 1;
           image.width = page.width;
@@ -222,7 +226,13 @@ const PdfHandler: FC<PdfHandlerProps> = ({ LIVE_SERVER }: PdfHandlerProps) => {
           await context.sync();
         });
       } catch (error) {
-        console.error("Error: " + error);
+        const maxAttempts: number = 10;
+        if (attempt < maxAttempts) {
+          await new Promise((resolve) => setTimeout(resolve, page.num * 100 * attempt));
+          await addPageImage(file, page, attempt + 1);
+        } else {
+          console.error(error);
+        }
       }
   };
 
