@@ -114,9 +114,9 @@ const SheetHandler: FC<MessageHandlerProps> = ({ worksheet, LIVE_SERVER }: Messa
     <div>
       {worksheet ? (
         <>
-          <h1>Managing {worksheet}</h1>
+          <h1>Manage {worksheet}</h1>
           <p>
-            Type:
+            Type:&nbsp;
             {sheetProperties.isPDF ? <>PDF Export Map</> : <>Data Entry Page</>}
           </p>
 

@@ -80,7 +80,7 @@ const PdfHandler: FC<PdfHandlerProps> = ({ LIVE_SERVER }: PdfHandlerProps) => {
     try {
       await Excel.run(async (context) => {
         const columnB = context.workbook.worksheets.getActiveWorksheet().getRange("B1");
-        columnB.format.columnWidth = width;
+        columnB.format.columnWidth = width + LEFT_MARGIN;
         await context.sync();
       });
     } catch (error) {

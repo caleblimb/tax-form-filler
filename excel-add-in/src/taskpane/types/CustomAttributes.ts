@@ -1,6 +1,6 @@
 import { InputAttributes } from "./InputAttributes";
 
 export interface CustomAttributes {
-  type: "input" | "message";
-  content?: InputAttributes;
+  input?: InputAttributes;
+  tooltip?: string;
 }

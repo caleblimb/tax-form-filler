@@ -9,6 +9,7 @@ import PdfHandler from "./pdf-handler/PdfHandler";
 import Layout, { Content } from "antd/es/layout/layout";
 import { Progress, Tabs, TabsProps } from "antd";
 import { ExportHandler } from "./export/ExportHandler";
+import "./App.scss";
 
 const useStyles = makeStyles({
   root: {
@@ -36,7 +37,7 @@ const App = () => {
       key: "0",
       label: "Manage Cell",
       children: (
-        <div style={{ padding: "1rem" }}>
+        <div className="tab">
           <CellHandler range={selectedRange} LIVE_SERVER={LIVE_SERVER} />
         </div>
       ),
@@ -45,7 +46,7 @@ const App = () => {
       key: "1",
       label: "Manage Worksheet",
       children: (
-        <div style={{ padding: "1rem" }}>
+        <div className="tab">
           <SheetHandler worksheet={selectedRange?.worksheet} LIVE_SERVER={LIVE_SERVER} />
         </div>
       ),
@@ -54,7 +55,7 @@ const App = () => {
       key: "2",
       label: "Upload PDF",
       children: (
-        <div style={{ padding: "1rem" }}>
+        <div className="tab">
           <PdfHandler LIVE_SERVER={LIVE_SERVER} />
         </div>
       ),
@@ -127,7 +128,7 @@ const App = () => {
   };
 
   return (
-    <div className={styles.root}>
+    <div className={styles.root + " App"}>
       <div className={"loading-bar" + (exportProgress === 0 ? " reset" : "")}>
         <Progress percent={exportProgress * 100} size="small" strokeLinecap="butt" showInfo={false} />
       </div>

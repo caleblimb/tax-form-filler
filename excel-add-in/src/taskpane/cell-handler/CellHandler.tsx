@@ -5,9 +5,10 @@
 import React, { FC, useEffect, useState } from "react";
 import { CellRange } from "../App";
 import InputHandler from "./input-handler/InputHandler";
-import { Radio } from "antd";
+import { Input, Radio, Switch } from "antd";
 import { CustomAttributes } from "../types/CustomAttributes";
 import { ExportHandler } from "../export/ExportHandler";
+import TextArea from "antd/es/input/TextArea";
 
 interface InputHandlerProps {
   range: CellRange | undefined;
@@ -16,6 +17,7 @@ interface InputHandlerProps {
 
 const CellHandler: FC<InputHandlerProps> = ({ range, LIVE_SERVER }: InputHandlerProps) => {
   const [cell, setCell] = useState<CustomAttributes>();
+
   useEffect(() => {
     if (range && range.cellCount === 1) {
       try {
@@ -27,29 +29,46 @@ const CellHandler: FC<InputHandlerProps> = ({ range, LIVE_SERVER }: InputHandler
   }, [range]);
 
   useEffect(() => {
+    console.log("Cell:", cell);
     if (cell) {
-      try {
-        Excel.run(async (context) => {
-          if (range?.address) {
-            try {
-              const comment = context.workbook.comments.getItemByCell(range.address);
-              comment.resolved = false;
-              comment.content = JSON.stringify(cell);
-              comment.resolved = true;
-              await context.sync();
-              LIVE_SERVER.handleChange();
-            } catch (error) {
-              if (range.address) {
-                const comment = context.workbook.comments.add(range.address, JSON.stringify(cell));
-                comment.resolved = true;
+      if (cell.input !== undefined || cell.tooltip !== undefined) {
+        try {
+          const newContent = JSON.stringify(cell);
+          Excel.run(async (context) => {
+            if (range?.address) {
+              try {
+                const comment = context.workbook.comments.getItemByCell(range.address);
+                comment.resolved = false;
+                comment.load("content");
                 await context.sync();
-                LIVE_SERVER.handleChange();
+                if (comment.content === newContent) {
+                  console.log("true");
+                  comment.resolved = true;
+                  await context.sync();
+                  return;
+                } else {
+                  console.log("false");
+                  comment.content = newContent;
+                  comment.resolved = true;
+                  await context.sync();
+                  LIVE_SERVER.handleChange();
+                }
+              } catch (error) {
+                console.log("error");
+                if (range.address) {
+                  const comment = context.workbook.comments.add(range.address, JSON.stringify(newContent));
+                  comment.resolved = true;
+                  await context.sync();
+                  LIVE_SERVER.handleChange();
+                }
               }
             }
-          }
-        });
-      } catch (error) {
-        console.log("Error: " + error);
+          });
+        } catch (error) {
+          console.log("Error: " + error);
+        }
+      } else {
+        clearCell();
       }
     }
   }, [cell]);
@@ -74,35 +93,35 @@ const CellHandler: FC<InputHandlerProps> = ({ range, LIVE_SERVER }: InputHandler
 
   return (
     <div>
-      <h1>Manage Cell</h1>
+      <h1>Manage {range?.address}</h1>
 
       {range && range?.address ? (
         <div>
-          <div>
-            <Radio.Group
-              options={[
-                { label: "None", value: "" },
-                { label: "Input", value: "input" },
-                { label: "Message", value: "message" },
-              ]}
-              onChange={({ target: { value } }) => {
-                if (value) {
-                  setCell({ type: value });
-                } else {
-                  clearCell();
-                }
-              }}
-              value={cell?.type}
-              optionType="button"
-              buttonStyle="solid"
+          <h2>
+            Input&nbsp;
+            <Switch
+              checked={cell?.input !== undefined}
+              onChange={(checked) => setCell({ ...cell, input: checked ? {} : undefined })}
             />
-          </div>
+          </h2>
+          {cell?.input !== undefined && (
+            <InputHandler cell={cell} setCellContent={(cellContent) => setCell({ ...cell, input: cellContent })} />
+          )}
           <hr />
-          <div>
-            {cell?.type === "input" && (
-              <InputHandler cell={cell} setCellContent={(cellContent) => setCell({ ...cell, content: cellContent })} />
-            )}
-          </div>
+          <h2>
+            Tooltip&nbsp;
+            <Switch
+              checked={cell?.tooltip !== undefined}
+              onChange={(checked) => setCell({ ...cell, tooltip: checked ? "" : undefined })}
+            />
+          </h2>
+          {cell?.tooltip !== undefined && (
+            <TextArea
+              style={{ height: 120, resize: "none" }}
+              value={cell.tooltip}
+              onChange={({ target: { value } }) => setCell({ ...cell, tooltip: value })}
+            />
+          )}
         </div>
       ) : (
         <div>Select a cell to manage it&apos;s properties.</div>

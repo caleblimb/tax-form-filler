@@ -33,8 +33,8 @@ const getExcelDataType = (value: string | number | Date): "string" | "number" | 
 const declareConstant = (cell: Cell): string => {
   let valueType: string = "any";
   let valueDefault: string = "";
-  if (cell.attributes?.type === "input") {
-    switch (cell.attributes.content?.type) {
+  if (cell.attributes?.input) {
+    switch (cell.attributes.input?.type) {
       case "number":
         valueType = "number";
         valueDefault = "0";
@@ -80,12 +80,12 @@ const parseFormula = (cell: Cell, constants: Map<string, string>): string => {
 
 const buildCell = (cell: Cell): string => {
   if (cell.attributes) {
-    if (cell.attributes.type === "input") {
-      switch (cell.attributes.content?.type) {
+    if (cell.attributes.input) {
+      switch (cell.attributes.input?.type) {
         case "text":
           return `<Input type="text" onChange={(e) => ${cell.set}(e.target.value)} />`;
         case "number":
-          return cell.attributes.content.formatAsCurrency
+          return cell.attributes.input.formatAsCurrency
             ? `<InputNumber<number>
                 formatter={(value) => \`$ \${value}\`.replace(/\\B(?=(\\d{3})+(?!\\d))/g, ",")}
                 parser={(value) => value?.replace(/\\$\\s?|(,*)/g, "") as unknown as number}
@@ -93,8 +93,8 @@ const buildCell = (cell: Cell): string => {
               />`
             : `<Input
                 type="number"
-                min={${cell.attributes.content.min}}
-                max={${cell.attributes.content.max}}
+                min={${cell.attributes.input.min}}
+                max={${cell.attributes.input.max}}
                 onChange={(e) => ${cell.set}(+e.target.value)}
               />`;
         case "date":
@@ -105,7 +105,7 @@ const buildCell = (cell: Cell): string => {
             style={{ minWidth: "10rem" }}
             allowClear
             options={[` +
-            cell.attributes.content.options
+            cell.attributes.input.options
               ?.map((option) => {
                 return `{ value: "${option}", label: "${option}" }`;
               })
@@ -118,7 +118,7 @@ const buildCell = (cell: Cell): string => {
           return (
             `<Radio.Group
                     options={[` +
-            cell.attributes.content.options
+            cell.attributes.input.options
               ?.map((option) => {
                 return `{ value: "${option}", label: "${option}" }`;
               })
@@ -148,7 +148,7 @@ export const generateTypescript = (sheets: SheetPage[], pdfs: PdfMap[]): string 
   // * IMPORANT: This file was generated, do not try to modify directly! *
   // *********************************************************************
   import { FC, useState, useEffect } from "react";
-  import { DatePicker, Input, InputNumber, Radio, Select, Divider, Steps, Space } from "antd";
+  import { DatePicker, Input, InputNumber, Radio, Select, Divider, Steps, Space, Tooltip } from "antd";
   import { SUM, NOT, IF, RIGHT, TEXT } from "./ExcelFunctions";
   import PdfExport from "../components/PdfExport";
 
@@ -165,7 +165,7 @@ export const generateTypescript = (sheets: SheetPage[], pdfs: PdfMap[]): string 
   sheets.forEach((sheet) => {
     sheet.cells.forEach((row) => {
       row.forEach((cell) => {
-        if (cell.attributes?.type === "input" || cell.formula) {
+        if (cell.attributes?.input || cell.formula) {
           stringBuilder.append(declareConstant(cell));
         } else {
           const valueType = getExcelDataType(cell.value as string);
@@ -254,7 +254,17 @@ export const generateTypescript = (sheets: SheetPage[], pdfs: PdfMap[]): string 
           stringBuilder.append(` style={${cell.style}}`);
         }
         stringBuilder.append(`>`);
+
+        if (cell.attributes?.tooltip && cell.attributes?.tooltip?.length > 0) {
+          stringBuilder.append(`<Tooltip title="${cell.attributes.tooltip}">`);
+        }
+
         stringBuilder.append(buildCell(cell));
+
+        if (cell.attributes?.tooltip && cell.attributes?.tooltip?.length > 0) {
+          stringBuilder.append(`</Tooltip>`);
+        }
+
         stringBuilder.append(`</td>`);
       });
       stringBuilder.append(`</tr>\n`);
