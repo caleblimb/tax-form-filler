@@ -89,6 +89,9 @@ const App = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleChange = async (_: any): Promise<void> => {
     LIVE_SERVER.handleChange();
+    setTimeout(() => {
+      if (exportProgress === 0) LIVE_SERVER.handleChange();
+    }, 3000);
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

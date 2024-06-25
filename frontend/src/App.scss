@@ -1,45 +1,10 @@
-.App {
-  width: 30rem;
-  margin: 1rem;
+header {
+  text-align: center;
+  h1 {
+    opacity: 0.8;
+  }
 }
 
-.react-tabs {
-  &__tablist {
-    border-bottom: 1px solid #aaa;
-    margin: 0 0 10px;
-    padding: 0;
-  }
-
-  &__tab {
-    border: 1px solid transparent;
-
-    border-bottom: none;
-    bottom: -1px;
-    cursor: pointer;
-    display: inline-block;
-    list-style: none;
-    padding: 6px 12px;
-    position: relative;
-
-    &--selected {
-      background: #fff;
-      border-color: #aaa;
-      border-radius: 5px 5px 0 0;
-      color: #000;
-    }
-  }
-
-  &__tab-list {
-    border-bottom: 1px solid #aaa;
-    margin: 0 0 10px;
-    padding: 0;
-  }
-
-  &__tab-panel {
-    display: none;
-
-    &--selected {
-      display: block;
-    }
-  }
+main {
+  margin: 1rem;
 }

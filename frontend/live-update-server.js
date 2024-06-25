@@ -23,12 +23,19 @@ app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.post("/write-data-entry-monolith", (req, res) => {
   const { content } = req.body;
 
-  const filePath = path.join(__dirname, "src/data-entry-monolith/DataEntryMonolith.tsx");
+  const filePath = path.join(
+    __dirname,
+    "src/data-entry-monolith/DataEntryMonolith.tsx"
+  );
 
   fs.writeFile(filePath, content, "utf8", (err) => {
     if (err) {
-      return res.status(500).json({ message: "Error writing file", error: err });
+      console.error("Error writing file:", err);
+      return res
+        .status(500)
+        .json({ message: "Error writing file", error: err });
     }
+    console.log("File written successfully");
     res.status(200).json({ message: "File written successfully" });
   });
 });
@@ -38,10 +45,12 @@ app.post("/upload-pdf", upload.single("pdf"), (req, res) => {
   const filename = req.body.filename;
 
   if (!file) {
+    console.error("No file uploaded.");
     return res.status(400).send("No file uploaded.");
   }
 
   if (!filename) {
+    console.error("No filename provided.");
     return res.status(400).send("No filename provided.");
   }
 
@@ -49,12 +58,18 @@ app.post("/upload-pdf", upload.single("pdf"), (req, res) => {
   const sanitizedFilename = path.basename(filename);
 
   // Save the file to the desired location
-  const filePath = path.join(__dirname, "src/data-entry-monolith/pdf", sanitizedFilename);
+  const filePath = path.join(
+    __dirname,
+    "src/data-entry-monolith/pdf",
+    sanitizedFilename
+  );
   pdfToPng(file, filePath + ".png");
   fs.writeFile(filePath, file.buffer, (err) => {
     if (err) {
+      console.error("Failed to save file.");
       return res.status(500).send("Failed to save file.");
     }
+    console.log("File uploaded and saved successfully.");
     res.send("File uploaded and saved successfully.");
   });
 });
@@ -69,28 +84,34 @@ app.listen(port, () => {
 });
 
 async function pdfToPng(file, outputFilePath) {
-  // Read the file buffer
-  const fileBuffer = file.buffer;
-  const pdfjs = await import("pdfjs-dist/legacy/build/pdf.mjs");
-  // Load the PDF document
-  const pdfDoc = await pdfjs.getDocument({ data: new Uint8Array(fileBuffer) }).promise;
+  try {
+    // Read the file buffer
+    const fileBuffer = file.buffer;
+    const pdfjs = await import("pdfjs-dist/legacy/build/pdf.mjs");
+    // Load the PDF document
+    const pdfDoc = await pdfjs.getDocument({ data: new Uint8Array(fileBuffer) })
+      .promise;
 
-  // Get the first page
-  const page = await pdfDoc.getPage(1);
+    // Get the first page
+    const page = await pdfDoc.getPage(1);
 
-  // Create a canvas to render the page
-  const viewport = page.getViewport({ scale: 1 });
-  const canvas = createCanvas(viewport.width, viewport.height);
-  const context = canvas.getContext("2d");
+    // Create a canvas to render the page
+    const viewport = page.getViewport({ scale: 1 });
+    const canvas = createCanvas(viewport.width, viewport.height);
+    const context = canvas.getContext("2d");
 
-  // Render the page into the canvas context
-  await page.render({ canvasContext: context, viewport }).promise;
+    // Render the page into the canvas context
+    await page.render({ canvasContext: context, viewport }).promise;
 
-  // Create a thumbnail using sharp
-  const buffer = canvas.toBuffer("image/png");
+    // Create a thumbnail using sharp
+    const buffer = canvas.toBuffer("image/png");
 
-  const image = await Jimp.read(buffer);
-  image
-    .resize(200, Jimp.AUTO) // Adjust the width to create a smaller thumbnail
-    .write(outputFilePath);
+    const image = await Jimp.read(buffer);
+    image
+      .resize(200, Jimp.AUTO) // Adjust the width to create a smaller thumbnail
+      .write(outputFilePath);
+    console.log("Successfully saved PDF thumbnail.");
+  } catch (err) {
+    console.error("Error saving PDF thumbnail:", err);
+  }
 }

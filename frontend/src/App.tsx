@@ -9,9 +9,17 @@ export type CellData = {
 
 function App() {
   return (
-    <div className="App">
-      <DataEntryMonolith />
-    </div>
+    <>
+      <header className="App">
+        <h1>More like Turbo Quacks</h1>
+      </header>
+
+      <main className="App">
+        <DataEntryMonolith />
+      </main>
+
+      <footer className="App"></footer>
+    </>
   );
 }
 
