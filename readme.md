@@ -8,7 +8,8 @@ This application aims to simplify the process of completing basic tax form for t
   - Windows 10/11
   - Excel 2021+
 - Node
-  - [Install nvm](https://github.com/nvm-sh/nvm) by running `wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash` in PowerShell as admin
+  - [Install Chocolatey](https://chocolatey.org/install) by running `Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))` in PowerShell as admin
+  - [Install nvm](https://community.chocolatey.org/packages/nvm) by running `choco install nvm` in PowerShell as admin
   - Install node `nvm install 19.5.0`. `22` will not work.
   - Use node `nvm use 19.5.0`
 - Right click on `StartDevelopment.ps1` and select `Run with PowerShell`. This will do the following:
