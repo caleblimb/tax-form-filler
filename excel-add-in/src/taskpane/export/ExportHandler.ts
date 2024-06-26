@@ -191,10 +191,10 @@ export class ExportHandler {
               sheet.comments.load("items");
               const mergedAreas = range.getMergedAreasOrNullObject();
               mergedAreas.load("areaCount, areas/items/address, areas/items/columnCount, areas/items/rowCount");
+
               await context.sync();
 
               const comments = sheet.comments.items;
-
               let mappedComments: Map<string, string> = await this.mapComments(context, comments);
 
               const mappedCellSpans =
@@ -202,29 +202,42 @@ export class ExportHandler {
                   ? this.mapCellSpans(mergedAreas.areas.items)
                   : new Map<string, { col: number; row: number }>();
 
-              let mappedCells: Cell[][] = [];
-
-              const rawCells: Excel.Range[][] = [];
+              const rawCells: (
+                | Excel.Range
+                | { address: string; columnIndex: number; rowIndex: number; values: string[][]; formulas: string[][] }
+              )[][] = [];
               for (let row = range.rowIndex; row < range.rowIndex + range.rowCount; row++) {
-                const r = [];
+                const rawRow = [];
+                let columnCode = range.address.match(/![A-Z]+/)![0].substring(1);
                 for (let col = range.columnIndex; col < range.columnIndex + range.columnCount; col++) {
-                  const cell = sheet.getCell(row, col);
-                  cell.load(
-                    "address, font, format, formulas, values, columnIndex, rowIndex" +
-                      ",format/fill,format/font,format/horizontalAlignment,format/verticalAlignment",
-                    // ",format/autoIndent,format/borders,format/columnWidth,format/context,format/fill,format/font,format/horizontalAlignment,format/indentLevel,format/isNull,format/isNullObject,format/protection,format/readingOrder,format/rowHeight,format/shrinkToFit,format/textOrientation,format/useStandardHeight,format/useStandardWidth,format/verticalAlignment,format/wrapText",
-                  );
-                  r.push(cell);
+                  if (range.formulas[row - range.rowIndex][col - range.columnIndex] === "") { 
+                    rawRow.push({
+                      address: `!${columnCode}${row + range.rowIndex}`,
+                      columnIndex: row + range.rowIndex,
+                      rowIndex: col + range.columnIndex,
+                      values: [[""]],
+                      formulas: [[""]],
+                    });
+                  } else {// Possibly optimize further, this block is expensive to run
+                    const cell = sheet.getCell(row, col);
+                    cell.load(
+                      "address, font, format, formulas, values, columnIndex, rowIndex" +
+                        ",format/fill,format/font,format/horizontalAlignment,format/verticalAlignment"
+                      // ",format/autoIndent,format/borders,format/columnWidth,format/context,format/fill,format/font,format/horizontalAlignment,format/indentLevel,format/isNull,format/isNullObject,format/protection,format/readingOrder,format/rowHeight,format/shrinkToFit,format/textOrientation,format/useStandardHeight,format/useStandardWidth,format/verticalAlignment,format/wrapText",
+                    );
+                    rawRow.push(cell);
+                  }
+                  columnCode = nextExcelColumnCode(columnCode);
                 }
-                rawCells.push(r);
+                rawCells.push(rawRow);
               }
 
               await context.sync();
 
+              let mappedCells: Cell[][] = [];
               rawCells.forEach((row) => {
                 let mappedRow: Cell[] = [];
                 row.forEach((cell) => {
-                  // console.log(cell.format);
                   // eslint-disable-next-line @typescript-eslint/no-unused-vars
                   const [_, address] = cell.address.split("!");
 
@@ -246,19 +259,18 @@ export class ExportHandler {
                     mappedAttributes = undefined;
                   }
 
+                  const cellFormula = cell.formulas[0][0];
                   const mappedCell: Cell = {
                     key: "'" + encodeSheetName(sheet.name) + "'!" + address,
                     value: cell.values[0][0],
                     formula:
-                      cell.formulas[0][0][0] === "="
-                        ? unfoldFormula(sheet.name, sheetNames, cell.formulas[0][0])
-                        : undefined,
+                      cellFormula[0] === "=" ? unfoldFormula(sheet.name, sheetNames, cell.formulas[0][0]) : undefined,
                     attributes: mappedAttributes,
                     set: "set_" + encodeSheetName(sheet.name) + "_" + address,
                     get: "get_" + encodeSheetName(sheet.name) + "_" + address,
                     rowSpan: rowSpan,
                     colSpan: colSpan,
-                    style: this.mapStyles(cell),
+                    style: cellFormula === "" ? "" : this.mapStyles(cell as Excel.Range),
                   };
                   mappedRow.push(mappedCell);
                 });

@@ -18,3 +18,24 @@ export const RIGHT = (value: string) => {
 export const TEXT = (...values: any[]) => {
   return values.reduce((total, current) => total + current.toString(), "");
 };
+
+export const FILTER = (values: any[], condition: any, if_empty?: any) => {
+  const results = values.filter((item) => {
+    return condition;
+  });
+  return if_empty;
+};
+
+export const INDEX = (values: any[], rowIndex: number, colIndex?: number) => {
+  if (rowIndex > values.length) {
+    return "";
+  }
+
+  const row = values[rowIndex - 1];
+
+  if (colIndex === undefined || colIndex > row.length) {
+    return row;
+  }
+
+  return row[colIndex - 1];
+};

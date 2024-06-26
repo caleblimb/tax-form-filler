@@ -23,6 +23,20 @@ This application aims to simplify the process of completing basic tax form for t
   - Open Web Page View
   - Start server for Live updates
 
+
+### Common issues
+  - Reinstall Security Certificate
+    - Delete old certificate
+      - Press `Windows + r` on your keyboard
+      - Type `certmgr.msc` and press enter
+      - Delete the Developer Security Certificate. Be careful when making changes with the certificate manager. The correct certificate is probably located under `Trusted Root Certification Authorities` -> `Certificates` and has the following meta data:
+        - Issued To `Developer CA for Microsoft Office Add-ins`
+        - Issued By `Developer CA for Microsoft Office Add-ins`
+        - Expiration Date will be 1 month after you last installed the certificate
+        - Intended Purposes `<All>`
+        - Friendly Name `<None>`
+    - Reinstall Certificate by running the Excel Add-In loader again
+
 ## Backend
 
 - [README](./backend/README.md)
