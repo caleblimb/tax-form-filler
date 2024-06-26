@@ -3,10 +3,19 @@ $npmInstalled = Get-Command npm -ErrorAction SilentlyContinue
 
 if (-not $npmInstalled) {
     Write-Output "npm is not installed. Installing npm..."
-    Invoke-WebRequest -Uri https://nodejs.org/dist/latest/node-v16.13.0-x64.msi -OutFile nodejs.msi
-    Start-Process msiexec.exe -ArgumentList "/i nodejs.msi /quiet" -Wait
-    Remove-Item -Force nodejs.msi
-    $env:Path += ";$env:ProgramFiles\nodejs"
+    
+    # installs fnm (Fast Node Manager)
+    $fnmInstalled = Get-Command fnm -ErrorAction SilentlyContinue
+    if (-not $fnmInstalled) {
+        Write-Output "fnm is not installed. Installing fnm..."
+        winget install Schniz.fnm
+        Write-Output "fnm installed correctly."
+    }
+    
+    # download and install Node.js
+    fnm env --use-on-cd | Out-String | Invoke-Expression
+    fnm use --install-if-missing 20
+    
     Write-Output "npm installed successfully."
 }
 else {
