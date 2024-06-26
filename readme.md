@@ -7,7 +7,7 @@ This application aims to simplify the process of completing basic tax form for t
 - Requirements
   - Windows 10/11
   - Excel 2021+
-- Right click on `StartDevelopment.ps1` and select `Run with PowerShell`. This will do the following:
+- Run `Start.bat`. This will run `LaunchEnvironment.ps1` in `PowerShell` which will in turn do the following:
   - Verify dependencies
     - Check for and install the latest version of node and npm
     - Check for and build the `node_modules` in `excel-add-in` and `frontend`
@@ -20,6 +20,11 @@ This application aims to simplify the process of completing basic tax form for t
 
 
 ### Common issues
+  - `Something is already running on port 300X.`
+    - The application is designed to use the following ports:
+      - `3000`: Excel Add-In
+      - `3001`: Live Update Server
+      - `3002`: Frontend
   - Excel Add-In fails to fully load
     - Reinstall Security Certificate
       - Delete old certificate

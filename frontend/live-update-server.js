@@ -14,7 +14,7 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 const app = express();
-const port = 3001; // Choose an appropriate port
+const port = 3001;
 
 app.use(cors()); // Enable CORS
 app.use(express.json({ limit: "50mb" }));
